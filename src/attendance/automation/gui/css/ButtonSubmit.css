@@ -1,0 +1,32 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15. feb. 2020, 17.06.11
+    Author     : Charlotte
+*/
+
+.button{
+    
+    -fx-background-color: #FBBB2C;
+    -fx-background-position: center;
+    -fx-padding: 0 15 -90 0 ;
+    -fx-background-repeat: no-repeat;
+   
+     content: 'Submit';
+    position: absolute;
+    
+    
+}
+
+.button:hover{
+    
+     
+     -fx-padding: 0 15 -95 0 ;
+}
+.button:pressed{
+ 
+    -fx-padding: 0 15 -90 0;
+}
