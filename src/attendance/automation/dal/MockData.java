@@ -124,7 +124,8 @@ public class MockData
                 new Student("Pernille Carlsen", 78, "Friday"),
                 new Student("Anders Davidsen", 12, "Monday"),
                 new Student("Rebecca Friis", 54, "Wednesday"),
-                new Student("Margret Grief", 98, "Tuesday")
+                new Student("Margret Grief", 98, "Tuesday"),
+                new Student("maman", 100, "Tuesday" )
         );
 
         return studentList;
