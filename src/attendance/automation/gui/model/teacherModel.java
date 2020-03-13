@@ -37,11 +37,10 @@ public class teacherModel
      * Gets the list of students
      *
      * @return
-     */
-    public ObservableList<Student> studentList()
-    {
-        return bll.getTeacherStudentList();
-    }
+     */public ObservableList<Student> studentList()
+   {
+       return bll.getTeacherStudentList();
+  }
 
     /**
      * Gets teacher username
