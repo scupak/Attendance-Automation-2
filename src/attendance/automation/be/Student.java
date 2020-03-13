@@ -19,9 +19,9 @@ public class Student extends Person
     private IntegerProperty absenceProcent;
     private StringProperty dayMostAbsent;
    
-    public Student(StringProperty name, IntegerProperty id, StringProperty username, StringProperty password, int absenceProcent, String dayMostAbsent)
+    public Student(StringProperty name, StringProperty username, StringProperty password, int absenceProcent, String dayMostAbsent)
     {
-        super(name, id, username, password);
+        super(name, username, password);
         this.absenceProcent = new SimpleIntegerProperty(absenceProcent);
         this.dayMostAbsent = new SimpleStringProperty(dayMostAbsent);
     }
@@ -61,10 +61,6 @@ public class Student extends Person
         return name;
     }
 
-    public IntegerProperty getId()
-    {
-        return id;
-    }
     
     
 
