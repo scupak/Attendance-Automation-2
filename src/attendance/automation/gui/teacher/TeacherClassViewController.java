@@ -110,7 +110,7 @@ public class TeacherClassViewController implements Initializable
         int totalAbsence = 0;
         for (Student student : tm.studentList())
         {
-            totalAbsence = totalAbsence + student.getAbsenceProcent();
+            //totalAbsence = totalAbsence + student.getAbsenceProcent();
         }
         totalAbsence = totalAbsence / tm.studentList().size();
 

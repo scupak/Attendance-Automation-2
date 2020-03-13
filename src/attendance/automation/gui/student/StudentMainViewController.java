@@ -67,8 +67,8 @@ public class StudentMainViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
 
-        Student mads = new Student("Mads Jensen", 5, "mads", "jensen");
-        setName(mads);
+        //Student mads = new Student("Mads Jensen", 5, "mads", "jensen");
+        //setName(mads);
         lom = new LogOutModel();
 
     }

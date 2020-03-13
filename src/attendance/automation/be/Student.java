@@ -14,150 +14,57 @@ import javafx.beans.property.StringProperty;
  *
  * @author Charlotte
  */
-public class Student
+public class Student extends Person
 {
-
-    private StringProperty name;
-    private IntegerProperty id;
     private IntegerProperty absenceProcent;
     private StringProperty dayMostAbsent;
-    public StringProperty username;
-    public StringProperty password;
-
-    public Student(String name, int id, String username, String password)
+   
+    public Student(StringProperty name, StringProperty username, StringProperty password, int absenceProcent, String dayMostAbsent)
     {
-        this.id = new SimpleIntegerProperty(id);
-        this.name = new SimpleStringProperty(name);
-        this.username = new SimpleStringProperty(username);
-        this.password = new SimpleStringProperty(password);
-
-    }
-
-    public Student(String name, int absenceProcent, String dayMostAbsent)
-    {
-        this.name = new SimpleStringProperty(name);
+        super(name, username, password);
         this.absenceProcent = new SimpleIntegerProperty(absenceProcent);
         this.dayMostAbsent = new SimpleStringProperty(dayMostAbsent);
     }
 
-    /**
-     * get student username
-     *
-     * @return username
-     */
-    public String getUsername()
+    public IntegerProperty getAbsenceProcent()
     {
-        return this.username.get();
+        return absenceProcent;
     }
 
-    /**
-     * Set student username
-     *
-     * @param username
-     */
-    public void setUsername(StringProperty username)
+    public void setAbsenceProcent(IntegerProperty absenceProcent)
     {
-        this.username = username;
+        this.absenceProcent = absenceProcent;
     }
 
-    /**
-     * Get student password
-     *
-     * @return
-     */
-    public String getPassword()
+    public StringProperty getDayMostAbsent()
     {
-        return this.password.get();
+        return dayMostAbsent;
     }
 
-    /**
-     * Set student password
-     *
-     * @param password
-     */
-    public void setpassword(StringProperty password)
+    public void setDayMostAbsent(StringProperty dayMostAbsent)
     {
-        this.password = password;
+        this.dayMostAbsent = dayMostAbsent;
     }
 
-    /**
-     * Get student absences
-     *
-     * @return absenceProcent
-     */
-    public Integer getAbsenceProcent()
+    public StringProperty getUsername()
     {
-        return this.absenceProcent.get();
+        return username;
     }
 
-    /**
-     * Set Student absence
-     *
-     * @param absenceProcent
-     */
-    public void setAbsenceProcent(Integer absenceProcent)
+    public StringProperty getPassword()
     {
-        this.absenceProcent = new SimpleIntegerProperty(absenceProcent);
+        return password;
     }
 
-    /**
-     * Gets the day a student is most absent
-     *
-     * @return dayMostAbsent
-     */
-    public String getDayMostAbsent()
+    public StringProperty getName()
     {
-        return this.dayMostAbsent.get();
+        return name;
     }
 
-    /**
-     * Sets the day a student is most absent
-     *
-     * @param dayMostAbsent
-     */
-    public void setDayMostAbsent(String dayMostAbsent)
-    {
-        this.dayMostAbsent = new SimpleStringProperty(dayMostAbsent);
-    }
+    
+    
 
-    /**
-     * Get student name
-     *
-     * @return name
-     */
-    public String getName()
-    {
-        return this.name.get();
-    }
-
-    /**
-     * Set Student name
-     *
-     * @param name
-     */
-    public void setName(String name)
-    {
-        this.name = new SimpleStringProperty(name);
-    }
-
-    /**
-     * Get student id
-     *
-     * @return id
-     */
-    public Integer getId()
-    {
-        return this.id.get();
-    }
-
-    /**
-     * Set student id
-     *
-     * @param id
-     */
-    public void setId(IntegerProperty id)
-    {
-        this.id = id;
-    }
-
+    
 }
+    
+    

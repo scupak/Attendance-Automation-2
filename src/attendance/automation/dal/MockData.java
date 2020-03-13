@@ -115,21 +115,20 @@ public class MockData
      *
      * @return TeacherStudentList
      */
-    public ObservableList<Student> teacherStudentList()
-    {
-        ObservableList<Student> studentList = FXCollections.observableArrayList(
-                new Student("Mads Jensen", 16, "Tuesday"),
-                new Student("Sascha Mikkelsen", 28, "Thursday"),
-                new Student("Karl Jensen", 25, "Monday"),
-                new Student("Pernille Carlsen", 78, "Friday"),
-                new Student("Anders Davidsen", 12, "Monday"),
-                new Student("Rebecca Friis", 54, "Wednesday"),
-                new Student("Margret Grief", 98, "Tuesday"),
-                new Student("maman", 100, "Tuesday" )
-        );
-
-        return studentList;
-    }
+//    public ObservableList<Student> teacherStudentList()
+//    {
+//        ObservableList<Student> studentList = FXCollections.observableArrayList(
+//                new Student("Mads Jensen", 16, "Tuesday"),
+//                new Student("Sascha Mikkelsen", 28, "Thursday"),
+//                new Student("Karl Jensen", 25, "Monday"),
+//                new Student("Pernille Carlsen", 78, "Friday"),
+//                new Student("Anders Davidsen", 12, "Monday"),
+//                new Student("Rebecca Friis", 54, "Wednesday"),
+//                new Student("Margret Grief", 98, "Tuesday")
+//        );
+//
+//        return studentList;
+//    }
 
     /**
      * Create and add classes to an ObservableList
