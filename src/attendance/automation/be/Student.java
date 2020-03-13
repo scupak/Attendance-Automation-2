@@ -19,46 +19,46 @@ public class Student extends Person
     private IntegerProperty absenceProcent;
     private StringProperty dayMostAbsent;
    
-    public Student(StringProperty name, StringProperty username, StringProperty password, int absenceProcent, String dayMostAbsent)
+    public Student(String name, String username, String password, int absenceProcent, String dayMostAbsent)
     {
         super(name, username, password);
         this.absenceProcent = new SimpleIntegerProperty(absenceProcent);
         this.dayMostAbsent = new SimpleStringProperty(dayMostAbsent);
     }
 
-    public IntegerProperty getAbsenceProcent()
+    public int getAbsenceProcent()
     {
-        return absenceProcent;
+        return absenceProcent.get();
     }
 
-    public void setAbsenceProcent(IntegerProperty absenceProcent)
+    public void setAbsenceProcent(int absenceProcent)
     {
-        this.absenceProcent = absenceProcent;
+        this.absenceProcent.set(absenceProcent);
     }
 
-    public StringProperty getDayMostAbsent()
+    public String getDayMostAbsent()
     {
-        return dayMostAbsent;
+        return dayMostAbsent.get();
     }
 
-    public void setDayMostAbsent(StringProperty dayMostAbsent)
+    public void setDayMostAbsent(String dayMostAbsent)
     {
-        this.dayMostAbsent = dayMostAbsent;
+        this.dayMostAbsent.set(dayMostAbsent);
     }
 
-    public StringProperty getUsername()
+    public String getUsername()
     {
-        return username;
+        return username.get();
     }
 
-    public StringProperty getPassword()
+    public String getPassword()
     {
-        return password;
+        return password.get();
     }
 
-    public StringProperty getName()
+    public String getName()
     {
-        return name;
+        return name.get();
     }
 
     

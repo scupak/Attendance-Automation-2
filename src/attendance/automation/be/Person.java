@@ -6,6 +6,7 @@
 package attendance.automation.be;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -15,21 +16,15 @@ import javafx.beans.property.StringProperty;
 public abstract class Person
 {
     public StringProperty name;
-    public IntegerProperty id;
-//    private StringProperty email;
-//    private IntegerProperty phoneNumber;
     public StringProperty username;
     public StringProperty password;
 
     
-    public Person(StringProperty name, IntegerProperty id, StringProperty username, StringProperty password)
+    public Person(String name, String username, String password)
     {
-        this.name = name;
-        this.id = id;
-//        this.email = email;
-//        this.phoneNumber = phoneNumber;
-        this.username = username;
-        this.password = password;
+        this.name = new SimpleStringProperty(name);
+        this.username = new SimpleStringProperty(username);
+        this.password = new SimpleStringProperty(password);
     }
     
     

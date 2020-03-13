@@ -30,10 +30,10 @@ public class BLLManager
      *
      * @return teacherStudentList
      */
-//    public ObservableList<Student> getTeacherStudentList()
-//    {
-//        return md.teacherStudentList();
-//    }
+    public ObservableList<Student> getTeacherStudentList()
+    {
+        return md.teacherStudentList();
+    }
 
     /**
      * get the ObservableList of classes
