@@ -12,20 +12,20 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="studentChartRootpane" prefHeight="565.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.StudentChartViewController">
+<AnchorPane fx:id="studentChartRootpane" prefHeight="565.0" prefWidth="882.0" styleClass="AnchorPane" stylesheets="@../css/Graphics.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.StudentChartViewController">
     <children>
-        <StackPane layoutY="22.0" prefHeight="84.0" prefWidth="882.0" style="-fx-background-color: #FBBB2C;">
+        <StackPane layoutY="22.0" prefHeight="84.0" prefWidth="882.0" styleClass="StackPane">
             <children>
-                <Label text="Overview">
+                <Label styleClass="Label" text="Overview">
                     <font>
                         <Font name="Arial" size="27.0" />
                     </font>
                 </Label>
             </children>
         </StackPane>
-        <HBox fx:id="hBox" layoutX="346.0" layoutY="453.0" prefHeight="84.0" prefWidth="191.0" stylesheets="@css/ButtonLogout.css">
+        <HBox fx:id="hBox" layoutX="346.0" layoutY="453.0" prefHeight="84.0" prefWidth="191.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#HandleLogout" prefHeight="72.0" prefWidth="77.0" stylesheets="@../css/ButtonLogout.css">
+                <Button id="ButtonLogout" mnemonicParsing="false" onAction="#HandleLogout" prefHeight="72.0" prefWidth="77.0">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
@@ -33,7 +33,7 @@
                         <Insets right="20.0" />
                     </HBox.margin>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#handelBackToMainView" prefHeight="71.0" prefWidth="78.0" stylesheets="@../css/homebutton.css">
+                <Button id="HomeButton" mnemonicParsing="false" onAction="#handelBackToMainView" prefHeight="71.0" prefWidth="78.0">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>

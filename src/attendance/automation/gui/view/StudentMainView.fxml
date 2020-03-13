@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="studentRootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.StudentMainViewController">
+<AnchorPane fx:id="studentRootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="894.0" stylesheets="@../css/Graphics.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.StudentMainViewController">
    <children>
 
-      <StackPane layoutX="-14.0" layoutY="189.0" prefHeight="104.0" prefWidth="910.0" style="-fx-background-color: #FBBB2C;">
+      <StackPane layoutX="-14.0" layoutY="189.0" prefHeight="104.0" prefWidth="910.0" styleClass="StackPane">
 
          <children>
-            <Label fx:id="lbWelcome" text="Mads Jensen">
+            <Label fx:id="lbWelcome" styleClass="Label" text="Mads Jensen">
                <font>
                   <Font name="Arial Bold" size="40.0" />
                </font>
@@ -31,7 +31,7 @@
       </StackPane>
       <StackPane layoutX="235.0" layoutY="293.0" prefHeight="53.0" prefWidth="426.0">
          <children>
-            <Label fx:id="currentClassText" text="Are you here for your current class?">
+            <Label fx:id="currentClassText" styleClass="Label" text="Are you here for your current class?">
                <font>
                   <Font name="Arial" size="22.0" />
                </font>
@@ -40,7 +40,7 @@
       </StackPane>
       <HBox layoutX="302.0" layoutY="438.0" prefHeight="98.0" prefWidth="290.0">
          <children>
-            <Button fx:id="btLogout" mnemonicParsing="false" onAction="#HandleLogout" pickOnBounds="false" prefHeight="74.0" prefWidth="92.0" stylesheets="/attendance/automation/gui/css/ButtonLogout.css">
+            <Button id="ButtonLogout" fx:id="btLogout" mnemonicParsing="false" onAction="#HandleLogout" pickOnBounds="false" prefHeight="74.0" prefWidth="92.0">
                <opaqueInsets>
                   <Insets right="20.0" />
                </opaqueInsets>
@@ -48,11 +48,11 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btCalenderView" mnemonicParsing="false" onAction="#handelPieChart" prefHeight="76.0" prefWidth="88.0" stylesheets="/attendance/automation/gui/css/PiechartButton.css">
+            <Button id="PieChartButton" fx:id="btCalenderView" mnemonicParsing="false" onAction="#handelPieChart" prefHeight="76.0" prefWidth="88.0">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin></Button>
-            <Button fx:id="btPiecharView" mnemonicParsing="false" onAction="#handelCalenderview" prefHeight="77.0" prefWidth="104.0" stylesheets="/attendance/automation/gui/css/CalendarButton.css" />
+            <Button id="CalendarButton" fx:id="btPiecharView" mnemonicParsing="false" onAction="#handelCalenderview" prefHeight="77.0" prefWidth="104.0" />
          </children>
       </HBox>
       <HBox fx:id="hBox" layoutX="379.0" layoutY="346.0" prefHeight="36.0" prefWidth="208.0">
@@ -70,7 +70,7 @@
                   <Insets right="20.0" top="6.0" />
                </padding>
             </RadioButton>
-            <Button fx:id="submitprecense" mnemonicParsing="false" onAction="#handelSubmit" prefHeight="22.0" prefWidth="71.0" style="-fx-background-color: #FBBB2C;" text="Submit" textAlignment="CENTER">
+            <Button fx:id="submitprecense" mnemonicParsing="false" onAction="#handelSubmit" prefHeight="22.0" prefWidth="71.0" text="Submit" textAlignment="CENTER">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>

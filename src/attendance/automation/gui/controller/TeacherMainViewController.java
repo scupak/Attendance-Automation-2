@@ -77,6 +77,7 @@ public class TeacherMainViewController implements Initializable
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Attendance - Teacher");
+            stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
             stage.show();
 
             Stage oldStage = (Stage) nextButton.getScene().getWindow();

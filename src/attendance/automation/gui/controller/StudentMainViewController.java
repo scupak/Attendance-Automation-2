@@ -117,6 +117,7 @@ public class StudentMainViewController implements Initializable
         try
         {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentCalenderView.fxml"));
+            
 
             studentRootPane.getChildren().setAll(pane);
 

@@ -85,9 +85,11 @@ public class SignInViewController implements Initializable
             Parent root;
             root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml").openStream());
             StudentMainViewController cont = (StudentMainViewController) fxmlLoader.getController();
+            
             Stage stage = new Stage();
             stage.setTitle("Attendance - Student");
             stage.setScene(new Scene(root));
+            stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
             stage.show();
             signInView.close();
         } else if (user.toLowerCase().equals(teacherModel.getUsername()) && pass.equals(teacherModel.getPassword()))
@@ -99,6 +101,7 @@ public class SignInViewController implements Initializable
             Stage stage = new Stage();
             stage.setTitle("Attendance - Teacher");
             stage.setScene(new Scene(root));
+            stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
             stage.show();
             signInView.close();
         } else

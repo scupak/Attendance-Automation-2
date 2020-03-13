@@ -1,0 +1,117 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13. mar. 2020, 20.19.14
+    Author     : kacpe
+*/
+
+.Label
+{
+    -fx-text-fill: black;
+    
+}
+
+.AnchorPane
+{
+    -fx-background-color: white;
+   
+}
+
+.StackPane
+{
+    -fx-background-color:#FBBB2C;
+}
+
+.button
+{
+   -fx-background-color: #FBBB2C;
+}
+
+.backButton
+{
+    -fx-background-color: #009FE3;
+}
+
+#ButtonLogout{
+ 
+    
+    -fx-background-image: url("../icons/logout.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: #FBBB2C;
+    -fx-background-position: center;
+    -fx-padding: 0 15 -90 0 ;
+}
+
+#ButtonLogout:hover{
+     -fx-background-image: url("../icons/logoutonhover.png");
+     -fx-background-color: orange;
+     -fx-padding: 0 15 -95 0 ;
+}
+#ButtonLogout:pressed{
+    -fx-background-image: url("../icons/logoutonclick.png");
+    -fx-padding: 0 15 -90 0 ;
+}
+
+#HomeButton{
+    -fx-background-image: url("../icons/homebuttongray.png");
+    -fx-background-color: #FBBB2C;
+    -fx-background-position: center;
+    -fx-padding: 0 15 -90 0 ;
+    -fx-background-repeat: no-repeat;
+
+}
+
+#HomeButton:hover{
+    
+    -fx-background-image: url("../icons/homebutton.png");
+     -fx-padding: 0 15 -95 0 ;
+}
+#HomeButton:pressed{
+    -fx-image: url("../icons/homebuttongray.png");
+    -fx-padding: 0 15 -90 0;
+}
+
+#PieChartButton{
+    -fx-background-image: url("../icons/piechartGray2.png");
+    -fx-background-color: #FBBB2C;
+    -fx-background-position: center;
+    -fx-padding: 0 15 -90 0 ;
+    -fx-background-repeat: no-repeat;
+
+    
+    
+}
+
+#PieChartButton:hover{
+    
+    -fx-background-image: url("../icons/piechartblack2.png");
+     -fx-padding: 0 15 -95 0 ;
+}
+#PieChartButton:pressed{
+    -fx-image: url("../icons/piechartGray2.png");
+    -fx-padding: 0 15 -90 0;
+}
+
+#CalendarButton{
+    -fx-background-image: url("../icons/calenderGray.png");
+    -fx-background-color: #FBBB2C;
+    -fx-background-position: center;
+
+    -fx-background-repeat: no-repeat;
+
+    
+    
+}
+
+#CalendarButton:hover{
+    
+    -fx-background-image: url("../icons/calendarBlack.png");
+     -fx-padding: 0 15 -95 0 ;
+}
+#CalendarButton:pressed{
+    -fx-image: url("../icons/calenderGray.png");
+    -fx-padding: 0 15 -90 0;
+}

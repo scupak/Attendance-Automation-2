@@ -11,18 +11,18 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="226.0" prefWidth="425.0" stylesheets="@css/SignInSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.SignInViewController">
+<AnchorPane prefHeight="226.0" prefWidth="425.0" styleClass="AnchorPane" stylesheets="@../css/Graphics.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.SignInViewController">
     <children>
-      <StackPane layoutY="20.0" prefHeight="50.0" prefWidth="426.0" style="-fx-background-color: #FBBB2C;">
+      <StackPane layoutY="20.0" prefHeight="50.0" prefWidth="426.0" styleClass="StackPane">
          <children>
-            <Label text="Sign in" textAlignment="CENTER" underline="true">
+            <Label styleClass="Label" text="Sign in" textAlignment="CENTER" underline="true">
                <font>
                   <Font name="Lemonada Regular" size="34.0" />
                </font>
             </Label>
          </children>
       </StackPane>
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" styleClass="Label" />
       <GridPane layoutX="68.0" layoutY="93.0" prefHeight="71.0" prefWidth="289.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.20001220703125" minWidth="10.0" prefWidth="72.0" />
@@ -34,20 +34,20 @@
          </rowConstraints>
          <children>
             <TextField fx:id="username" promptText="Username" GridPane.columnIndex="1" />
-            <Label stylesheets="@css/SignInSheet.css" text="Password:" GridPane.rowIndex="1">
+            <Label styleClass="Label" text="Password:" GridPane.rowIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <PasswordField fx:id="password" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label prefHeight="22.0" prefWidth="98.0" stylesheets="@css/SignInSheet.css" text="Username:">
+            <Label prefHeight="22.0" prefWidth="98.0" styleClass="Label" text="Username:">
                <font>
                   <Font name="Lemonada Medium" size="15.0" />
                </font>
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="signInButton" layoutX="279.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleSignIn" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #FBBB2C;" text="Sign in">
+      <Button fx:id="signInButton" layoutX="279.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleSignIn" prefHeight="26.0" prefWidth="78.0" styleClass="Button" text="Sign in">
          <font>
             <Font size="13.0" />
          </font>

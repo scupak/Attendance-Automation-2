@@ -33,6 +33,7 @@ public class LogOutModel
         Stage stage = new Stage();
         stage.setTitle("Sign in");
         stage.setScene(new Scene(root));
+        stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
         stage.show();
     }
 }

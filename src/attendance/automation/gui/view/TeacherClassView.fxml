@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="534.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherClassViewController">
+<AnchorPane prefHeight="534.0" prefWidth="757.0" styleClass="AnchorPane" stylesheets="@../css/Graphics.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherClassViewController">
    <children>
-      <StackPane layoutY="19.0" prefHeight="66.0" prefWidth="757.0" style="-fx-background-color: #FBBB2C;" />
+      <StackPane layoutY="19.0" prefHeight="66.0" prefWidth="757.0" styleClass="StackPane" />
       <TableView fx:id="classTableView" layoutX="14.0" layoutY="92.0" prefHeight="427.0" prefWidth="362.0">
         <columns>
           <TableColumn fx:id="name" prefWidth="144.00006675720215" resizable="false" text="Name" />
@@ -19,12 +19,12 @@
             <TableColumn fx:id="dayMostAbsent" prefWidth="140.0" resizable="false" text="Day most absent" />
         </columns>
       </TableView>
-      <Label fx:id="classNameLabel" layoutX="229.0" layoutY="25.0" prefHeight="54.0" prefWidth="302.0" text="Class name" textAlignment="CENTER" textOverrun="CLIP">
+      <Label fx:id="classNameLabel" layoutX="229.0" layoutY="25.0" prefHeight="54.0" prefWidth="302.0" styleClass="Label" text="Class name" textAlignment="CENTER" textOverrun="CLIP">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="backButton" layoutX="674.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="30.0" prefWidth="56.0" style="-fx-background-color: #009FE3;" text="Back">
+      <Button fx:id="backButton" layoutX="674.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="30.0" prefWidth="56.0" styleClass="backButton" text="Back">
          <font>
             <Font size="13.0" />
          </font>
