@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="226.0" prefWidth="425.0" stylesheets="@css/SignInSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.SignInViewController">
+<AnchorPane id="AnchorPane" prefHeight="226.0" prefWidth="425.0" stylesheets="@css/SignInSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.SignInViewController">
     <children>
       <StackPane layoutY="20.0" prefHeight="50.0" prefWidth="426.0" style="-fx-background-color: #FBBB2C;">
          <children>

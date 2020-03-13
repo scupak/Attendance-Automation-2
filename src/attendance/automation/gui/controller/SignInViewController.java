@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.gui;
+package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
 import attendance.automation.gui.model.StudentModel;
 
 import attendance.automation.gui.model.teacherModel;
 
-import attendance.automation.gui.teacher.TeacherMainViewController;
-import attendance.automation.gui.student.StudentMainViewController;
+import attendance.automation.gui.controller.StudentMainViewController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -84,7 +83,7 @@ public class SignInViewController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader();
 
             Parent root;
-            root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/student/StudentMainView.fxml").openStream());
+            root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml").openStream());
             StudentMainViewController cont = (StudentMainViewController) fxmlLoader.getController();
             Stage stage = new Stage();
             stage.setTitle("Attendance - Student");
@@ -95,7 +94,7 @@ public class SignInViewController implements Initializable
         {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
-            Parent root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/teacher/TeacherMainView.fxml").openStream());
+            Parent root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/view/TeacherMainView.fxml").openStream());
             TeacherMainViewController cont = (TeacherMainViewController) fxmlLoader.getController();
             Stage stage = new Stage();
             stage.setTitle("Attendance - Teacher");

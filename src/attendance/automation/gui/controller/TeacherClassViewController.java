@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.gui.teacher;
+package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
 import attendance.automation.gui.model.teacherModel;
@@ -78,7 +78,7 @@ public class TeacherClassViewController implements Initializable
     @FXML
     private void handleBack(ActionEvent event) throws IOException
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/teacher/TeacherMainView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMainView.fxml"));
         Parent root = loader.load();
         TeacherMainViewController TMVController = loader.getController();
 

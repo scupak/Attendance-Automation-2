@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.gui.teacher;
+package attendance.automation.gui.controller;
 
+import attendance.automation.gui.controller.TeacherClassViewController;
 import attendance.automation.gui.model.LogOutModel;
 import attendance.automation.gui.model.teacherModel;
 import java.io.IOException;
@@ -69,7 +70,7 @@ public class TeacherMainViewController implements Initializable
     {
         if (classListView.getSelectionModel().getSelectedItem() != null)
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/teacher/TeacherClassView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClassView.fxml"));
             Parent root = loader.load();
             TeacherClassViewController TCVController = loader.getController();
 

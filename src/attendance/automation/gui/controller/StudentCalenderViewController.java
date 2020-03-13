@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.gui.student;
+package attendance.automation.gui.controller;
 
 import attendance.automation.gui.model.CalendarModel;
 import attendance.automation.gui.model.LogOutModel;
@@ -105,7 +105,7 @@ public class StudentCalenderViewController implements Initializable
     @FXML
     private void handelBackToMainView(ActionEvent event) throws IOException
     {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/student/StudentMainView.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
 
         studentCalenderRootpane.getChildren().setAll(pane);
 

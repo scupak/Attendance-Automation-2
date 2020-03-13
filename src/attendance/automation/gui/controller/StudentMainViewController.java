@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.gui.student;
+package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
 import attendance.automation.gui.model.LogOutModel;
@@ -116,7 +116,7 @@ public class StudentMainViewController implements Initializable
 
         try
         {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/student/StudentCalenderView.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentCalenderView.fxml"));
 
             studentRootPane.getChildren().setAll(pane);
 
@@ -138,7 +138,7 @@ public class StudentMainViewController implements Initializable
         try
         {
 
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/student/StudentChartView.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentChartView.fxml"));
 
             studentRootPane.getChildren().setAll(pane);
 

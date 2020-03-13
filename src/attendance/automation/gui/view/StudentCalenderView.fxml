@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="studentCalenderRootpane" prefHeight="565.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.student.StudentCalenderViewController">
+<AnchorPane id="AnchorPane" fx:id="studentCalenderRootpane" prefHeight="565.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.StudentCalenderViewController">
    <children>
       <StackPane layoutY="22.0" prefHeight="84.0" prefWidth="882.0" style="-fx-background-color: #FBBB2C;">
          <children>

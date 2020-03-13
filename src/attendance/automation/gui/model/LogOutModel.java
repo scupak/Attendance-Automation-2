@@ -5,7 +5,7 @@
  */
 package attendance.automation.gui.model;
 
-import attendance.automation.gui.SignInViewController;
+import attendance.automation.gui.controller.SignInViewController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,7 +28,7 @@ public class LogOutModel
     {
         FXMLLoader fxmlLoader = new FXMLLoader();
 
-        Parent root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/SignInView.fxml").openStream());
+        Parent root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/view/SignInView.fxml").openStream());
         SignInViewController cont = (SignInViewController) fxmlLoader.getController();
         Stage stage = new Stage();
         stage.setTitle("Sign in");
