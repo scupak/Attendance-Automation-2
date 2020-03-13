@@ -11,17 +11,22 @@ package attendance.automation.be;
  */
 public class StudentDay
 {
-    private int attStat;
+    public final int attendant = 1;
+    public final int notAttendant = 0;
+    public final int notSetAtt = -1;
     private String timeAndDate;
 
-    public int getAttStat()
+    public int getAttendant()
     {
-        return attStat;
+        return attendant;
     }
-
-    public void setAttStat(int attStat)
+    public int getNotAttendant()
     {
-        this.attStat = attStat;
+        return notAttendant;
+    }
+    public int getNotSetAtt()
+    {
+        return notSetAtt;
     }
 
     public String getTimeAndDate()
