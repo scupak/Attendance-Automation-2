@@ -67,7 +67,12 @@ public class StudentMainViewController implements Initializable
 
         //Student mads = new Student("Mads Jensen", 5, "mads", "jensen");
         //setName(mads);
+      
+        /**
+         *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+         */
         appmodel = AppModel.getInstance();
+        //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(appmodel));
 
     }

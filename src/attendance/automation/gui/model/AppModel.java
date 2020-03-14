@@ -41,6 +41,9 @@ public class AppModel {
         bll = new BLLManager();
     }
     
+     /**
+         *  Utilizing the singleton pattern to make sure there is only one instance of appmodel.
+         */
     public static AppModel getInstance()
     {
         if(appmodel == null)
