@@ -6,8 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
-import attendance.automation.gui.model.LogOutModel;
-import attendance.automation.gui.model.StudentModel;
+import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,8 +51,7 @@ public class StudentMainViewController implements Initializable
     private Label lbWelcome;
 
     private Student user;
-    private StudentModel sm;
-    private LogOutModel lom;
+    private AppModel appmodel;
 
     @FXML
     private Label currentClassText;
@@ -69,7 +67,7 @@ public class StudentMainViewController implements Initializable
 
         //Student mads = new Student("Mads Jensen", 5, "mads", "jensen");
         //setName(mads);
-        lom = new LogOutModel();
+        appmodel = new AppModel();
 
     }
 
@@ -102,7 +100,7 @@ public class StudentMainViewController implements Initializable
         {
             ((Stage) window).close();
         }
-        lom.handelLogout();
+        appmodel.handelLogout();
     }
 
     /**

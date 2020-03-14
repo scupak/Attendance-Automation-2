@@ -6,7 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
-import attendance.automation.gui.model.teacherModel;
+import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +44,7 @@ public class TeacherClassViewController implements Initializable
     @FXML
     private PieChart pieChart;
 
-    private teacherModel tm;
+    private AppModel appmodel;
 
     @FXML
     public TableColumn<Student, String> name;
@@ -59,7 +59,7 @@ public class TeacherClassViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        tm = new teacherModel();
+        appmodel = new AppModel();
         populateList();
         fillPieChart();
 
@@ -100,7 +100,7 @@ public class TeacherClassViewController implements Initializable
         name.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
         absenceProcent.setCellValueFactory(new PropertyValueFactory<Student, Integer>("absenceProcent"));
         dayMostAbsent.setCellValueFactory(new PropertyValueFactory<Student, String>("dayMostAbsent"));
-        classTableView.setItems(tm.studentList());
+        classTableView.setItems(appmodel.studentList());
     }
 
     /**
@@ -109,11 +109,11 @@ public class TeacherClassViewController implements Initializable
     private void fillPieChart()
     {
         int totalAbsence = 0;
-        for (Student student : tm.studentList())
+        for (Student student : appmodel.studentList())
         {
             totalAbsence = totalAbsence + student.getAbsenceProcent();
         }
-        totalAbsence = totalAbsence / tm.studentList().size();
+        totalAbsence = totalAbsence / appmodel.studentList().size();
 
         int totalPresence = 100 - totalAbsence;
 
