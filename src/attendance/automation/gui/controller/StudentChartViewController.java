@@ -45,7 +45,8 @@ public class StudentChartViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
 
-        appmodel = new AppModel();
+        appmodel = AppModel.getInstance();
+        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
         setPieChartData();
         setBarData();
 

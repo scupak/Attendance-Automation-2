@@ -67,7 +67,8 @@ public class StudentMainViewController implements Initializable
 
         //Student mads = new Student("Mads Jensen", 5, "mads", "jensen");
         //setName(mads);
-        appmodel = new AppModel();
+        appmodel = AppModel.getInstance();
+        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
 
     }
 

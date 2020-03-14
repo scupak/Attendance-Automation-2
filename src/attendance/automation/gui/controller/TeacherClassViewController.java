@@ -59,7 +59,8 @@ public class TeacherClassViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        appmodel = new AppModel();
+        appmodel = AppModel.getInstance();
+        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
         populateList();
         fillPieChart();
 

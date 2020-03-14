@@ -24,6 +24,7 @@ import javafx.scene.chart.XYChart;
  * @author kacpe
  */
 public class AppModel {
+    private static AppModel appmodel = null;
     Calendar calendar = Calendar.getInstance();
     
     
@@ -35,11 +36,20 @@ public class AppModel {
     private final BLLManager bll;
     private ObservableList<PieChart.Data> pieChartData;
 
-    public AppModel()
+    private AppModel()
     {
         bll = new BLLManager();
     }
     
+    public static AppModel getInstance()
+    {
+        if(appmodel == null)
+        {
+            appmodel = new AppModel();
+        }
+        
+        return appmodel;
+    }
     /**
      * Gets the list of teachers
      *
