@@ -5,6 +5,8 @@
  */
 package attendance.automation.gui.model;
 
+import attendance.automation.BLL.StudentManager;
+import attendance.automation.BLL.TeacherManager;
 import java.util.Calendar;
 import attendance.automation.gui.controller.SignInViewController;
 import java.io.IOException;
@@ -12,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import attendance.automation.BLL.BLLManager;
 import attendance.automation.be.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,12 +34,14 @@ public class AppModel {
     private final String wednesday = "Wednesday";
     private final String thursday = "Thursday";
     private final String friday = "Friday";
-    private final BLLManager bll;
+    private final StudentManager studentmanager;
+    private final TeacherManager teachermanager;
     private ObservableList<PieChart.Data> pieChartData;
 
     private AppModel()
     {
-        bll = new BLLManager();
+        studentmanager = new StudentManager();
+        teachermanager = new TeacherManager();
     }
     
      /**
@@ -60,7 +63,7 @@ public class AppModel {
      */
     public ObservableList classList()
     {
-        return bll.getTeacherClassList();
+        return teachermanager.getTeacherClassList();
     }
     
     
@@ -70,7 +73,7 @@ public class AppModel {
      * @return
      */public ObservableList<Student> studentList()
    {
-       return bll.getTeacherStudentList();
+       return teachermanager.getTeacherStudentList();
   }
     
      /**
@@ -154,7 +157,7 @@ public class AppModel {
      */
     public String getTeahcerUsername()
     {
-        return bll.getUsernameTeacher();
+        return teachermanager.getUsernameTeacher();
     }
 
     /**
@@ -164,7 +167,7 @@ public class AppModel {
      */
     public String getTeacherPassword()
     {
-        return bll.getPasswordTeacher();
+        return teachermanager.getPasswordTeacher();
     }
     
     
@@ -175,7 +178,7 @@ public class AppModel {
      */
     public String getStudentUsername()
     {
-        return bll.getUsernameStudent();
+        return studentmanager.getUsernameStudent();
     }
 
     /**
@@ -185,7 +188,7 @@ public class AppModel {
      */
     public String getStudentPassword()
     {
-        return bll.getPasswordStudent();
+        return studentmanager.getPasswordStudent();
     }
     
     
