@@ -6,6 +6,8 @@
 package attendance.automation.dal;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
+import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -20,6 +22,7 @@ public class MockData
     private String passwordStudent;
     private String usernameTeacher;
     private String passwordTeacher;
+    private StudentDay sd;
 
     public MockData()
     {
@@ -27,6 +30,8 @@ public class MockData
         passwordStudent = "jensen";
         usernameTeacher = "jeppe";
         passwordTeacher = "baby";
+        
+       
 
     }
 
@@ -138,6 +143,18 @@ public class MockData
         teacherClassList.add("CSe2019A");
 
         return teacherClassList;
+    }
+    
+    
+    public static void main(String[] args) {
+        
+        StudentDay sd = new StudentDay(LocalDate.now(),  new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday"),StudentDay.notAttendant);
+        
+        
+        System.out.println(sd.getDate());
+        System.out.println(sd.getStudent());
+        System.out.println(sd.getAttendanceStatus());
+        
     }
 
 }
