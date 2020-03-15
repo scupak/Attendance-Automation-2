@@ -18,12 +18,16 @@ public class BLLManager
 
     private Student st;
     private final MockData md;
-
+   
     public BLLManager()
     {
         md = new MockData();
+        
+       
 
     }
+
+    
 
     /**
      * Gets the ObservableList of students

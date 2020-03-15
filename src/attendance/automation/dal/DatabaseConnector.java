@@ -17,7 +17,7 @@ import java.util.Properties;
  *
  * @author lumby
  */
-public class DatabaseConnecter
+public class DatabaseConnector
 {
     private SQLServerDataSource dataSource;
 
@@ -27,7 +27,7 @@ public class DatabaseConnecter
      * @throws java.io.FileNotFoundException
      * @throws IOException
      */
-    public DatabaseConnecter() throws FileNotFoundException, IOException{
+    public DatabaseConnector() throws FileNotFoundException, IOException{
         Properties props = new Properties();
        
         props.load(new FileReader("DBSettings.txt"));
