@@ -71,7 +71,7 @@ public class MockData
     }
 
     /**
-     * Get techer username
+     * Get teacher username
      *
      * @return usernameTeacher
      */

@@ -59,6 +59,8 @@ public class StudentMainViewController implements Initializable
     private Label currentClassText;
     @FXML
     private HBox hBox;
+    
+    private boolean isAttTaken = false;
 
     /**
      * Initializes the controller class.
@@ -70,7 +72,11 @@ public class StudentMainViewController implements Initializable
         //Student mads = new Student("Mads Jensen", 5, "mads", "jensen");
         //setName(mads);
         lom = new LogOutModel();
-
+        
+        if(isAttTaken == true)
+        {
+            thankYouMessage();
+        }
     }
 
 
@@ -159,9 +165,15 @@ public class StudentMainViewController implements Initializable
     {
 
         //sm.addData();
-        studentRootPane.getChildren().remove(hBox);
-        currentClassText.setText("Thank you!");
+        thankYouMessage();
+        isAttTaken = true;
 
     }
-
+    
+    private void thankYouMessage()
+    {
+        studentRootPane.getChildren().remove(hBox);
+        currentClassText.setText("Thank you!");
+    }
+    
 }
