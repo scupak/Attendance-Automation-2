@@ -6,8 +6,7 @@
 package attendance.automation.dal;
 
 import attendance.automation.be.Student;
-import attendance.automation.be.StudentDay;
-import java.time.LocalDate;
+import attendance.automation.dal.Interface.MockDataInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,7 +14,7 @@ import javafx.collections.ObservableList;
  *
  * @author Charlotte
  */
-public class MockData
+public class MockData implements MockDataInterface
 {
 
     private String usernameStudent;
@@ -123,8 +122,8 @@ public class MockData
     public ObservableList<Student> teacherStudentList()
     {
         ObservableList<Student> studentList = FXCollections.observableArrayList(
-               new Student("Mads Jensen" , "mads1999","11111" , 16, "Tuesday"),
-                new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday")
+               new Student("Mads Jensen" , "mads1999","11111" , 16, "Tuesday", 1),
+                new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday", 1)
                
            
         );

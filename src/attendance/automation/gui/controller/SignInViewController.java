@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,10 +55,14 @@ public class SignInViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
 
-        /**
-         *  We use get instance instead of new to make sure we use the same appmodel in all classes.
-         */
-        appmodel = AppModel.getInstance();
+        try {
+            /**
+             *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+             */
+            appmodel = AppModel.getInstance();
+        } catch (IOException ex) {
+            Logger.getLogger(SignInViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //A check to see if were woriking with the same instance of appmodel.appmodel = AppModel.getInstance();
         System.out.println("Instance ID: " + System.identityHashCode(appmodel));
 

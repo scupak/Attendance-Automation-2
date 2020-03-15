@@ -10,6 +10,8 @@ import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,10 +61,14 @@ public class TeacherClassViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-       /**
-         *  We use get instance instead of new to make sure we use the same appmodel in all classes.
-         */
-        appmodel = AppModel.getInstance();
+        try {
+            /**
+             *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+             */
+            appmodel = AppModel.getInstance();
+        } catch (IOException ex) {
+            Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(appmodel));
         populateList();
