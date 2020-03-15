@@ -118,8 +118,8 @@ public class MockData
     public ObservableList<Student> teacherStudentList()
     {
         ObservableList<Student> studentList = FXCollections.observableArrayList(
-               new Student("Mads Jensen" , "mads1999","11111" , 16, "Tuesday"),
-                new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday")
+               new Student("Mads Jensen" , "mads1999","11111" , 16, "Tuesday", 1),
+                new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday", 1)
                
            
         );
