@@ -6,7 +6,8 @@
 package attendance.automation.BLL;
 import attendance.automation.BLL.Interface.TeacherManagerInterface;
 import attendance.automation.be.Student;
-import attendance.automation.dal.MockData;
+import attendance.automation.dal.DALFacade;
+import java.io.IOException;
 import javafx.collections.ObservableList;
 /**
  *
@@ -15,11 +16,11 @@ import javafx.collections.ObservableList;
 public class TeacherManager implements TeacherManagerInterface
 {
     
-    private final MockData md;
+    private final DALFacade dalfacade;
     
-    public TeacherManager()
+    public TeacherManager() throws IOException
     {
-        md = new MockData();
+        dalfacade = new DALFacade();
         
        
 
@@ -32,7 +33,7 @@ public class TeacherManager implements TeacherManagerInterface
      */
     public ObservableList<Student> getTeacherStudentList()
     {
-        return md.teacherStudentList();
+        return dalfacade.teacherStudentList();
     }
 
     /**
@@ -42,7 +43,7 @@ public class TeacherManager implements TeacherManagerInterface
      */
     public ObservableList getTeacherClassList()
     {
-        return md.teacherClassList();
+        return dalfacade.teacherClassList();
     }
     
     /**
@@ -52,7 +53,7 @@ public class TeacherManager implements TeacherManagerInterface
      */
     public String getUsernameTeacher()
     {
-        return md.getUsernameTeacher();
+        return dalfacade.getUsernameTeacher();
     }
 
     /**
@@ -62,6 +63,6 @@ public class TeacherManager implements TeacherManagerInterface
      */
     public String getPasswordTeacher()
     {
-        return md.getPasswordTeacher();
+        return dalfacade.getPasswordTeacher();
     }
 }

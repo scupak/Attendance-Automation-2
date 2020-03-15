@@ -5,6 +5,7 @@
  */
 package attendance.automation.dal;
 
+import attendance.automation.dal.Interface.StudentDBDAOInterface;
 import attendance.automation.be.Student;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,11 +21,11 @@ import java.util.logging.Logger;
  *
  * @author lumby
  */
-public class StudentDBDAO
+public class StudentDBDAO implements StudentDBDAOInterface
 {
     private final DatabaseConnector dbcon;
     
-    public StudentDBDAO() throws IOException
+    public StudentDBDAO() throws IOException 
     {
         dbcon = new DatabaseConnector();
     }

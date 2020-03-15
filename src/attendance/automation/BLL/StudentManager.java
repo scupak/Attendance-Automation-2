@@ -5,7 +5,9 @@
  */
 package attendance.automation.BLL;
 import attendance.automation.BLL.Interface.StudentManagerInterface;
-import attendance.automation.dal.MockData;
+import attendance.automation.dal.DALFacade;
+import java.io.IOException;
+
 /**
  *
  * @author kacpe
@@ -13,11 +15,11 @@ import attendance.automation.dal.MockData;
 public class StudentManager implements StudentManagerInterface
 {
    
-    private final MockData md;
+    private final DALFacade dalfacade;
     
-    public StudentManager()
+    public StudentManager() throws IOException
     {
-        md = new MockData();
+        dalfacade = new DALFacade();
         
     }
     
@@ -28,7 +30,7 @@ public class StudentManager implements StudentManagerInterface
      */
     public String getUsernameStudent()
     {
-        return md.getUsernameStudent();
+        return dalfacade.getUsernameStudent();
     }
 
     /**
@@ -38,6 +40,6 @@ public class StudentManager implements StudentManagerInterface
      */
     public String getPasswordStudent()
     {
-        return md.getPasswordStudent();
+        return dalfacade.getPasswordStudent();
     }
 }

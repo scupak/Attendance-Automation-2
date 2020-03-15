@@ -6,6 +6,7 @@
 package attendance.automation.dal;
 
 import attendance.automation.be.Student;
+import attendance.automation.dal.Interface.MockDataInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,7 +14,7 @@ import javafx.collections.ObservableList;
  *
  * @author Charlotte
  */
-public class MockData
+public class MockData implements MockDataInterface
 {
 
     private String usernameStudent;

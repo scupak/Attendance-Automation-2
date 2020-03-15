@@ -37,7 +37,7 @@ public class AppModel {
     private final BLLFacade bllfacade;
     private ObservableList<PieChart.Data> pieChartData;
 
-    private AppModel()
+    private AppModel() throws IOException
     {
         bllfacade = new BLLFacade();
     }
@@ -45,7 +45,7 @@ public class AppModel {
      /**
          *  Utilizing the singleton pattern to make sure there is only one instance of appmodel.
          */
-    public static AppModel getInstance()
+    public static AppModel getInstance() throws IOException
     {
         if(appmodel == null)
         {
