@@ -5,8 +5,8 @@
  */
 package attendance.automation.gui.model;
 
-import attendance.automation.BLL.StudentManager;
-import attendance.automation.BLL.TeacherManager;
+
+import attendance.automation.BLL.BLLFacade;
 import java.util.Calendar;
 import attendance.automation.gui.controller.SignInViewController;
 import java.io.IOException;
@@ -34,14 +34,12 @@ public class AppModel {
     private final String wednesday = "Wednesday";
     private final String thursday = "Thursday";
     private final String friday = "Friday";
-    private final StudentManager studentmanager;
-    private final TeacherManager teachermanager;
+    private final BLLFacade bllfacade;
     private ObservableList<PieChart.Data> pieChartData;
 
     private AppModel()
     {
-        studentmanager = new StudentManager();
-        teachermanager = new TeacherManager();
+        bllfacade = new BLLFacade();
     }
     
      /**
@@ -63,7 +61,7 @@ public class AppModel {
      */
     public ObservableList classList()
     {
-        return teachermanager.getTeacherClassList();
+        return bllfacade.getTeacherClassList();
     }
     
     
@@ -73,7 +71,7 @@ public class AppModel {
      * @return
      */public ObservableList<Student> studentList()
    {
-       return teachermanager.getTeacherStudentList();
+       return bllfacade.getTeacherStudentList();
   }
     
      /**
@@ -157,7 +155,7 @@ public class AppModel {
      */
     public String getTeahcerUsername()
     {
-        return teachermanager.getUsernameTeacher();
+        return bllfacade.getUsernameTeacher();
     }
 
     /**
@@ -167,7 +165,7 @@ public class AppModel {
      */
     public String getTeacherPassword()
     {
-        return teachermanager.getPasswordTeacher();
+        return bllfacade.getPasswordTeacher();
     }
     
     
@@ -178,7 +176,7 @@ public class AppModel {
      */
     public String getStudentUsername()
     {
-        return studentmanager.getUsernameStudent();
+        return bllfacade.getUsernameStudent();
     }
 
     /**
@@ -188,7 +186,7 @@ public class AppModel {
      */
     public String getStudentPassword()
     {
-        return studentmanager.getPasswordStudent();
+        return bllfacade.getPasswordStudent();
     }
     
     

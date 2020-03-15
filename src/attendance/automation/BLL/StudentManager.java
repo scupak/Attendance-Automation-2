@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package attendance.automation.BLL;
+import attendance.automation.BLL.Interface.StudentManagerInterface;
 import attendance.automation.dal.MockData;
 /**
  *
  * @author kacpe
  */
-public class StudentManager {
+public class StudentManager implements StudentManagerInterface
+{
    
     private final MockData md;
     

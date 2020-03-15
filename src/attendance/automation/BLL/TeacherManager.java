@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package attendance.automation.BLL;
+import attendance.automation.BLL.Interface.TeacherManagerInterface;
 import attendance.automation.be.Student;
 import attendance.automation.dal.MockData;
 import javafx.collections.ObservableList;
@@ -11,7 +12,8 @@ import javafx.collections.ObservableList;
  *
  * @author kacpe
  */
-public class TeacherManager {
+public class TeacherManager implements TeacherManagerInterface
+{
     
     private final MockData md;
     
