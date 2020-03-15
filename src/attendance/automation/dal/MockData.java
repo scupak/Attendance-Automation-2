@@ -6,7 +6,9 @@
 package attendance.automation.dal;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
 import attendance.automation.dal.Interface.MockDataInterface;
+import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -147,7 +149,7 @@ public class MockData implements MockDataInterface
     
     public static void main(String[] args) {
         
-        StudentDay sd = new StudentDay(LocalDate.now(),  new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday"),StudentDay.notAttendant);
+        StudentDay sd = new StudentDay(LocalDate.now(), new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday", 1),StudentDay.notAttendant);
         
         
         System.out.println(sd.getDate());
