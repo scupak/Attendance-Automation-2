@@ -6,8 +6,8 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.gui.controller.TeacherClassViewController;
-import attendance.automation.gui.model.LogOutModel;
-import attendance.automation.gui.model.teacherModel;
+import attendance.automation.gui.model.AppModel;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,8 +42,7 @@ public class TeacherMainViewController implements Initializable
     @FXML
     private Button logOutButton;
 
-    private LogOutModel lom;
-    private teacherModel tm;
+    private AppModel appmodel;
 
     /**
      * Initializes the controller class.
@@ -51,8 +50,13 @@ public class TeacherMainViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        tm = new teacherModel();
-        lom = new LogOutModel();
+        /**
+         *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+         */
+        appmodel = AppModel.getInstance();
+        //A check to see if were woriking with the same instance of appmodel.
+        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
+        
         populateList();
         welcomeMessage.setText("Welcome Jeppe!");
         welcomeMessage.setAlignment(Pos.CENTER);
@@ -97,7 +101,7 @@ public class TeacherMainViewController implements Initializable
      */
     public void populateList()
     {
-        classListView.setItems(tm.classList());
+        classListView.setItems(appmodel.classList());
     }
 
     /**
@@ -109,7 +113,7 @@ public class TeacherMainViewController implements Initializable
     @FXML
     private void handleLogOut(ActionEvent event) throws Exception
     {
-        lom.handelLogout();
+        appmodel.handelLogout();
         Stage oldStage = (Stage) logOutButton.getScene().getWindow();
         oldStage.close();
     }

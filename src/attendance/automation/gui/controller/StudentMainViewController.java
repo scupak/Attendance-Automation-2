@@ -6,8 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
-import attendance.automation.gui.model.LogOutModel;
-import attendance.automation.gui.model.StudentModel;
+import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,8 +51,7 @@ public class StudentMainViewController implements Initializable
     private Label lbWelcome;
 
     private Student user;
-    private StudentModel sm;
-    private LogOutModel lom;
+    private AppModel appmodel;
 
     @FXML
     private Label currentClassText;
@@ -77,6 +75,14 @@ public class StudentMainViewController implements Initializable
         {
             thankYouMessage();
         }
+      
+        /**
+         *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+         */
+        appmodel = AppModel.getInstance();
+        //A check to see if were woriking with the same instance of appmodel.
+        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
+
     }
 
 
@@ -108,7 +114,7 @@ public class StudentMainViewController implements Initializable
         {
             ((Stage) window).close();
         }
-        lom.handelLogout();
+        appmodel.handelLogout();
     }
 
     /**

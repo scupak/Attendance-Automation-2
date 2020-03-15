@@ -5,8 +5,7 @@
  */
 package attendance.automation.gui.controller;
 
-import attendance.automation.gui.model.LogOutModel;
-import attendance.automation.gui.model.StudentModel;
+import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,8 +36,7 @@ public class StudentChartViewController implements Initializable
     private BarChart<?, ?> barChart;
     @FXML
     private HBox hBox;
-    private StudentModel sm;
-    private LogOutModel lom;
+    private AppModel appmodel;
 
     /**
      * Initializes the controller class.
@@ -47,8 +45,12 @@ public class StudentChartViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
 
-        sm = new StudentModel();
-        lom = new LogOutModel();
+        /**
+         *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+         */
+        appmodel = AppModel.getInstance();
+        //A check to see if were woriking with the same instance of appmodel.
+        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
         setPieChartData();
         setBarData();
 
@@ -69,7 +71,7 @@ public class StudentChartViewController implements Initializable
         {
             ((Stage) window).close();
         }
-        lom.handelLogout();
+        appmodel.handelLogout();
     }
 
     /**
@@ -92,7 +94,7 @@ public class StudentChartViewController implements Initializable
      */
     public void setPieChartData()
     {
-        pieChart.getData().addAll(sm.setPiechartData());
+        pieChart.getData().addAll(appmodel.setPiechartData());
         pieChart.setTitle("Total Overview");
     }
 
@@ -102,7 +104,7 @@ public class StudentChartViewController implements Initializable
     public void setBarData()
     {
         barChart.setTitle("Week overview");
-        barChart.getData().addAll(sm.setPresence(), sm.setAbsent());
+        barChart.getData().addAll(appmodel.setPresence(), appmodel.setAbsent());
 
     }
 

@@ -6,11 +6,8 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
-import attendance.automation.gui.model.StudentModel;
-
-import attendance.automation.gui.model.teacherModel;
-
 import attendance.automation.gui.controller.StudentMainViewController;
+import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -46,8 +43,7 @@ public class SignInViewController implements Initializable
     private Label label;
 
     private List<Student> StudentList;
-    private StudentModel studentModel;
-    private teacherModel teacherModel;
+    private AppModel appmodel;
     public Student stud;
 
     /**
@@ -57,8 +53,12 @@ public class SignInViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
 
-        studentModel = new StudentModel();
-        teacherModel = new teacherModel();
+        /**
+         *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+         */
+        appmodel = AppModel.getInstance();
+        //A check to see if were woriking with the same instance of appmodel.appmodel = AppModel.getInstance();
+        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
 
     }
 
@@ -78,7 +78,7 @@ public class SignInViewController implements Initializable
         String pass = password.getText();
         Stage signInView = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        if (user.toLowerCase().equals(studentModel.getUsername()) && pass.equals(studentModel.getPassword()))
+        if (user.toLowerCase().equals(appmodel.getStudentUsername()) && pass.equals(appmodel.getStudentPassword()))
         {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -92,7 +92,7 @@ public class SignInViewController implements Initializable
             stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
             stage.show();
             signInView.close();
-        } else if (user.toLowerCase().equals(teacherModel.getUsername()) && pass.equals(teacherModel.getPassword()))
+        } else if (user.toLowerCase().equals(appmodel.getTeahcerUsername()) && pass.equals(appmodel.getTeacherPassword()))
         {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
