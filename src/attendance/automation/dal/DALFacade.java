@@ -6,6 +6,7 @@
 package attendance.automation.dal;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
 import attendance.automation.dal.Interface.DALFacadeInterface;
 import attendance.automation.dal.Interface.MockDataInterface;
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
@@ -19,6 +20,11 @@ import javafx.collections.ObservableList;
  */
 public class DALFacade implements DALFacadeInterface
 {
+
+    public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return StudentDBDAO.sendUpdateDayStudent(sd);
+    }
     StudentDBDAOInterface studentdbdao;
     MockDataInterface mockdata;
     

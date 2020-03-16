@@ -5,6 +5,8 @@
  */
 package attendance.automation.BLL.Interface;
 
+import attendance.automation.be.StudentDay;
+
 /**
  *
  * @author kacpe
@@ -25,4 +27,6 @@ public interface StudentManagerInterface
      * @return getPasswordStudent
      */
     public String getPasswordStudent();
+
+    public boolean sendUpdateDayStudent(StudentDay sd);
 }
