@@ -23,7 +23,7 @@ public class DALFacade implements DALFacadeInterface
 
     public boolean sendUpdateDayStudent(StudentDay sd)
     {
-        return StudentDBDAO.sendUpdateDayStudent(sd);
+        return studentdbdao.sendUpdateDayStudent(sd);
     }
     StudentDBDAOInterface studentdbdao;
     MockDataInterface mockdata;
