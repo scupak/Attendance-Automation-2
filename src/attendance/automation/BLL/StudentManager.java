@@ -31,6 +31,7 @@ public class StudentManager implements StudentManagerInterface
      *
      * @return getUsernameStudent
      */
+    @Override
     public String getUsernameStudent()
     {
         return dalfacade.getUsernameStudent();
@@ -41,11 +42,13 @@ public class StudentManager implements StudentManagerInterface
      *
      * @return getPasswordStudent
      */
+    @Override
     public String getPasswordStudent()
     {
         return dalfacade.getPasswordStudent();
     }
     
+    @Override
     public boolean sendUpdateDayStudent(StudentDay sd)
     {
         return dalfacade.sendUpdateDayStudent(sd);
