@@ -5,16 +5,32 @@
  */
 package attendance.automation.be;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Zanaxdk <https://github.com/zanaxdk>
  */
 public class StudentDay
 {
-    public final int attendant = 1;
-    public final int notAttendant = 0;
-    public final int notSetAtt = -1;
-    private String timeAndDate;
+    public final static int attendant = 1;
+    public final static int notAttendant = 0;
+    public final static int notSetAtt = -1;
+    private int attendanceStatus = -1;
+    private LocalDate Date;
+    private Student student;
+
+    public StudentDay(LocalDate Date, Student student, int attendanceStatus) {
+        this.Date = Date;
+        this.student = student;
+        this.attendanceStatus = attendanceStatus;
+    }
+
+    public StudentDay(LocalDate Date, Student student) {
+        this.Date = Date;
+        this.student = student;
+    }
+    
 
     public int getAttendant()
     {
@@ -29,14 +45,32 @@ public class StudentDay
         return notSetAtt;
     }
 
-    public String getTimeAndDate()
+    public LocalDate getDate()
     {
-        return timeAndDate;
+        return Date;
     }
 
-    public void setTimeAndDate(String timeAndDate)
+    public void setDate(LocalDate Date)
     {
-        this.timeAndDate = timeAndDate;
+        this.Date = Date;
     }
+
+    public int getAttendanceStatus() {
+        return attendanceStatus;
+    }
+
+    public void setAttendanceStatus(int attendanceStatus) {
+        this.attendanceStatus = attendanceStatus;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+    
+    
     
 }

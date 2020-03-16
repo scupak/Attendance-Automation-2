@@ -4,35 +4,36 @@
  * and open the template in the editor.
  */
 package attendance.automation.BLL;
-
+import attendance.automation.BLL.Interface.TeacherManagerInterface;
 import attendance.automation.be.Student;
-import attendance.automation.dal.MockData;
+import attendance.automation.dal.DALFacade;
+import java.io.IOException;
 import javafx.collections.ObservableList;
-
 /**
  *
- * @author Charlotte
+ * @author kacpe
  */
-public class BLLManager
+public class TeacherManager implements TeacherManagerInterface
 {
-
-    private Student st;
-    private final MockData md;
-
-    public BLLManager()
+    
+    private final DALFacade dalfacade;
+    
+    public TeacherManager() throws IOException
     {
-        md = new MockData();
+        dalfacade = new DALFacade();
+        
+       
 
     }
-
-    /**
+    
+     /**
      * Gets the ObservableList of students
      *
      * @return teacherStudentList
      */
     public ObservableList<Student> getTeacherStudentList()
     {
-        return md.teacherStudentList();
+        return dalfacade.teacherStudentList();
     }
 
     /**
@@ -42,29 +43,9 @@ public class BLLManager
      */
     public ObservableList getTeacherClassList()
     {
-        return md.teacherClassList();
+        return dalfacade.teacherClassList();
     }
-
-    /**
-     * Get student username
-     *
-     * @return getUsernameStudent
-     */
-    public String getUsernameStudent()
-    {
-        return md.getUsernameStudent();
-    }
-
-    /**
-     * Get student password
-     *
-     * @return getPasswordStudent
-     */
-    public String getPasswordStudent()
-    {
-        return md.getPasswordStudent();
-    }
-
+    
     /**
      * Get teacher username
      *
@@ -72,7 +53,7 @@ public class BLLManager
      */
     public String getUsernameTeacher()
     {
-        return md.getUsernameTeacher();
+        return dalfacade.getUsernameTeacher();
     }
 
     /**
@@ -82,12 +63,6 @@ public class BLLManager
      */
     public String getPasswordTeacher()
     {
-        return md.getPasswordTeacher();
+        return dalfacade.getPasswordTeacher();
     }
-
-    public boolean checkDay()
-    {
-        return md.checkDay();
-    }
-
 }

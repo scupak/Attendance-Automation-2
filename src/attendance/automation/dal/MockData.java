@@ -6,6 +6,9 @@
 package attendance.automation.dal;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
+import attendance.automation.dal.Interface.MockDataInterface;
+import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,13 +16,14 @@ import javafx.collections.ObservableList;
  *
  * @author Charlotte
  */
-public class MockData
+public class MockData implements MockDataInterface
 {
 
     private String usernameStudent;
     private String passwordStudent;
     private String usernameTeacher;
     private String passwordTeacher;
+    private StudentDay sd;
 
     public MockData()
     {
@@ -27,6 +31,8 @@ public class MockData
         passwordStudent = "jensen";
         usernameTeacher = "jeppe";
         passwordTeacher = "baby";
+        
+       
 
     }
 
@@ -118,8 +124,8 @@ public class MockData
     public ObservableList<Student> teacherStudentList()
     {
         ObservableList<Student> studentList = FXCollections.observableArrayList(
-               new Student("Mads Jensen" , "mads1999","11111" , 16, "Tuesday"),
-                new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday")
+               new Student("Mads Jensen" , "mads1999","11111" , 16, "Tuesday", 1),
+                new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday", 1)
                
            
         );
@@ -138,6 +144,18 @@ public class MockData
         teacherClassList.add("CSe2019A");
 
         return teacherClassList;
+    }
+    
+    
+    public static void main(String[] args) {
+        
+        StudentDay sd = new StudentDay(LocalDate.now(), new Student("Sascha Mikkelsen","sas89898","loli", 28, "Thursday", 1),StudentDay.notAttendant);
+        
+        
+        System.out.println(sd.getDate());
+        System.out.println(sd.getStudent());
+        System.out.println(sd.getAttendanceStatus());
+        
     }
 
     public boolean checkDay()
