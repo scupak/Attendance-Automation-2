@@ -29,7 +29,7 @@ public class AppModel {
     Calendar calendar = Calendar.getInstance();
     
     
-     private final String monday = "Monday";
+    private final String monday = "Monday";
     private final String tuesday = "Tuesday";
     private final String wednesday = "Wednesday";
     private final String thursday = "Thursday";
