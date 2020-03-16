@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -207,6 +208,11 @@ public class AppModel {
         stage.setScene(new Scene(root));
         stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
         stage.show();
+    }
+    
+        public boolean updateDayStudent(StudentDay sd)
+    {
+        return bllfacade.sendUpdateDayStudent(sd);
     }
     
     
