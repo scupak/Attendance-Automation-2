@@ -7,6 +7,7 @@ package attendance.automation.dal;
 
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,8 @@ import java.util.logging.Logger;
  */
 public class StudentDBDAO implements StudentDBDAOInterface
 {
+
+   
     private final DatabaseConnector dbcon;
     
     public StudentDBDAO() throws IOException 
@@ -131,5 +134,16 @@ public class StudentDBDAO implements StudentDBDAOInterface
 
         System.out.println(test.getStudent(s));
         
+    }
+    
+    /**
+     *
+     * @param sd
+     * @return boolean 
+     */
+    @Override
+     public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return false;
     }
 }

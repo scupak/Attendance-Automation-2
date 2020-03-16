@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -29,7 +30,7 @@ public class AppModel {
     Calendar calendar = Calendar.getInstance();
     
     
-     private final String monday = "Monday";
+    private final String monday = "Monday";
     private final String tuesday = "Tuesday";
     private final String wednesday = "Wednesday";
     private final String thursday = "Thursday";
@@ -207,6 +208,11 @@ public class AppModel {
         stage.setScene(new Scene(root));
         stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
         stage.show();
+    }
+    
+        public boolean updateDayStudent(StudentDay sd)
+    {
+        return bllfacade.sendUpdateDayStudent(sd);
     }
     
     

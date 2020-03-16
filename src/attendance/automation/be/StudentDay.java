@@ -16,7 +16,7 @@ public class StudentDay
     public final static int attendant = 1;
     public final static int notAttendant = 0;
     public final static int notSetAtt = -1;
-    private int attendanceStatus = -1;
+    private int attendanceStatus;
     private LocalDate Date;
     private Student student;
 
@@ -29,9 +29,16 @@ public class StudentDay
     public StudentDay(LocalDate Date, Student student) {
         this.Date = Date;
         this.student = student;
+        this.attendanceStatus = -1;
+    }
+
+    public StudentDay() {
+        this.Date = LocalDate.now();
+        this.student = null;
+        this.attendanceStatus = -1;
+        
     }
     
-
     public int getAttendant()
     {
         return attendant;

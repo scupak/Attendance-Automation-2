@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class StudentManager implements StudentManagerInterface
 {
+
+    
    
     private final DALFacade dalfacade;
     
@@ -31,6 +33,7 @@ public class StudentManager implements StudentManagerInterface
      *
      * @return getUsernameStudent
      */
+    @Override
     public String getUsernameStudent()
     {
         return dalfacade.getUsernameStudent();
@@ -41,6 +44,7 @@ public class StudentManager implements StudentManagerInterface
      *
      * @return getPasswordStudent
      */
+    @Override
     public String getPasswordStudent()
     {
         return dalfacade.getPasswordStudent();
@@ -83,7 +87,12 @@ public class StudentManager implements StudentManagerInterface
         System.out.println(se.getUsername());
         
         test.checkCredStudent(se);
+    }
         
         
+    @Override
+    public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return dalfacade.sendUpdateDayStudent(sd);
     }
 }
