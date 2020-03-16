@@ -243,4 +243,9 @@ public class AppModel {
         return calendar.get(Calendar.YEAR);
 
     }
+
+    public boolean checkDay()
+    {
+        return bll.checkDay();
+    }
 }

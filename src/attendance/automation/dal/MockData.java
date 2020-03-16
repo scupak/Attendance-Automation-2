@@ -140,4 +140,9 @@ public class MockData
         return teacherClassList;
     }
 
+    public boolean checkDay()
+    {
+        return false;
+    }
+
 }

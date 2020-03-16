@@ -85,4 +85,9 @@ public class BLLManager
         return md.getPasswordTeacher();
     }
 
+    public boolean checkDay()
+    {
+        return md.checkDay();
+    }
+
 }

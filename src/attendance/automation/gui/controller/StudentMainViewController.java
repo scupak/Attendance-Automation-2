@@ -58,7 +58,6 @@ public class StudentMainViewController implements Initializable
     @FXML
     private HBox hBox;
     
-    private boolean isAttTaken = false;
 
     /**
      * Initializes the controller class.
@@ -66,15 +65,11 @@ public class StudentMainViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
+        
         //Student mads = new Student("Mads Jensen", 5, "mads", "jensen");
         //setName(mads);
-        lom = new LogOutModel();
         
-        if(isAttTaken == true)
-        {
-            thankYouMessage();
-        }
+        
       
         /**
          *  We use get instance instead of new to make sure we use the same appmodel in all classes.
@@ -82,7 +77,11 @@ public class StudentMainViewController implements Initializable
         appmodel = AppModel.getInstance();
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(appmodel));
-
+        
+        if (appmodel.checkDay() == true)
+        {
+            thankYouMessage();
+        }
     }
 
 
@@ -172,7 +171,6 @@ public class StudentMainViewController implements Initializable
 
         //sm.addData();
         thankYouMessage();
-        isAttTaken = true;
 
     }
     
