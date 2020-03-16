@@ -25,10 +25,7 @@ import java.util.logging.Logger;
 public class StudentDBDAO implements StudentDBDAOInterface
 {
 
-    public boolean sendUpdateDayStudent(StudentDay sd)
-    {
-        return false;
-    }
+   
     private final DatabaseConnector dbcon;
     
     public StudentDBDAO() throws IOException 
@@ -137,5 +134,16 @@ public class StudentDBDAO implements StudentDBDAOInterface
 
         System.out.println(test.getStudent(s));
         
+    }
+    
+    /**
+     *
+     * @param sd
+     * @return boolean 
+     */
+    @Override
+     public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return false;
     }
 }
