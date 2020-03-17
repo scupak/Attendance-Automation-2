@@ -21,10 +21,8 @@ import javafx.collections.ObservableList;
 public class DALFacade implements DALFacadeInterface
 {
 
-    public boolean sendUpdateDayStudent(StudentDay sd)
-    {
-        return studentdbdao.sendUpdateDayStudent(sd);
-    }
+    
+    
     StudentDBDAOInterface studentdbdao;
     MockDataInterface mockdata;
     
@@ -33,7 +31,12 @@ public class DALFacade implements DALFacadeInterface
         studentdbdao = new StudentDBDAO();
         mockdata = new MockData();
     }
-
+    
+    public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return studentdbdao.sendUpdateDayStudent(sd);
+    }
+    
     @Override
     public List<Student> getAllStudents() throws AttendanceAutomationDalException 
     {

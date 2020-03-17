@@ -25,10 +25,7 @@ import java.util.logging.Logger;
 public class StudentDBDAO implements StudentDBDAOInterface
 {
 
-    public boolean sendUpdateDayStudent(StudentDay sd)
-    {
-        return false;
-    }
+    
     private final DatabaseConnector dbcon;
     
     public StudentDBDAO() throws IOException 
@@ -102,6 +99,9 @@ public class StudentDBDAO implements StudentDBDAOInterface
         }
     }
     
+    
+    
+    
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException
             {
         try (Connection con =dbcon.getConnection()) {
@@ -123,6 +123,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
         }
             }
     
+    public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return false;
+    }
     public static void main(String[] args) throws IOException, AttendanceAutomationDalException
     {
         StudentDBDAO test = new StudentDBDAO();

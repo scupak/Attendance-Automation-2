@@ -212,6 +212,8 @@ public class AppModel {
     
         public boolean updateDayStudent(StudentDay sd)
     {
+        
+        
         return bllfacade.sendUpdateDayStudent(sd);
     }
     

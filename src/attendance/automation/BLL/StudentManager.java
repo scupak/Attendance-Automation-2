@@ -16,10 +16,7 @@ import java.io.IOException;
 public class StudentManager implements StudentManagerInterface
 {
 
-    public boolean sendUpdateDayStudent(StudentDay sd)
-    {
-        return dalfacade.sendUpdateDayStudent(sd);
-    }
+   
    
     private final DALFacade dalfacade;
     
@@ -29,6 +26,10 @@ public class StudentManager implements StudentManagerInterface
         
     }
     
+     public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return dalfacade.sendUpdateDayStudent(sd);
+    }
      /**
      * Get student username
      *
