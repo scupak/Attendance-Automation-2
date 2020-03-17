@@ -112,6 +112,16 @@ public class SignInViewController implements Initializable
             signInView.close();
         } else
         {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+
+            /*Parent root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/view/StatusSelect.fxml").openStream());
+            StatusSelectController cont = (StatusSelectController) fxmlLoader.getController();
+            Stage stage = new Stage();
+            stage.setTitle("Attendance - Select");
+            stage.setScene(new Scene(root));
+            stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
+            stage.show();*/
+            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Oops");
             alert.setHeaderText("Oops, something went wrong");

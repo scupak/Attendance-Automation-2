@@ -115,4 +115,10 @@ public class DALFacade implements DALFacadeInterface
         return mockdata.teacherClassList();
     }
     
+    @Override
+    public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return studentdbdao.sendUpdateDayStudent(sd);
+    }
+    
 }

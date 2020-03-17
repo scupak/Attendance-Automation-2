@@ -20,10 +20,7 @@ import javafx.collections.ObservableList;
 public class BLLFacade implements BLLFacadeInterface
 {
 
-    public boolean sendUpdateDayStudent(StudentDay sd)
-    {
-        return studentmanager.sendUpdateDayStudent(sd);
-    }
+    
     
     StudentManagerInterface studentmanager;
     TeacherManagerInterface teachermanager;
@@ -32,9 +29,6 @@ public class BLLFacade implements BLLFacadeInterface
     {
         studentmanager = new StudentManager();
         teachermanager = new TeacherManager(); 
-        
-        
-       
     }
     
     @Override
@@ -73,4 +67,8 @@ public class BLLFacade implements BLLFacadeInterface
        return teachermanager.getPasswordTeacher();
     }
     
+    public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return studentmanager.sendUpdateDayStudent(sd);
+    }
 }
