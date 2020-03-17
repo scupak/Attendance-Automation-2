@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -37,6 +38,9 @@ public class AppModel {
     private final String friday = "Friday";
     private final BLLFacade bllfacade;
     private ObservableList<PieChart.Data> pieChartData;
+    private Student currentStudent;
+
+    
 
     private AppModel() throws IOException
     {
@@ -242,6 +246,17 @@ public class AppModel {
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
     
+    public Student getCurrentStudent()
+    {
+        return currentStudent;
+    }
+
+    public void setCurrentStudent(Student currentStudent) throws AttendanceAutomationDalException
+    {
+       
+        this.currentStudent = bllfacade.getStudent(currentStudent);
+    }
+    
     /**
      * Get the year
      *
@@ -251,5 +266,10 @@ public class AppModel {
     {
         return calendar.get(Calendar.YEAR);
 
+    }
+    
+    public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException
+    {
+        return bllfacade.checkCredStudent(s);
     }
 }

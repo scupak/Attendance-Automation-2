@@ -59,12 +59,16 @@ public class StudentManager implements StudentManagerInterface
         
     }
     
+    @Override
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException
     {
         Student rs;
         
         rs = dalfacade.getStudent(s);
-        
+        if(rs == null)
+        {
+            return false;
+        }
         if(rs.getUsername().equals(s.getUsername()))
         {
             if(rs.getPassword().equals(s.getPassword()))
@@ -79,6 +83,18 @@ public class StudentManager implements StudentManagerInterface
         System.out.println(rs.getUsername());
         System.out.println("false");
         return false;
+    }
+    
+    /**
+     *
+     * @param s
+     * @return
+     * @throws AttendanceAutomationDalException
+     */
+    @Override
+    public Student getStudent(Student s) throws AttendanceAutomationDalException
+    {
+        return dalfacade.getStudent(s);
     }
     
     public static void main(String[] args) throws IOException, AttendanceAutomationDalException

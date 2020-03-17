@@ -73,6 +73,11 @@ public class Student extends Person
         return classID.get();
     }
 
+    public void setUsername(StringProperty username)
+    {
+        this.username = username;
+    }
+
     @Override
     public String toString()
     {
