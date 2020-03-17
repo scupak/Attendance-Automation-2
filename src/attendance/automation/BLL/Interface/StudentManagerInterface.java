@@ -25,4 +25,6 @@ public interface StudentManagerInterface
      * @return getPasswordStudent
      */
     public String getPasswordStudent();
+
+    public boolean checkDay();
 }

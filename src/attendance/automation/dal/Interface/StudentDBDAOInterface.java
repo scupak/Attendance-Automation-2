@@ -21,4 +21,6 @@ public interface StudentDBDAOInterface
     public Student getStudent(Student s) throws AttendanceAutomationDalException;
     
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException;
+
+    public boolean checkDay();
 }

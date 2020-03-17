@@ -105,5 +105,10 @@ public class DALFacade implements DALFacadeInterface
     {
         return mockdata.teacherClassList();
     }
+
+    public boolean checkDay()
+    {
+        return studentdbdao.checkDay();
+    }
     
 }

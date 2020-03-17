@@ -42,4 +42,10 @@ public class StudentManager implements StudentManagerInterface
     {
         return dalfacade.getPasswordStudent();
     }
+
+    @Override
+    public boolean checkDay()
+    {
+        return dalfacade.checkDay();
+    }
 }

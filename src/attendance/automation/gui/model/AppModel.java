@@ -247,6 +247,6 @@ public class AppModel {
 
     public boolean checkDay()
     {
-        return bll.checkDay();
+        return bllfacade.checkDay();
     }
 }

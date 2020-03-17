@@ -7,6 +7,7 @@ package attendance.automation.dal;
 
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
 import attendance.automation.be.Student;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -132,4 +134,18 @@ public class StudentDBDAO implements StudentDBDAOInterface
         System.out.println(test.getStudent(s));
         
     }
+    
+    public boolean checkDay()
+    {
+        Connection con = dbcon.getConnection();
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        
+        String sql = "SELECT status FROM [Student_day] WHERE  ";
+        
+        
+        return true;
+    }
+    
+    
 }

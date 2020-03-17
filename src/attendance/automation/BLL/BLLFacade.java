@@ -65,5 +65,10 @@ public class BLLFacade implements BLLFacadeInterface
     {
        return teachermanager.getPasswordTeacher();
     }
+
+    public boolean checkDay()
+    {
+        return studentmanager.checkDay();
+    }
     
 }
