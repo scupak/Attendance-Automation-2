@@ -6,6 +6,7 @@
 package attendance.automation.BLL;
 import attendance.automation.BLL.Interface.StudentManagerInterface;
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.dal.DALFacade;
 import java.io.IOException;
@@ -90,9 +91,10 @@ public class StudentManager implements StudentManagerInterface
     }
         
         
+    
+
     @Override
-    public boolean sendUpdateDayStudent(StudentDay sd)
-    {
+    public boolean sendUpdateDayStudent(StudentDay sd) {
         return dalfacade.sendUpdateDayStudent(sd);
     }
 }
