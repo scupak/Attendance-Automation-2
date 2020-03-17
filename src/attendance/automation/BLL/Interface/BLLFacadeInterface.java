@@ -5,62 +5,14 @@
  */
 package attendance.automation.BLL.Interface;
 
-import attendance.automation.be.Student;
-import attendance.automation.be.StudentDay;
-import attendance.automation.dal.AttendanceAutomationDalException;
-import javafx.collections.ObservableList;
+
 
 /**
  *
  * @author kacpe
  */
-public interface BLLFacadeInterface 
+public interface BLLFacadeInterface extends StudentManagerInterface, TeacherManagerInterface
 {
     
-    /**
-     * Get student username
-     *
-     * @return getUsernameStudent
-     */
-    public String getUsernameStudent(); 
-    
-    /**
-     * Get student password
-     *
-     * @return getPasswordStudent
-     */
-    public String getPasswordStudent();
-    
-    /**
-     * Gets the ObservableList of students
-     *
-     * @return teacherStudentList
-     */
-    public ObservableList<Student> getTeacherStudentList();
-    
-     /**
-     * get the ObservableList of classes
-     *
-     * @return teacherClassList
-     */
-    public ObservableList getTeacherClassList();
-    
-    /**
-     * Get teacher username
-     *
-     * @return getUsernameTeacher
-     */
-    public String getUsernameTeacher();
-    
-    /**
-     * Get teacher password
-     *
-     * @return getPasswordTeacher
-     */
-    public String getPasswordTeacher();
-    
-    public boolean sendUpdateDayStudent(StudentDay sd);
-    
-    public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException;
-    
+   
 }
