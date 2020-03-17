@@ -15,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -29,13 +31,16 @@ public class AppModel {
     Calendar calendar = Calendar.getInstance();
     
     
-     private final String monday = "Monday";
+    private final String monday = "Monday";
     private final String tuesday = "Tuesday";
     private final String wednesday = "Wednesday";
     private final String thursday = "Thursday";
     private final String friday = "Friday";
     private final BLLFacade bllfacade;
     private ObservableList<PieChart.Data> pieChartData;
+    private Student currentStudent;
+
+    
 
     private AppModel() throws IOException
     {
@@ -209,6 +214,13 @@ public class AppModel {
         stage.show();
     }
     
+        public boolean updateDayStudent(StudentDay sd)
+    {
+        
+        
+        return bllfacade.sendUpdateDayStudent(sd);
+    }
+    
     
      /**
      * Get the current month
@@ -234,6 +246,17 @@ public class AppModel {
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
     
+    public Student getCurrentStudent()
+    {
+        return currentStudent;
+    }
+
+    public void setCurrentStudent(Student currentStudent) throws AttendanceAutomationDalException
+    {
+       
+        this.currentStudent = bllfacade.getStudent(currentStudent);
+    }
+    
     /**
      * Get the year
      *
@@ -248,5 +271,9 @@ public class AppModel {
     public boolean checkDay()
     {
         return bllfacade.checkDay();
+    
+    public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException
+    {
+        return bllfacade.checkCredStudent(s);
     }
 }

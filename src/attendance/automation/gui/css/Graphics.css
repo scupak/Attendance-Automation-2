@@ -7,17 +7,20 @@ and open the template in the editor.
     Created on : 13. mar. 2020, 20.19.14
     Author     : kacpe
 */
-
+.BorderPane
+{
+    -fx-background-color: white;
+}
 .Label
 {
     -fx-text-fill: black;
-    
+
 }
 
 .AnchorPane
 {
     -fx-background-color: white;
-   
+
 }
 
 .StackPane
@@ -27,17 +30,19 @@ and open the template in the editor.
 
 .button
 {
+    -fx-text-fill: black;
    -fx-background-color: #FBBB2C;
 }
 
 .backButton
 {
+    -fx-text-fill: black;
     -fx-background-color: #009FE3;
 }
 
 #ButtonLogout{
- 
-    
+
+
     -fx-background-image: url("../icons/logout.png");
     -fx-background-repeat: no-repeat;
     -fx-background-color: #FBBB2C;
@@ -46,9 +51,9 @@ and open the template in the editor.
 }
 
 #ButtonLogout:hover{
-     -fx-background-image: url("../icons/logoutonhover.png");
-     -fx-background-color: orange;
-     -fx-padding: 0 15 -95 0 ;
+    -fx-background-image: url("../icons/logoutonhover.png");
+    -fx-background-color: orange;
+    -fx-padding: 0 15 -95 0 ;
 }
 #ButtonLogout:pressed{
     -fx-background-image: url("../icons/logoutonclick.png");
@@ -65,9 +70,9 @@ and open the template in the editor.
 }
 
 #HomeButton:hover{
-    
+
     -fx-background-image: url("../icons/homebutton.png");
-     -fx-padding: 0 15 -95 0 ;
+    -fx-padding: 0 15 -95 0 ;
 }
 #HomeButton:pressed{
     -fx-image: url("../icons/homebuttongray.png");
@@ -81,14 +86,14 @@ and open the template in the editor.
     -fx-padding: 0 15 -90 0 ;
     -fx-background-repeat: no-repeat;
 
-    
-    
+
+
 }
 
 #PieChartButton:hover{
-    
+
     -fx-background-image: url("../icons/piechartblack2.png");
-     -fx-padding: 0 15 -95 0 ;
+    -fx-padding: 0 15 -95 0 ;
 }
 #PieChartButton:pressed{
     -fx-image: url("../icons/piechartGray2.png");
@@ -102,16 +107,83 @@ and open the template in the editor.
 
     -fx-background-repeat: no-repeat;
 
-    
-    
+
+
 }
 
 #CalendarButton:hover{
-    
+
     -fx-background-image: url("../icons/calendarBlack.png");
-     -fx-padding: 0 15 -95 0 ;
+    -fx-padding: 0 15 -95 0 ;
 }
 #CalendarButton:pressed{
     -fx-image: url("../icons/calenderGray.png");
     -fx-padding: 0 15 -90 0;
+}
+
+/* styles for the calendar */
+
+#daylables{
+
+    -fx-background-color: #FBBB2C;
+    -fx-border-color: #707070;
+    -fx-border-width: 2 ; 
+    -fx-font-size: 26
+
+
+
+}
+
+#calendargrid{
+    -fx-font-family: 'Helvetica', Arial, sans-serif;
+    -fx-background-color: #FFFFFF;
+    -fx-font-size: 19
+
+
+
+
+
+}
+
+#calendarviewVBox{
+
+    -fx-background-color: #FFFFFF;
+
+
+
+
+}
+
+#titleBar{
+    -fx-font-family: 'Helvetica', Arial, sans-serif;
+    -fx-font-size: 26
+
+
+
+}
+
+
+
+.radioButton .radio {
+    -fx-border-color: #707070;
+    -fx-border-radius: 100%;
+    -fx-background-color: #FFF;
+}
+
+.radioButton .radio:selected{
+    -fx-background-color : #FBBB2C;
+}
+
+.radioButton .dot {
+    -fx-mark-highlight-color: #009FE3 ;
+    -fx-mark-color: #009FE3;
+    -fx-border-radius: 100%;
+}
+
+.Pane
+{
+    -fx-background-color: #FBBB2C;
+    -fx-border-color:  #FBBB2C;
+    -fx-border-radius:  10px;
+    
 }

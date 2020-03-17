@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="254.0" prefWidth="250.0" stylesheets="@../css/Graphics.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.StatusSelectController">
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="200.0" styleClass="Pane">
+               <children>
+                  <RadioButton fx:id="presentButton" contentDisplay="RIGHT" layoutX="171.0" layoutY="8.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="21.0" styleClass="radioButton">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="toggleAbsence" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <Label layoutX="13.0" layoutY="6.0" styleClass="Label" text="Present" textFill="#707070">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="200.0" styleClass="Pane">
+               <children>
+                  <RadioButton fx:id="absentButton" contentDisplay="RIGHT" layoutX="171.0" layoutY="8.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="21.0" styleClass="radioButton" toggleGroup="$toggleAbsence" />
+                  <Label layoutX="13.0" layoutY="6.0" styleClass="Label" text="Absent" textFill="#707070">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="200.0" styleClass="Pane">
+               <children>
+                  <RadioButton fx:id="notSetButton" contentDisplay="RIGHT" layoutX="171.0" layoutY="8.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="21.0" selected="true" styleClass="radioButton" toggleGroup="$toggleAbsence" />
+                  <Label layoutX="13.0" layoutY="6.0" styleClass="Label" text="Not set" textFill="#707070">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Pane>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets top="30.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="confirmButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleconfirm" prefHeight="39.0" prefWidth="97.0" text="CONFIRM" textFill="#707070">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="cancelbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCancel" prefHeight="39.0" prefWidth="97.0" styleClass="backButton" text="CANCEL" textFill="#707070">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="7.0" right="25.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="25.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>

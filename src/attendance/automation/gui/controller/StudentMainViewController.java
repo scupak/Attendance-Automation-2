@@ -6,9 +6,12 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
+import attendance.automation.gui.controller.calendar.CalendarController;
+import attendance.automation.gui.controller.calendar.FullCalendarView;
 import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
+import java.time.YearMonth;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +25,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -131,10 +135,20 @@ public class StudentMainViewController implements Initializable
 
         try
         {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentCalenderView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/FullCalendar.fxml"));
+            
+            
+            Pane pane = loader.load();
+            
+            pane.getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
             
 
             studentRootPane.getChildren().setAll(pane);
+            
+            
+            CalendarController controller = loader.getController();
+            
+            controller.calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(),appmodel).getView());
 
         } catch (IOException ex)
         {

@@ -6,6 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.StudentMainViewController;
 import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
@@ -77,14 +78,18 @@ public class SignInViewController implements Initializable
      * @throws IOException
      */
     @FXML
-    private void handleSignIn(ActionEvent event) throws IOException
+    private void handleSignIn(ActionEvent event) throws IOException, AttendanceAutomationDalException
     {
 
         String user = username.getText();
         String pass = password.getText();
+        
+        //login with database
+        Student s = new Student("hello", user, pass, 0, "everyday", 0);
+        
         Stage signInView = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        if (user.toLowerCase().equals(appmodel.getStudentUsername()) && pass.equals(appmodel.getStudentPassword()))
+        if (appmodel.checkCredStudent(s) == true || user.toLowerCase().equals(appmodel.getStudentUsername()) && pass.equals(appmodel.getStudentPassword()))
         {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -112,6 +117,16 @@ public class SignInViewController implements Initializable
             signInView.close();
         } else
         {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+
+            /*Parent root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/view/StatusSelect.fxml").openStream());
+            StatusSelectController cont = (StatusSelectController) fxmlLoader.getController();
+            Stage stage = new Stage();
+            stage.setTitle("Attendance - Select");
+            stage.setScene(new Scene(root));
+            stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
+            stage.show();*/
+            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Oops");
             alert.setHeaderText("Oops, something went wrong");

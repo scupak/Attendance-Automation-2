@@ -5,6 +5,10 @@
  */
 package attendance.automation.BLL.Interface;
 
+import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
+import attendance.automation.dal.AttendanceAutomationDalException;
+
 /**
  *
  * @author kacpe
@@ -27,4 +31,9 @@ public interface StudentManagerInterface
     public String getPasswordStudent();
 
     public boolean checkDay();
+    public boolean sendUpdateDayStudent(StudentDay sd);
+    
+    public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException;
+    
+    public Student getStudent(Student s) throws AttendanceAutomationDalException;
 }

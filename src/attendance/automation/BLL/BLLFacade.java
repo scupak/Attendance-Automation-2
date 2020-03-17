@@ -9,6 +9,8 @@ import attendance.automation.BLL.Interface.TeacherManagerInterface;
 import attendance.automation.BLL.Interface.StudentManagerInterface;
 import attendance.automation.BLL.Interface.BLLFacadeInterface;
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import java.io.IOException;
 import javafx.collections.ObservableList;
 
@@ -18,6 +20,9 @@ import javafx.collections.ObservableList;
  */
 public class BLLFacade implements BLLFacadeInterface
 {
+
+    
+    
     StudentManagerInterface studentmanager;
     TeacherManagerInterface teachermanager;
     
@@ -25,9 +30,6 @@ public class BLLFacade implements BLLFacadeInterface
     {
         studentmanager = new StudentManager();
         teachermanager = new TeacherManager(); 
-        
-        
-       
     }
     
     @Override
@@ -71,4 +73,18 @@ public class BLLFacade implements BLLFacadeInterface
         return studentmanager.checkDay();
     }
     
+    public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return studentmanager.sendUpdateDayStudent(sd);
+    }
+    
+    public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException
+    {
+        return studentmanager.checkCredStudent(s);
+    }
+    
+     public Student getStudent(Student s) throws AttendanceAutomationDalException
+     {
+         return studentmanager.getStudent(s);
+     }
 }

@@ -6,6 +6,8 @@
 package attendance.automation.BLL.Interface;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import javafx.collections.ObservableList;
 
 /**
@@ -57,5 +59,8 @@ public interface BLLFacadeInterface
      */
     public String getPasswordTeacher();
     
+    public boolean sendUpdateDayStudent(StudentDay sd);
+    
+    public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException;
     
 }

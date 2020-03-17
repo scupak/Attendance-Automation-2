@@ -6,6 +6,7 @@
 package attendance.automation.dal;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
 import attendance.automation.dal.Interface.DALFacadeInterface;
 import attendance.automation.dal.Interface.MockDataInterface;
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
@@ -19,6 +20,9 @@ import javafx.collections.ObservableList;
  */
 public class DALFacade implements DALFacadeInterface
 {
+
+    
+    
     StudentDBDAOInterface studentdbdao;
     MockDataInterface mockdata;
     
@@ -27,7 +31,8 @@ public class DALFacade implements DALFacadeInterface
         studentdbdao = new StudentDBDAO();
         mockdata = new MockData();
     }
-
+    
+    
     @Override
     public List<Student> getAllStudents() throws AttendanceAutomationDalException 
     {
@@ -109,6 +114,12 @@ public class DALFacade implements DALFacadeInterface
     public boolean checkDay()
     {
         return studentdbdao.checkDay();
+    }
+    
+    @Override
+    public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return studentdbdao.sendUpdateDayStudent(sd);
     }
     
 }

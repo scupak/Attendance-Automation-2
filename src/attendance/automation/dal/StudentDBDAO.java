@@ -8,6 +8,7 @@ package attendance.automation.dal;
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
 import attendance.automation.be.Student;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import attendance.automation.be.StudentDay;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,9 @@ import java.util.logging.Logger;
  */
 public class StudentDBDAO implements StudentDBDAOInterface
 {
+
+    
+   
     private final DatabaseConnector dbcon;
     
     public StudentDBDAO() throws IOException 
@@ -81,7 +85,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
                 int absence = rs.getInt("absenceProcent");
                 String dayMostAbsent = rs.getString("dayMostAbsent");
                 int classID = rs.getInt("classID");
-                returnstudent = new Student(username, name, password, absence, dayMostAbsent, classID);
+                returnstudent = new Student(name, username, password, absence, dayMostAbsent, classID);
             }else
             {
                 return null;
@@ -97,6 +101,9 @@ public class StudentDBDAO implements StudentDBDAOInterface
             throw new AttendanceAutomationDalException("could not find the student in the dataabase", ex);
         }
     }
+    
+    
+    
     
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException
             {
@@ -119,11 +126,12 @@ public class StudentDBDAO implements StudentDBDAOInterface
         }
             }
     
+    
     public static void main(String[] args) throws IOException, AttendanceAutomationDalException
     {
         StudentDBDAO test = new StudentDBDAO();
         
-       Student s = new Student("hello", "rwebleya", "dsængko", 0, "sgp", 0);
+       Student s = new Student("hello", "rwebleya", "MckxbMH", 0, "sgp", 0);
 //        
 //        for (Student student : test.getAllStudents())
 //        {
@@ -148,4 +156,14 @@ public class StudentDBDAO implements StudentDBDAOInterface
     }
     
     
+    /**
+     *
+     * @param sd
+     * @return boolean 
+     */
+    @Override
+     public boolean sendUpdateDayStudent(StudentDay sd)
+    {
+        return false;
+    }
 }
