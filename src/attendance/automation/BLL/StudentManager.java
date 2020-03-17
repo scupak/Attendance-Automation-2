@@ -30,10 +30,7 @@ public class StudentManager implements StudentManagerInterface
         
     }
     
-     public boolean sendUpdateDayStudent(StudentDay sd)
-    {
-        return dalfacade.sendUpdateDayStudent(sd);
-    }
+     
      /**
      * Get student username
      *

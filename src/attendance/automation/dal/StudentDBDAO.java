@@ -124,10 +124,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         }
             }
     
-    public boolean sendUpdateDayStudent(StudentDay sd)
-    {
-        return false;
-    }
+    
     public static void main(String[] args) throws IOException, AttendanceAutomationDalException
     {
         StudentDBDAO test = new StudentDBDAO();

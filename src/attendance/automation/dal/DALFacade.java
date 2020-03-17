@@ -32,10 +32,6 @@ public class DALFacade implements DALFacadeInterface
         mockdata = new MockData();
     }
     
-    public boolean sendUpdateDayStudent(StudentDay sd)
-    {
-        return studentdbdao.sendUpdateDayStudent(sd);
-    }
     
     @Override
     public List<Student> getAllStudents() throws AttendanceAutomationDalException 
