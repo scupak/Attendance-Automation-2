@@ -5,11 +5,7 @@
  */
 package attendance.automation.dal.Interface;
 
-import attendance.automation.be.Student;
-import attendance.automation.be.StudentDay;
-import attendance.automation.dal.AttendanceAutomationDalException;
-import java.util.List;
-import javafx.collections.ObservableList;
+
 
 /**
  *
