@@ -9,6 +9,7 @@ import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -40,4 +41,6 @@ public interface StudentManagerInterface
     public Student getStudent(Student s) throws AttendanceAutomationDalException;
 
     public void setDayStatus(int status) throws AttendanceAutomationDalException; 
+    
+    public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException;
 }

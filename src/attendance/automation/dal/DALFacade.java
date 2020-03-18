@@ -113,6 +113,7 @@ public class DALFacade implements DALFacadeInterface
     }
 
     
+    @Override
     public boolean checkDay(String username) throws AttendanceAutomationDalException
     {
         return studentdbdao.checkDay(username);
@@ -124,6 +125,7 @@ public class DALFacade implements DALFacadeInterface
         return studentdbdao.sendUpdateDayStudent(sd);
     }
 
+    @Override
     public void setDayStatus(int status, String username) throws AttendanceAutomationDalException
     {
         
@@ -131,8 +133,8 @@ public class DALFacade implements DALFacadeInterface
     }
     
     @Override
-    public List<StudentDay> getAllDaysForStudent() throws AttendanceAutomationDalException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException {
+      return studentdbdao.getAllDaysForStudent(student);
     }
     
 }

@@ -130,4 +130,9 @@ public class StudentManager implements StudentManagerInterface
         dalfacade.setDayStatus(status, username);
     }
 
+    @Override
+    public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
+        return dalfacade.getAllDaysForStudent(student);
+    }
+
 }

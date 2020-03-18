@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -133,15 +134,19 @@ public class StudentDBDAO implements StudentDBDAOInterface
         
         //System.out.println(test.checkDay("mads69"));
         
-      // Student s = new Student("hello", "rwebleya", "MckxbMH", 0, "sgp", 0);
+       Student s = new Student("hello", "mads69", "MckxbMH", 0, "sgp", 0);
 //        
 //        for (Student student : test.getAllStudents())
 //        {
 //            System.out.println(student);
 //        }
-            
+    
+        for (StudentDay day : test.getAllDaysForStudent(s)) {
+             System.out.println(day);
+        }
+           
 
-        //System.out.println(test.getStudent(s));
+        
         
     }
     /*TODO make a method that chekcs if the studentDay exists */
@@ -234,7 +239,45 @@ public class StudentDBDAO implements StudentDBDAOInterface
           
     }
 
-    public List<StudentDay> getAllDaysForStudent() throws AttendanceAutomationDalException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException {
+        ArrayList<StudentDay> studentdays = new ArrayList<>();
+        
+        try ( Connection con = dbcon.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT "
+                    + "Student.username, Student.name, Student.password,Student.absenceProcent,Student.dayMostAbsent,Student.dayMostAbsent,Student.classID, Student_day.dayId,Student_day.status,Day.weekDay, Day.date  "
+                    + "FROM Student "
+                    + "INNER JOIN Student_day ON Student.username = Student_day.studentUsername "
+                    + "inner JOIN Day ON Student_day.dayId = Day.id "
+                    + "WHERE Student.username = ? "
+                    + "ORDER BY  Day.date ASC");
+            
+            ps.setString(1, student.getUsername());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String username = rs.getString("username");
+                String name = rs.getString("name");
+                String password = rs.getString("password");
+                int absence = rs.getInt("absenceProcent");
+                String dayMostAbsent = rs.getString("dayMostAbsent");
+                int classID = rs.getInt("classID");
+               Student returnstudent = new Student(name, username, password, absence, dayMostAbsent, classID);
+               
+               LocalDate date = rs.getDate("date").toLocalDate();
+               
+               int absenstatus = rs.getInt("status");
+               
+               studentdays.add(new StudentDay(date, returnstudent, absenstatus));
+               
+            
+               
+            }
+            return studentdays;
+
+        } catch (SQLServerException ex) {
+            throw new AttendanceAutomationDalException("could not get all categories with movie from database", ex);
+        } catch (SQLException ex) {
+            throw new AttendanceAutomationDalException("could not get all categories with movie from database", ex);
+        }
     }
 }

@@ -30,5 +30,5 @@ public interface StudentDBDAOInterface
 
     public void setDayStatus(int status, String username) throws AttendanceAutomationDalException;
     
-    public List<StudentDay> getAllDaysForStudent() throws AttendanceAutomationDalException;
+    public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException;
 }
