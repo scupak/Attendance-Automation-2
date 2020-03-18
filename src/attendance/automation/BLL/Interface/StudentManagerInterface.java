@@ -8,6 +8,7 @@ package attendance.automation.BLL.Interface;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import java.sql.SQLException;
 
 /**
  *
@@ -36,4 +37,6 @@ public interface StudentManagerInterface
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException;
     
     public Student getStudent(Student s) throws AttendanceAutomationDalException;
+
+    public void setDayStatus(int status) throws SQLException; 
 }

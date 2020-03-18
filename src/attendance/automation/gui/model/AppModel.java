@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -271,9 +272,15 @@ public class AppModel {
     public boolean checkDay()
     {
         return bllfacade.checkDay();
-    
+    }
+        
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException
     {
         return bllfacade.checkCredStudent(s);
+    }
+
+    public void setDayStatus(int status) throws SQLException
+    {
+        bllfacade.setDayStatus(status);
     }
 }

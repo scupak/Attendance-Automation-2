@@ -143,16 +143,39 @@ public class StudentDBDAO implements StudentDBDAOInterface
         
     }
     
-    public boolean checkDay()
+    @Override
+    public boolean checkDay(String username) throws SQLException
     {
         Connection con = dbcon.getConnection();
         Date date = new Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         
-        String sql = "SELECT status FROM [Student_day] WHERE  ";
+        String sql = "SELECT status FROM [Student_day] "
+                + "JOIN [Day] ON Student_day.dayId = Day.id "
+                + "WHERE Student_day.studentUsername = ? "
+                + "AND Day.date = ?";
         
+        PreparedStatement ps = con.prepareStatement(sql);
         
-        return true;
+        ps.setString(1, username);
+        ps.setDate(2, sqlDate);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        while (rs.next())
+        {
+            int status = rs.getInt("status");
+            
+            if(status == 1 || status == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
     }
     
     
@@ -166,4 +189,41 @@ public class StudentDBDAO implements StudentDBDAOInterface
     {
         return false;
     }
+
+    @Override
+    public void setDayStatus(int status, String username) 
+    {
+        try(Connection con = dbcon.getConnection())
+        {
+            Date date = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            
+            String sql = "SELECT id FROM [Day] WHERE date = ?";
+            String sql2 = "INSERT INTO [Student_day] VALUES (?,?,?)";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+            
+            ps.setDate(1, sqlDate);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                int dayId = rs.getInt("id");
+                
+                ps2.setString(1, username);
+                ps2.setInt(2, dayId);
+                ps2.setInt(3, status);
+                
+                ps2.execute();
+            }
+        } 
+        catch (SQLException ex)
+        {
+            System.out.println("SQL Error");
+        }
+          
+    }
+
 }

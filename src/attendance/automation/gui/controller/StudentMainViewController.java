@@ -11,6 +11,7 @@ import attendance.automation.gui.controller.calendar.FullCalendarView;
 import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.YearMonth;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -184,10 +185,19 @@ public class StudentMainViewController implements Initializable
      * @param event
      */
     @FXML
-    private void handelSubmit(ActionEvent event)
+    private void handelSubmit(ActionEvent event) throws SQLException
     {
 
         //sm.addData();
+        if (rbHeretoday.isSelected())
+        {
+            appmodel.setDayStatus(1);
+        }
+        else if(rbNotHeretoday.isSelected())
+        {
+            appmodel.setDayStatus(0);
+        }
+        
         thankYouMessage();
 
     }

@@ -12,6 +12,7 @@ import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.collections.ObservableList;
 
 /**
@@ -68,6 +69,7 @@ public class BLLFacade implements BLLFacadeInterface
        return teachermanager.getPasswordTeacher();
     }
 
+    
     public boolean checkDay()
     {
         return studentmanager.checkDay();
@@ -87,4 +89,9 @@ public class BLLFacade implements BLLFacadeInterface
      {
          return studentmanager.getStudent(s);
      }
+
+    public void setDayStatus(int status) throws SQLException
+    {
+        studentmanager.setDayStatus(status);
+    }
 }

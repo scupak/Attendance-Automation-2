@@ -11,6 +11,7 @@ import attendance.automation.dal.Interface.DALFacadeInterface;
 import attendance.automation.dal.Interface.MockDataInterface;
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.ObservableList;
 
@@ -111,15 +112,22 @@ public class DALFacade implements DALFacadeInterface
         return mockdata.teacherClassList();
     }
 
-    public boolean checkDay()
+    
+    public boolean checkDay(String username) throws SQLException
     {
-        return studentdbdao.checkDay();
+        return studentdbdao.checkDay(username);
     }
     
     @Override
     public boolean sendUpdateDayStudent(StudentDay sd)
     {
         return studentdbdao.sendUpdateDayStudent(sd);
+    }
+
+    public void setDayStatus(int status, String username) throws SQLException
+    {
+        
+        studentdbdao.setDayStatus(status, username);
     }
     
 }

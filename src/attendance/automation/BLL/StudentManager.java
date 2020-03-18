@@ -10,7 +10,10 @@ import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.dal.DALFacade;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -53,10 +56,22 @@ public class StudentManager implements StudentManagerInterface
         return dalfacade.getPasswordStudent();
     }
 
-    @Override
-    public boolean checkDay()
+    
+    public boolean checkDay() 
     {
-        return dalfacade.checkDay();
+        String username = dalfacade.getUsernameStudent();
+        try
+        {
+            return dalfacade.checkDay(username);
+        } 
+        
+        catch (SQLException ex)
+        {
+            Logger.getLogger(StudentManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
     
     public List<Student> getallStudents() throws AttendanceAutomationDalException
     {
@@ -119,5 +134,12 @@ public class StudentManager implements StudentManagerInterface
     @Override
     public boolean sendUpdateDayStudent(StudentDay sd) {
         return dalfacade.sendUpdateDayStudent(sd);
+    }
+
+    @Override
+    public void setDayStatus(int status) throws SQLException
+    {
+        String username = "atosdevin9";
+        dalfacade.setDayStatus(status, username);
     }
 }

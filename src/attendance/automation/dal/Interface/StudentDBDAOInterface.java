@@ -8,6 +8,7 @@ package attendance.automation.dal.Interface;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,6 +24,9 @@ public interface StudentDBDAOInterface
     
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException;
 
-    public boolean checkDay();
+    public boolean checkDay(String username) throws SQLException;
+            
     public boolean sendUpdateDayStudent(StudentDay sd);
+
+    public void setDayStatus(int status, String username) throws SQLException;
 }
