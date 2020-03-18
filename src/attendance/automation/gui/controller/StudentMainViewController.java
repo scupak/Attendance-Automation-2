@@ -91,6 +91,8 @@ public class StudentMainViewController implements Initializable
         {
             thankYouMessage();
         }
+        
+        System.out.println(appmodel.getCurrentStudent());
     }
 
 
