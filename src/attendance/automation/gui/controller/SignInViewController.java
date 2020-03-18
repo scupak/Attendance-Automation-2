@@ -89,8 +89,10 @@ public class SignInViewController implements Initializable
         
         Stage signInView = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        if (appmodel.checkCredStudent(s) == true || user.toLowerCase().equals(appmodel.getStudentUsername()) && pass.equals(appmodel.getStudentPassword()))
+        if (appmodel.checkCredStudent(s) == true )
         {
+            appmodel.setCurrentStudent(s);
+            
             FXMLLoader fxmlLoader = new FXMLLoader();
 
             Parent root;

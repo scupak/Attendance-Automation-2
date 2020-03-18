@@ -95,6 +95,8 @@ public class StudentMainViewController implements Initializable
         {
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        System.out.println(appmodel.getCurrentStudent());
     }
 
     public void checkDay() throws AttendanceAutomationDalException
