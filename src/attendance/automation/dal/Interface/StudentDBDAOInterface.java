@@ -29,4 +29,6 @@ public interface StudentDBDAOInterface
     public boolean sendUpdateDayStudent(StudentDay sd);
 
     public void setDayStatus(int status, String username) throws SQLException;
+    
+    public List<StudentDay> getAllDaysForStudent() throws AttendanceAutomationDalException;
 }

@@ -34,6 +34,7 @@ public interface StudentManagerInterface
     public boolean checkDay();
     public boolean sendUpdateDayStudent(StudentDay sd);
     
+    
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException;
     
     public Student getStudent(Student s) throws AttendanceAutomationDalException;
