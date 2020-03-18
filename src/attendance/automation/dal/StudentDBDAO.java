@@ -131,7 +131,9 @@ public class StudentDBDAO implements StudentDBDAOInterface
     {
         StudentDBDAO test = new StudentDBDAO();
         
-       Student s = new Student("hello", "rwebleya", "MckxbMH", 0, "sgp", 0);
+        //System.out.println(test.checkDay("mads69"));
+        
+      // Student s = new Student("hello", "rwebleya", "MckxbMH", 0, "sgp", 0);
 //        
 //        for (Student student : test.getAllStudents())
 //        {
@@ -139,10 +141,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
 //        }
             
 
-        System.out.println(test.getStudent(s));
+        //System.out.println(test.getStudent(s));
         
     }
-    
+    /*TODO make a method that chekcs if the studentDay exists */
     @Override
     public boolean checkDay(String username) throws AttendanceAutomationDalException
     {
@@ -195,7 +197,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
     {
         return false;
     }
-
+    /*make it so this method only updates the day and does not make a new day*/
     @Override
     public void setDayStatus(int status, String username) 
     {
