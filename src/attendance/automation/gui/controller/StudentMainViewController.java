@@ -6,6 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.calendar.CalendarController;
 import attendance.automation.gui.controller.calendar.FullCalendarView;
 import attendance.automation.gui.model.AppModel;
@@ -70,7 +71,7 @@ public class StudentMainViewController implements Initializable
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
+    public void initialize(URL url, ResourceBundle rb) 
     {
 
         try {
@@ -87,13 +88,28 @@ public class StudentMainViewController implements Initializable
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(appmodel));
         
-        if (appmodel.checkDay() == true)
+        try
+        {
+            checkDay();
+        } catch (AttendanceAutomationDalException ex)
+        {
+            Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void checkDay() throws AttendanceAutomationDalException
+    {
+        String username = "bbodsworthc";
+        boolean status = appmodel.checkDay(username);
+        
+        if (status == true)
         {
             thankYouMessage();
         }
     }
-
-
+    
+    
+    
     /**
      * Sets the lbWelcome text to the logged in student
      *
@@ -185,7 +201,7 @@ public class StudentMainViewController implements Initializable
      * @param event
      */
     @FXML
-    private void handelSubmit(ActionEvent event) throws SQLException
+    private void handelSubmit(ActionEvent event) throws AttendanceAutomationDalException
     {
 
         //sm.addData();

@@ -269,9 +269,9 @@ public class AppModel {
 
     }
 
-    public boolean checkDay()
+    public boolean checkDay(String username) throws AttendanceAutomationDalException
     {
-        return bllfacade.checkDay();
+        return bllfacade.checkDay(username);
     }
         
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException
@@ -279,7 +279,7 @@ public class AppModel {
         return bllfacade.checkCredStudent(s);
     }
 
-    public void setDayStatus(int status) throws SQLException
+    public void setDayStatus(int status) throws AttendanceAutomationDalException
     {
         bllfacade.setDayStatus(status);
     }

@@ -24,11 +24,11 @@ public interface StudentDBDAOInterface
     
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException;
 
-    public boolean checkDay(String username) throws SQLException;
+    public boolean checkDay(String username) throws AttendanceAutomationDalException;
             
     public boolean sendUpdateDayStudent(StudentDay sd);
 
-    public void setDayStatus(int status, String username) throws SQLException;
+    public void setDayStatus(int status, String username) throws AttendanceAutomationDalException;
     
     public List<StudentDay> getAllDaysForStudent() throws AttendanceAutomationDalException;
 }

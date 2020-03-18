@@ -113,7 +113,7 @@ public class DALFacade implements DALFacadeInterface
     }
 
     
-    public boolean checkDay(String username) throws SQLException
+    public boolean checkDay(String username) throws AttendanceAutomationDalException
     {
         return studentdbdao.checkDay(username);
     }
@@ -124,7 +124,7 @@ public class DALFacade implements DALFacadeInterface
         return studentdbdao.sendUpdateDayStudent(sd);
     }
 
-    public void setDayStatus(int status, String username) throws SQLException
+    public void setDayStatus(int status, String username) throws AttendanceAutomationDalException
     {
         
         studentdbdao.setDayStatus(status, username);

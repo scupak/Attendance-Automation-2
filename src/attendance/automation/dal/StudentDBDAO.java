@@ -144,36 +144,42 @@ public class StudentDBDAO implements StudentDBDAOInterface
     }
     
     @Override
-    public boolean checkDay(String username) throws SQLException
+    public boolean checkDay(String username) throws AttendanceAutomationDalException
     {
-        Connection con = dbcon.getConnection();
-        Date date = new Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        
-        String sql = "SELECT status FROM [Student_day] "
-                + "JOIN [Day] ON Student_day.dayId = Day.id "
-                + "WHERE Student_day.studentUsername = ? "
-                + "AND Day.date = ?";
-        
-        PreparedStatement ps = con.prepareStatement(sql);
-        
-        ps.setString(1, username);
-        ps.setDate(2, sqlDate);
-        
-        ResultSet rs = ps.executeQuery();
-        
-        while (rs.next())
+        try(Connection con = dbcon.getConnection())
         {
-            int status = rs.getInt("status");
+            Date date = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             
-            if(status == 1 || status == 0)
+            String sql = "SELECT status FROM [Student_day] "
+                    + "JOIN [Day] ON Student_day.dayId = Day.id "
+                    + "WHERE Student_day.studentUsername = ? "
+                    + "AND Day.date = ?";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setString(1, username);
+            ps.setDate(2, sqlDate);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next())
             {
-                return true;
+                int status = rs.getInt("status");
+                
+                if(status == 1 || status == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
-            {
-                return false;
-            }
+            
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -216,7 +222,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
                 ps2.setInt(2, dayId);
                 ps2.setInt(3, status);
                 
-                ps2.execute();
+                ps2.executeUpdate();
             }
         } 
         catch (SQLException ex)
