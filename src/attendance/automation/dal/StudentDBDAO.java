@@ -151,4 +151,9 @@ public class StudentDBDAO implements StudentDBDAOInterface
     {
         return false;
     }
+
+    @Override
+    public List<StudentDay> getAllDaysForStudent() throws AttendanceAutomationDalException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
