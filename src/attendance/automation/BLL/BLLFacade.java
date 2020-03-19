@@ -71,9 +71,9 @@ public class BLLFacade implements BLLFacadeInterface
     }
 
     
-    public int checkDay(String username) throws AttendanceAutomationDalException
+    public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
-        return studentmanager.checkDay(username);
+        return studentmanager.checkCurrentDay(username);
     }
     
     @Override
