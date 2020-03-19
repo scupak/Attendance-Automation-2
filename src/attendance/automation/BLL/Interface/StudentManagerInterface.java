@@ -42,5 +42,7 @@ public interface StudentManagerInterface
 
     public void setDayStatus(int status, String username) throws AttendanceAutomationDalException; 
     
-     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException;
+    public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException;
+    
+    public List<Student> getallStudents() throws AttendanceAutomationDalException;
 }

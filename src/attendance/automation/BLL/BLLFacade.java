@@ -104,4 +104,9 @@ public class BLLFacade implements BLLFacadeInterface
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
        return studentmanager.getAllDaysForAstudent(student);
     }
+    
+    public List<Student> getallStudents() throws AttendanceAutomationDalException
+    {
+        return studentmanager.getallStudents();
+    }
 }
