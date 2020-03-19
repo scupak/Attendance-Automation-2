@@ -70,7 +70,7 @@ public class BLLFacade implements BLLFacadeInterface
     }
 
     
-    public boolean checkDay(String username) throws AttendanceAutomationDalException
+    public int checkDay(String username) throws AttendanceAutomationDalException
     {
         return studentmanager.checkDay(username);
     }
@@ -90,8 +90,8 @@ public class BLLFacade implements BLLFacadeInterface
          return studentmanager.getStudent(s);
      }
 
-    public void setDayStatus(int status) throws AttendanceAutomationDalException
+    public void setDayStatus(int status, String username) throws AttendanceAutomationDalException
     {
-        studentmanager.setDayStatus(status);
+        studentmanager.setDayStatus(status, username);
     }
 }

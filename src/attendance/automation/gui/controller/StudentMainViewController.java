@@ -101,13 +101,19 @@ public class StudentMainViewController implements Initializable
 
     public void checkDay() throws AttendanceAutomationDalException
     {
-        String username = "bbodsworthc";
-        boolean status = appmodel.checkDay(username);
+         
+            String username = appmodel.getCurrentStudent().getUsername();
+            int status = appmodel.checkDay(username);
         
-        if (status == true)
-        {
-            thankYouMessage();
-        }
+            if (status == 0 || status == 1)
+            {
+                thankYouMessage();
+            }
+            else if(status == 2)
+            {
+                failMessage();
+            }
+        
     }
     
     
@@ -224,6 +230,12 @@ public class StudentMainViewController implements Initializable
     {
         studentRootPane.getChildren().remove(hBox);
         currentClassText.setText("Thank you!");
+    }
+    
+    private void failMessage()
+    {
+        studentRootPane.getChildren().remove(hBox);
+        currentClassText.setText("You have the day off!");
     }
     
 }

@@ -24,7 +24,7 @@ public interface StudentDBDAOInterface
     
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException;
 
-    public boolean checkDay(String username) throws AttendanceAutomationDalException;
+    public int checkDay(String username) throws AttendanceAutomationDalException;
             
     public boolean sendUpdateDayStudent(StudentDay sd);
 

@@ -269,7 +269,7 @@ public class AppModel {
 
     }
 
-    public boolean checkDay(String username) throws AttendanceAutomationDalException
+    public int checkDay(String username) throws AttendanceAutomationDalException
     {
         return bllfacade.checkDay(username);
     }
@@ -281,6 +281,7 @@ public class AppModel {
 
     public void setDayStatus(int status) throws AttendanceAutomationDalException
     {
-        bllfacade.setDayStatus(status);
+        String username = getCurrentStudent().getUsername();
+        bllfacade.setDayStatus(status, username);
     }
 }

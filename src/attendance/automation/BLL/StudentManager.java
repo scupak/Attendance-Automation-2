@@ -55,7 +55,7 @@ public class StudentManager implements StudentManagerInterface
     }
 
     @Override
-    public boolean checkDay(String username) throws AttendanceAutomationDalException
+    public int checkDay(String username) throws AttendanceAutomationDalException
     {
         return dalfacade.checkDay(username);
     }
@@ -124,9 +124,8 @@ public class StudentManager implements StudentManagerInterface
     }
 
     @Override
-    public void setDayStatus(int status) throws AttendanceAutomationDalException
+    public void setDayStatus(int status, String username) throws AttendanceAutomationDalException
     {
-        String username = "atosdevin9";
         dalfacade.setDayStatus(status, username);
     }
 
