@@ -259,4 +259,9 @@ public class AppModel {
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
        return bllfacade.getAllDaysForAstudent(student);
     }
+    
+    public List<Student> getallStudents() throws AttendanceAutomationDalException
+    {
+        return bllfacade.getallStudents();
+    }
 }
