@@ -172,7 +172,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
      * @throws AttendanceAutomationDalException 
      */
     @Override
-    public int checkCurrentDay(String username) throws AttendanceAutomationDalException
+    public int checkDay(String username) throws AttendanceAutomationDalException
     {
         try (Connection con = dbcon.getConnection())
         {

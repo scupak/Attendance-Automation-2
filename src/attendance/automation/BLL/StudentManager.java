@@ -57,7 +57,7 @@ public class StudentManager implements StudentManagerInterface
     @Override
     public int checkDay(String username) throws AttendanceAutomationDalException
     {
-        return dalfacade.checkCurrentDay(username);
+        return dalfacade.checkDay(username);
     }
     
     public List<Student> getallStudents() throws AttendanceAutomationDalException
