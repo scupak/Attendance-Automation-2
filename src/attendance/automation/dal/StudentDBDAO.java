@@ -40,6 +40,11 @@ public class StudentDBDAO implements StudentDBDAOInterface
         dbcon = new DatabaseConnector();
     }
 
+    /**
+     * gets a list of all students in database
+     * @return students list
+     * @throws AttendanceAutomationDalException 
+     */
     public List<Student> getAllStudents() throws AttendanceAutomationDalException
     {
         ArrayList<Student> students = new ArrayList<>();
@@ -68,6 +73,12 @@ public class StudentDBDAO implements StudentDBDAOInterface
         }
     }
 
+    /**
+     * get a specific student based on username
+     * @param s
+     * @return returnStudent
+     * @throws AttendanceAutomationDalException 
+     */
     public Student getStudent(Student s) throws AttendanceAutomationDalException
     {
         if (!StudentExist(s))
@@ -107,6 +118,12 @@ public class StudentDBDAO implements StudentDBDAOInterface
         }
     }
 
+    /**
+     * checks if a student exist in the databases
+     * @param s
+     * @return boolean
+     * @throws AttendanceAutomationDalException 
+     */
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException
     {
         try (Connection con = dbcon.getConnection())
@@ -148,7 +165,12 @@ public class StudentDBDAO implements StudentDBDAOInterface
         
         
     }
-    /*TODO make a method that chekcs if the studentDay exists */
+    /**
+     * TODO make a method that chekcs if the studentDay exists
+     * @param username
+     * @return
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public int checkDay(String username) throws AttendanceAutomationDalException
     {
@@ -207,7 +229,12 @@ public class StudentDBDAO implements StudentDBDAOInterface
     {
         return false;
     }
-    /*make it so this method only updates the day and does not make a new day*/
+    
+    /**
+     * make it so this method only updates the day and does not make a new day
+     * @param status
+     * @param username 
+     */
     @Override
     public void setDayStatus(int status, String username)
     {
@@ -243,6 +270,12 @@ public class StudentDBDAO implements StudentDBDAOInterface
 
     }
 
+    /**
+     * get a list of days for a student
+     * @param student
+     * @return studentDays
+     * @throws AttendanceAutomationDalException 
+     */
     public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException {
         ArrayList<StudentDay> studentdays = new ArrayList<>();
         
