@@ -184,9 +184,9 @@ public class DALFacade implements DALFacadeInterface
      * @return
      * @throws AttendanceAutomationDalException 
      */
-    public int checkDay(String username) throws AttendanceAutomationDalException
+    public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
-        return studentdbdao.checkDay(username);
+        return studentdbdao.checkCurrentDay(username);
     }
     
     /**
