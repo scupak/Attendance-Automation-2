@@ -229,7 +229,12 @@ public class StudentDBDAO implements StudentDBDAOInterface
     {
         return false;
     }
-    /*make it so this method only updates the day and does not make a new day*/
+    
+    /**
+     * make it so this method only updates the day and does not make a new day
+     * @param status
+     * @param username 
+     */
     @Override
     public void setDayStatus(int status, String username)
     {

@@ -43,6 +43,7 @@ public class DatabaseConnector
      * Get the connection to the database
      *
      * @return Database connection
+     * @throws com.microsoft.sqlserver.jdbc.SQLServerException
      */
     public Connection getConnection() throws SQLServerException {
         return dataSource.getConnection();
