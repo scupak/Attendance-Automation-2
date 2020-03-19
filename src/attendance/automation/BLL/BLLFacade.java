@@ -13,6 +13,7 @@ import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javafx.collections.ObservableList;
 
 /**
@@ -75,16 +76,19 @@ public class BLLFacade implements BLLFacadeInterface
         return studentmanager.checkDay(username);
     }
     
+    @Override
     public boolean sendUpdateDayStudent(StudentDay sd)
     {
         return studentmanager.sendUpdateDayStudent(sd);
     }
     
+    @Override
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException
     {
         return studentmanager.checkCredStudent(s);
     }
     
+    @Override
      public Student getStudent(Student s) throws AttendanceAutomationDalException
      {
          return studentmanager.getStudent(s);
@@ -93,5 +97,11 @@ public class BLLFacade implements BLLFacadeInterface
     public void setDayStatus(int status, String username) throws AttendanceAutomationDalException
     {
         studentmanager.setDayStatus(status, username);
+    }
+    
+
+    @Override
+    public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
+       return studentmanager.getAllDaysForAstudent(student);
     }
 }

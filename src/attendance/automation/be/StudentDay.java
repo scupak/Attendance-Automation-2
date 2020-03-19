@@ -16,10 +16,9 @@ public class StudentDay
     public final static int attendant = 1;
     public final static int notAttendant = 0;
     public final static int notSetAtt = -1;
-    private int attendanceStatus;
     private LocalDate Date;
     private Student student;
-
+    private int attendanceStatus;
     public StudentDay(LocalDate Date, Student student, int attendanceStatus) {
         this.Date = Date;
         this.student = student;
@@ -77,6 +76,13 @@ public class StudentDay
     public void setStudent(Student student) {
         this.student = student;
     }
+
+    @Override
+    public String toString() {
+        return "StudentDay{" + "Date=" + Date + ", student=" + student + ", attendanceStatus=" + attendanceStatus + '}';
+    }
+    
+    
     
     
     
