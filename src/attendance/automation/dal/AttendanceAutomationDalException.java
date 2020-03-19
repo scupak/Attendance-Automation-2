@@ -5,8 +5,6 @@
  */
 package attendance.automation.dal;
 
-import java.sql.SQLException;
-
 /**
  *
  * @author lumby
