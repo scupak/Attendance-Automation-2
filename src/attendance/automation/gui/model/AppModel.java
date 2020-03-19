@@ -241,9 +241,9 @@ public class AppModel {
 
     }
 
-    public int checkCurrentDay(String username) throws AttendanceAutomationDalException
+    public int checkDay(String username) throws AttendanceAutomationDalException
     {
-        return bllfacade.checkCurrentDay(username);
+        return bllfacade.checkDay(username);
     }
 
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException {

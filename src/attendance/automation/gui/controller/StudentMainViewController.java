@@ -90,7 +90,7 @@ public class StudentMainViewController implements Initializable
         
         try
         {
-            checkCurrentDay();
+            checkDay();
         } catch (AttendanceAutomationDalException ex)
         {
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,11 +99,11 @@ public class StudentMainViewController implements Initializable
         System.out.println(appmodel.getCurrentStudent());
     }
 
-    public void checkCurrentDay() throws AttendanceAutomationDalException
+    public void checkDay() throws AttendanceAutomationDalException
     {
          
             String username = appmodel.getCurrentStudent().getUsername();
-            int status = appmodel.checkCurrentDay(username);
+            int status = appmodel.checkDay(username);
         
             if (status == 0 || status == 1)
             {
