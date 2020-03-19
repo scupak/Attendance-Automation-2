@@ -27,6 +27,11 @@ import java.util.logging.Logger;
  */
 public class StudentDBDAO implements StudentDBDAOInterface
 {
+    final static int ABSENT = 0;
+    final static int PRESENT = 1;
+    final static int UNKNOWN = -1;
+    final static int DAY_OFF = 2;
+    
 
     private final DatabaseConnector dbcon;
 
@@ -172,15 +177,15 @@ public class StudentDBDAO implements StudentDBDAOInterface
 
                     if (status == 0)
                     {
-                        return 0;
+                        return ABSENT;
                     } 
                     else if(status == 1)
                     {
-                        return 1;
+                        return PRESENT;
                     }
                     else if (status == -1)
                     {
-                        return -1;
+                        return UNKNOWN;
                     }
                 }
             }
@@ -189,7 +194,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 2;
+        return DAY_OFF;
     }
 
     /**
