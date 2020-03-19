@@ -91,6 +91,8 @@ public class StudentMainViewController implements Initializable
         try
         {
             checkDay();
+            /*TODO needs to be changed so that both a teachers  or a students name can be displayed*/
+            setName(appmodel.getCurrentStudent());
         } catch (AttendanceAutomationDalException ex)
         {
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
@@ -115,6 +117,7 @@ public class StudentMainViewController implements Initializable
             }
         
     }
+    
     
     
     
