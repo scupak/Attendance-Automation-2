@@ -34,4 +34,6 @@ public interface StudentDBDAOInterface
     public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException;
     
     public boolean doesStudentDayExist(String username, LocalDate date)throws AttendanceAutomationDalException;
+    
+    public StudentDay getStudentDay(Student s, LocalDate date)throws AttendanceAutomationDalException;
 }

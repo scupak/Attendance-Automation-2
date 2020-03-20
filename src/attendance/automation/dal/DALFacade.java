@@ -228,5 +228,10 @@ public class DALFacade implements DALFacadeInterface
     public boolean doesStudentDayExist(String username, LocalDate date)throws AttendanceAutomationDalException {
         return studentdbdao.doesStudentDayExist(username, date);
     }
+
+    @Override
+    public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException {
+       return studentdbdao.getStudentDay(s,date);
+    }
     
 }

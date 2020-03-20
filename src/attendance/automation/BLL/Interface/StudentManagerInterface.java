@@ -48,4 +48,6 @@ public interface StudentManagerInterface
     public List<Student> getallStudents() throws AttendanceAutomationDalException;
     
     public boolean doesStudentDayExist(String username, LocalDate date)throws AttendanceAutomationDalException;
+    
+    public StudentDay getStudentDay(Student s, LocalDate date)throws AttendanceAutomationDalException;
 }

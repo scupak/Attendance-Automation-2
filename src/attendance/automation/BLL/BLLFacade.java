@@ -115,4 +115,9 @@ public class BLLFacade implements BLLFacadeInterface
     public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException{
         return studentmanager.doesStudentDayExist(username, date);
     }
+
+    @Override
+    public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException {
+       return studentmanager.getStudentDay(s,date);
+    }
 }

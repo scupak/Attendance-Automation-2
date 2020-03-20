@@ -251,6 +251,11 @@ public class AppModel {
     {
         return bllfacade.doesStudentDayExist(username, date);
     }
+    
+    public StudentDay getStudentDay(Student s, LocalDate date)throws AttendanceAutomationDalException
+    {
+        return bllfacade.getStudentDay(s,date);
+    }
 
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException {
         return bllfacade.checkCredStudent(s);

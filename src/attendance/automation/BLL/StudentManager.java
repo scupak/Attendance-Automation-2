@@ -140,4 +140,9 @@ public class StudentManager implements StudentManagerInterface
         return dalfacade.doesStudentDayExist(username, date);
     }
 
+    @Override
+    public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException {
+        return dalfacade.getStudentDay(s,date);
+    }
+
 }
