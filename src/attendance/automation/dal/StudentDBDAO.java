@@ -276,6 +276,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
      * @return studentDays
      * @throws AttendanceAutomationDalException 
      */
+    @Override
     public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException {
         ArrayList<StudentDay> studentdays = new ArrayList<>();
         
