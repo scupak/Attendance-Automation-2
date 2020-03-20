@@ -197,7 +197,7 @@ public class AppModel {
         stage.show();
     }
 
-    public boolean updateDayStudent(StudentDay sd) {
+    public boolean updateDayStudent(StudentDay sd) throws AttendanceAutomationDalException{
 
         return bllfacade.sendUpdateDayStudent(sd);
     }

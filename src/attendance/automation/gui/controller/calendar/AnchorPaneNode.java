@@ -46,12 +46,6 @@ public class AnchorPaneNode extends AnchorPane {
                 node.setBackground(Background.EMPTY);
                 
             }
-               /* 
-                System.out.println("This pane's date is: " + date);
-                setStyle(" -fx-background-image: url(\"elipse.png\");"
-                        + "  -fx-background-size: 50 50;"
-                        + "-fx-background-position: center center;"
-                        + " -fx-background-color: #FBBB2C;");*/
                 
                BackgroundFill myBF = new BackgroundFill(Color.rgb(251, 187, 44), new CornerRadii(0),
          new Insets(0.0,0.0,0.0,0.0));// or null for the padding
@@ -59,24 +53,7 @@ public class AnchorPaneNode extends AnchorPane {
         
             setBackground(new Background(myBF));
             
-            if(date.isEqual(LocalDate.of(2020, Month.FEBRUARY, 21) )){
-            
-                // appModel.setClassMockData(1);
-            
-            
-            }
-            else if(date.isEqual(LocalDate.of(2020, Month.FEBRUARY, 22))){
-            
-                // appModel.setClassMockData(2);
-            
-            
-            }
-            else{
-            
-                 //appModel.setClassMockData(0);
-            
-            
-            } 
+           
                 
         
         

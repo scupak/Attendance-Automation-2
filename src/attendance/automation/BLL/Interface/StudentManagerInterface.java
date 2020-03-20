@@ -34,7 +34,7 @@ public interface StudentManagerInterface
     public String getPasswordStudent();
 
     public int checkCurrentDay(String username) throws AttendanceAutomationDalException;
-    public boolean sendUpdateDayStudent(StudentDay sd);
+    public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException;
     
     
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException;

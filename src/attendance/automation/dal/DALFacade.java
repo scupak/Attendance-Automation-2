@@ -196,7 +196,7 @@ public class DALFacade implements DALFacadeInterface
      * @return boolean
      */
     @Override
-    public boolean sendUpdateDayStudent(StudentDay sd)
+    public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException
     {
         return studentdbdao.sendUpdateDayStudent(sd);
     }

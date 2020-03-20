@@ -78,7 +78,7 @@ public class BLLFacade implements BLLFacadeInterface
     }
     
     @Override
-    public boolean sendUpdateDayStudent(StudentDay sd)
+    public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException
     {
         return studentmanager.sendUpdateDayStudent(sd);
     }

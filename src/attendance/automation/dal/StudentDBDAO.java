@@ -206,11 +206,50 @@ public class StudentDBDAO implements StudentDBDAOInterface
      *
      * @param sd
      * @return boolean
+     * @throws attendance.automation.dal.AttendanceAutomationDalException
      */
     @Override
-    public boolean sendUpdateDayStudent(StudentDay sd)
+    public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException
     {
-        return false;
+        if(!doesStudentDayExist(sd.getStudent().getUsername(), sd.getDate()))
+        {
+            
+            return false;
+        }
+        
+        try (Connection con = dbcon.getConnection())
+        {
+            
+            java.sql.Date sqlDate = java.sql.Date.valueOf(sd.getDate());
+
+            String sql = "SELECT id FROM [Day] WHERE date = ?";
+            String sql2 = "UPDATE [Student_day] SET status = ? WHERE studentUsername = ? AND dayId = ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+
+            ps.setDate(1, sqlDate);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                int dayId = rs.getInt("id");
+
+                ps2.setInt(1, sd.getAttendanceStatus());
+                ps2.setString(2, sd.getStudent().getUsername());
+                ps2.setInt(3, dayId);
+
+                ps2.executeUpdate();
+               return true;
+            }
+            
+            return false;
+            
+        } catch (SQLException ex)
+        {
+            throw new AttendanceAutomationDalException("sendUpdateDayStudent eror", ex);
+        }
     }
     
     /**
@@ -325,8 +364,9 @@ public class StudentDBDAO implements StudentDBDAOInterface
             {
                 return true;
             }
-
+            System.out.println("doesStudentDayExist = false");
             return false;
+            
             
         } catch (SQLException ex)
         {
@@ -384,15 +424,18 @@ public class StudentDBDAO implements StudentDBDAOInterface
         }
     }
     
+    
+    
+    
        public static void main(String[] args) throws IOException, AttendanceAutomationDalException
        {
         StudentDBDAO test = new StudentDBDAO();
 
         Student s = new Student("hello", "rwebleya", "MckxbMH", 0, "sgp", 0);
         String username = "ecollicki";
-        LocalDate date = LocalDate.of(2020, Month.MARCH, 20);
+        LocalDate date = LocalDate.of(2020, Month.MARCH, 21);
         
-        System.out.println(test.getStudentDay(s, date));
+        System.out.println(test.sendUpdateDayStudent(new StudentDay(date, s, PRESENT)));
         //System.out.println(test.doesStudentDayExist(username, date));
 //        for (Student student : test.getAllStudents())
 //        {

@@ -27,7 +27,7 @@ public interface StudentDBDAOInterface
 
     public int checkCurrentDay(String username) throws AttendanceAutomationDalException;
             
-    public boolean sendUpdateDayStudent(StudentDay sd);
+    public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException;
 
     public void setDayStatus(int status, String username) throws AttendanceAutomationDalException;
     

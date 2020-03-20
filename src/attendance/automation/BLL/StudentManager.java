@@ -120,7 +120,7 @@ public class StudentManager implements StudentManagerInterface
     
 
     @Override
-    public boolean sendUpdateDayStudent(StudentDay sd) {
+    public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException {
         return dalfacade.sendUpdateDayStudent(sd);
     }
 
