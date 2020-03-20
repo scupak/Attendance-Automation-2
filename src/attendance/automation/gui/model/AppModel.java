@@ -17,6 +17,7 @@ import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -241,9 +242,14 @@ public class AppModel {
 
     }
 
-    public int checkDay(String username) throws AttendanceAutomationDalException
+    public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
-        return bllfacade.checkDay(username);
+        return bllfacade.checkCurrentDay(username);
+    }
+    
+    public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException
+    {
+        return bllfacade.doesStudentDayExist(username, date);
     }
 
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException {

@@ -12,6 +12,7 @@ import attendance.automation.dal.Interface.MockDataInterface;
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import javafx.collections.ObservableList;
 
@@ -184,9 +185,9 @@ public class DALFacade implements DALFacadeInterface
      * @return
      * @throws AttendanceAutomationDalException 
      */
-    public int checkDay(String username) throws AttendanceAutomationDalException
+    public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
-        return studentdbdao.checkDay(username);
+        return studentdbdao.checkCurrentDay(username);
     }
     
     /**
@@ -221,6 +222,11 @@ public class DALFacade implements DALFacadeInterface
     @Override
     public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException {
       return studentdbdao.getAllDaysForStudent(student);
+    }
+
+    @Override
+    public boolean doesStudentDayExist(String username, LocalDate date)throws AttendanceAutomationDalException {
+        return studentdbdao.doesStudentDayExist(username, date);
     }
     
 }

@@ -9,6 +9,7 @@ import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public interface StudentManagerInterface
      */
     public String getPasswordStudent();
 
-    public int checkDay(String username) throws AttendanceAutomationDalException;
+    public int checkCurrentDay(String username) throws AttendanceAutomationDalException;
     public boolean sendUpdateDayStudent(StudentDay sd);
     
     
@@ -45,4 +46,6 @@ public interface StudentManagerInterface
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException;
     
     public List<Student> getallStudents() throws AttendanceAutomationDalException;
+    
+    public boolean doesStudentDayExist(String username, LocalDate date)throws AttendanceAutomationDalException;
 }

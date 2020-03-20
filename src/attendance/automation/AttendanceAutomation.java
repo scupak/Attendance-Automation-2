@@ -35,6 +35,7 @@ public class AttendanceAutomation extends Application
     public static void main(String[] args)
     {
         launch(args);
+       
     }
 
 }

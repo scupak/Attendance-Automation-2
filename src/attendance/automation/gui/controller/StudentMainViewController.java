@@ -105,7 +105,7 @@ public class StudentMainViewController implements Initializable
     {
          
             String username = appmodel.getCurrentStudent().getUsername();
-            int status = appmodel.checkDay(username);
+            int status = appmodel.checkCurrentDay(username);
         
             if (status == 0 || status == 1)
             {

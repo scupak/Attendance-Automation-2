@@ -11,6 +11,7 @@ import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.dal.DALFacade;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -55,9 +56,9 @@ public class StudentManager implements StudentManagerInterface
     }
 
     @Override
-    public int checkDay(String username) throws AttendanceAutomationDalException
+    public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
-        return dalfacade.checkDay(username);
+        return dalfacade.checkCurrentDay(username);
     }
     
     public List<Student> getallStudents() throws AttendanceAutomationDalException
@@ -132,6 +133,11 @@ public class StudentManager implements StudentManagerInterface
     @Override
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
         return dalfacade.getAllDaysForStudent(student);
+    }
+
+    @Override
+    public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException{
+        return dalfacade.doesStudentDayExist(username, date);
     }
 
 }

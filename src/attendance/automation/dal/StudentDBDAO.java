@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -151,15 +152,17 @@ public class StudentDBDAO implements StudentDBDAOInterface
         StudentDBDAO test = new StudentDBDAO();
 
         Student s = new Student("hello", "rwebleya", "MckxbMH", 0, "sgp", 0);
-//        
+        String username = "ecollicki";
+        LocalDate date = LocalDate.of(2020, Month.MARCH, 20);
+        System.out.println(test.doesStudentDayExist(username, date));
 //        for (Student student : test.getAllStudents())
 //        {
 //            System.out.println(student);
 //        }
     
-        for (StudentDay day : test.getAllDaysForStudent(s)) {
+        /*for (StudentDay day : test.getAllDaysForStudent(s)) {
              System.out.println(day);
-        }
+        }*/
            
 
         
@@ -172,7 +175,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
      * @throws AttendanceAutomationDalException 
      */
     @Override
-    public int checkDay(String username) throws AttendanceAutomationDalException
+    public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
         try (Connection con = dbcon.getConnection())
         {
@@ -318,4 +321,41 @@ public class StudentDBDAO implements StudentDBDAOInterface
             throw new AttendanceAutomationDalException("could not get all categories with movie from database", ex);
         }
     }
-}
+
+    @Override
+    public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException
+    {
+        try (Connection con = dbcon.getConnection())
+        {
+            java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+
+            String sql = "SELECT status FROM [Student_day] "
+                    + "JOIN [Day] ON Student_day.dayId = Day.id "
+                    + "WHERE Student_day.studentUsername = ? "
+                    + "AND Day.date = ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, username);
+            ps.setDate(2, sqlDate);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                return true;
+            }
+
+            return false;
+            
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new AttendanceAutomationDalException("Could not find day in database", ex);
+        }
+      
+       
+    }
+       
+    }
+
