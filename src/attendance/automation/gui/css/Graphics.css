@@ -187,3 +187,18 @@ and open the template in the editor.
     -fx-border-radius:  10px;
     
 }
+
+#boxGreen
+{
+    -fx-background-color:  #78f542;
+}
+
+#boxRed
+{
+    -fx-background-color:  #f54242;
+}
+
+#boxBlue
+{
+    -fx-background-color: #42aaf5;
+}
