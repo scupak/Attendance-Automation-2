@@ -143,17 +143,14 @@ public class AppModel {
         {
             notSetProcent = notSet.size();
         }
-            
-       presenceProcent = Math.round(presenceProcent);
-       absentProcent = Math.round(absentProcent);
-       notSetProcent = Math.round(notSetProcent);
+        
         
         
         
         pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Presence " + presenceProcent + "%",presenceProcent),
-                new PieChart.Data("Absent " + absentProcent + "%",absentProcent),
-                new PieChart.Data("not set " + notSetProcent + "%", notSetProcent));
+                new PieChart.Data("Presence " + Math.round(presenceProcent) + "%",presenceProcent),
+                new PieChart.Data("Absent " + Math.round(absentProcent) + "%",absentProcent),
+                new PieChart.Data("not set " + Math.round(notSetProcent) + "%", notSetProcent));
 
         
         return pieChartData;
