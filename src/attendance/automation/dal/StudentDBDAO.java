@@ -445,20 +445,25 @@ public class StudentDBDAO implements StudentDBDAOInterface
        {
         StudentDBDAO test = new StudentDBDAO();
 
-        Student s = new Student("hello", "rwebleya", "MckxbMH", 0, "sgp", 0);
+        Student s = new Student("hello", "mads69", "mads69", 0, "sgp", 0);
         String username = "ecollicki";
         LocalDate date = LocalDate.of(2020, Month.MARCH, 21);
         
-        System.out.println(test.sendUpdateDayStudent(new StudentDay(date, s, PRESENT)));
+        //System.out.println(test.sendUpdateDayStudent(new StudentDay(date, s, PRESENT)));
         //System.out.println(test.doesStudentDayExist(username, date));
 //        for (Student student : test.getAllStudents())
 //        {
 //            System.out.println(student);
 //        }
-    
+    /*
         for (StudentDay day : test.getAllDaysForStudent(s)) {
              System.out.println(day.getDate().getDayOfWeek());
        }
+        */
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        
+           System.out.println(list.size());
 }
 }
 
