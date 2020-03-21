@@ -18,6 +18,7 @@ import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,15 +83,88 @@ public class AppModel {
      *
      * @return
      */
-    public ObservableList<PieChart.Data> setPiechartData() {
+    public ObservableList<PieChart.Data> setPiechartData(Student s) throws AttendanceAutomationDalException {
 
+        ArrayList<StudentDay> days = new ArrayList<StudentDay>();
+        ArrayList<StudentDay> presence = new ArrayList<StudentDay>();
+        ArrayList<StudentDay> absent = new ArrayList<StudentDay>();
+        ArrayList<StudentDay> notSet = new ArrayList<StudentDay>();
+        
+        days.addAll(bllfacade.getAllDaysForAstudent(s));
+        System.out.println(days.size() + "the size of days");
+        
+        
+        for (StudentDay day : days)
+        {
+            if(day.getAttendanceStatus() == 1)
+            {
+                presence.add(day);
+            }
+            else if(day.getAttendanceStatus() == 0)
+            {
+                absent.add(day);
+            }
+            else if(day.getAttendanceStatus() == -1)
+            {
+                notSet.add(day);
+            }
+        }
+        
+        double presenceProcent;
+        double absentProcent;
+        double notSetProcent; 
+       
+        if(presence.size() != 0)
+       {
+           double p = presence.size();
+           
+           presenceProcent = (p / days.size()) * 100;
+       } 
+        else
+        {
+            presenceProcent = presence.size();
+        }
+        if(absent.size() != 0)
+       {
+           double a = absent.size();
+           absentProcent = (a / days.size()) * 100;
+       }
+        else
+        {
+            absentProcent = absent.size();
+        }
+        if(notSet.size() != 0)
+       {
+           double n = notSet.size();
+           notSetProcent = (n / days.size()) * 100;
+       }
+        else
+        {
+            notSetProcent = notSet.size();
+        }
+            
+       
+        
+        
+        
         pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Presence", 48),
-                new PieChart.Data("Absent", 52));
+                new PieChart.Data("Presence " + presenceProcent + "%",presenceProcent),
+                new PieChart.Data("Absent " + absentProcent + "%", absentProcent),
+                new PieChart.Data("not set " + notSetProcent + "%", notSetProcent));
 
+        
         return pieChartData;
 
     }
+    
+    public static void main(String[] args) throws IOException, AttendanceAutomationDalException
+    {
+        AppModel ap = new AppModel();
+        
+        
+        System.out.println(ap.setPiechartData(new Student("mads", "mads69", "password", 0, "monday", 0)));
+    }
+ 
 
     /**
      * updates existing Data-Object if name matches

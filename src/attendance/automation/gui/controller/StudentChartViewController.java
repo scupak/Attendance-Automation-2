@@ -5,6 +5,7 @@
  */
 package attendance.automation.gui.controller;
 
+import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
@@ -57,8 +58,14 @@ public class StudentChartViewController implements Initializable
         }
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(appmodel));
-        setPieChartData();
-        setBarData();
+        try
+        {
+            setPieChartData();
+        } catch (AttendanceAutomationDalException ex)
+        {
+            Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       setBarData();
 
     }
 
@@ -98,9 +105,9 @@ public class StudentChartViewController implements Initializable
     /**
      * sets the pie chart
      */
-    public void setPieChartData()
+    public void setPieChartData() throws AttendanceAutomationDalException
     {
-        pieChart.getData().addAll(appmodel.setPiechartData());
+        pieChart.getData().addAll(appmodel.setPiechartData(appmodel.getCurrentStudent()));
         pieChart.setTitle("Total Overview");
     }
 
