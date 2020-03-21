@@ -61,11 +61,12 @@ public class StudentChartViewController implements Initializable
         try
         {
             setPieChartData();
+            setBarData();
         } catch (AttendanceAutomationDalException ex)
         {
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       setBarData();
+       
 
     }
 
@@ -114,10 +115,10 @@ public class StudentChartViewController implements Initializable
     /**
      * sets the bar chart
      */
-    public void setBarData()
+    public void setBarData() throws AttendanceAutomationDalException
     {
         barChart.setTitle("Week overview");
-        barChart.getData().addAll(appmodel.setPresence(), appmodel.setAbsent());
+        barChart.getData().addAll(appmodel.setPresence(appmodel.getCurrentStudent()), appmodel.setAbsent(appmodel.getCurrentStudent()));
 
     }
 
