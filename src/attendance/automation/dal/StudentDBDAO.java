@@ -445,7 +445,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
        {
         StudentDBDAO test = new StudentDBDAO();
 
-        Student s = new Student("hello", "rwebleya", "MckxbMH", 0, "sgp", 0);
+        Student s = new Student("hello", "mads69", "mads69", 0, "sgp", 0);
         String username = "ecollicki";
         LocalDate date = LocalDate.of(2020, Month.MARCH, 21);
         
