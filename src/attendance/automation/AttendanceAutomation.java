@@ -13,11 +13,16 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author zilot
+ * @author SKRUMM
  */
 public class AttendanceAutomation extends Application
 {
 
+    /**
+     * Starts the program
+     * @param stage
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception
     {

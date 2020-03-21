@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author kacpe
+ * @author SKRUMM
  */
 public interface TeacherManagerInterface 
 {

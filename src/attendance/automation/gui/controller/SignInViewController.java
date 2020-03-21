@@ -31,7 +31,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author zilot
+ * @author SKRUMM
  */
 public class SignInViewController implements Initializable
 {

@@ -12,7 +12,6 @@ import attendance.automation.gui.controller.calendar.FullCalendarView;
 import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.YearMonth;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -34,7 +33,7 @@ import javafx.stage.Window;
 /**
  * FXML Controller class
  *
- * @author zilot
+ * @author SKRUMM
  */
 public class StudentMainViewController implements Initializable
 {
@@ -208,7 +207,7 @@ public class StudentMainViewController implements Initializable
     }
 
     /**
-     *
+     * Handles submit
      * @param event
      */
     @FXML
@@ -229,12 +228,18 @@ public class StudentMainViewController implements Initializable
 
     }
     
+    /**
+     * Creates a thank you message for the user
+     */
     private void thankYouMessage()
     {
         studentRootPane.getChildren().remove(hBox);
         currentClassText.setText("Thank you!");
     }
     
+    /**
+     * Creates a day off message for the user
+     */
     private void failMessage()
     {
         studentRootPane.getChildren().remove(hBox);

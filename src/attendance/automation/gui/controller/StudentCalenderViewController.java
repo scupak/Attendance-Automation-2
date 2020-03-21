@@ -26,7 +26,7 @@ import javafx.stage.Window;
 /**
  * FXML Controller class
  *
- * @author Charlotte
+ * @author SKRUMM
  */
 public class StudentCalenderViewController implements Initializable
 {

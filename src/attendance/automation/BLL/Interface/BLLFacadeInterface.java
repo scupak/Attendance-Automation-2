@@ -9,7 +9,7 @@ package attendance.automation.BLL.Interface;
 
 /**
  *
- * @author kacpe
+ * @author SKRUMM
  */
 public interface BLLFacadeInterface extends StudentManagerInterface, TeacherManagerInterface
 {

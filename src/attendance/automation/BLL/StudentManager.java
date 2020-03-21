@@ -10,28 +10,22 @@ import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.dal.DALFacade;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
 /**
  *
- * @author kacpe
+ * @author SKRUMM
  */
 public class StudentManager implements StudentManagerInterface
 {
 
-   
-    
-   
     private final DALFacade dalfacade;
     
     public StudentManager() throws IOException
     {
-        dalfacade = new DALFacade();
-        
+        dalfacade = new DALFacade();   
     }
-    
      
      /**
      * Get student username
@@ -55,18 +49,34 @@ public class StudentManager implements StudentManagerInterface
         return dalfacade.getPasswordStudent();
     }
 
+    /**
+     * Checks the current day according to the given username
+     * @param username
+     * @return the current day, and relevant info
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
         return dalfacade.checkCurrentDay(username);
     }
     
+    /**
+     * Gets a list of all students
+     * @return a list of all students
+     * @throws AttendanceAutomationDalException 
+     */
     public List<Student> getallStudents() throws AttendanceAutomationDalException
     {
         return dalfacade.getAllStudents();
-        
     }
     
+    /**
+     * Checks the students credentials and compares them to the given info, to see if it matches
+     * @param s
+     * @return if the info matches the info in the DB
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException
     {
@@ -94,9 +104,9 @@ public class StudentManager implements StudentManagerInterface
     }
     
     /**
-     *
+     * Gets a student
      * @param s
-     * @return
+     * @return a student
      * @throws AttendanceAutomationDalException
      */
     @Override
@@ -118,28 +128,59 @@ public class StudentManager implements StudentManagerInterface
         
         
     
-
+    /**
+     * Sends an update to DayStudent between layers
+     * @param sd
+     * @return the update
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException {
         return dalfacade.sendUpdateDayStudent(sd);
     }
 
+    /**
+     * Sets the day status for the given user
+     * @param status
+     * @param username
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public void setDayStatus(int status, String username) throws AttendanceAutomationDalException
     {
         dalfacade.setDayStatus(status, username);
     }
-
+    
+    /**
+     * Gets a list of all days for the current student
+     * @param student
+     * @return a list of days for the current student
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
         return dalfacade.getAllDaysForStudent(student);
     }
 
+    /**
+     * Checks wether or not the given student exists in the DB
+     * @param username
+     * @param date
+     * @return wether or not the given student exists
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException{
         return dalfacade.doesStudentDayExist(username, date);
     }
-
+    
+    /**
+     * Gets the students day
+     * @param s
+     * @param date
+     * @return the students day
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException {
         return dalfacade.getStudentDay(s,date);
