@@ -8,6 +8,7 @@ package attendance.automation.gui.controller;
 import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +42,8 @@ public class StatusSelectController implements Initializable
     private RadioButton absentButton;
     @FXML
     private RadioButton notSetButton;
+    
+    private LocalDate date;
 
     /**
      * Initializes the controller class.
