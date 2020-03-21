@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author kacpe
+ * @author SKRUMM
  */
 public class StatusSelectController implements Initializable 
 {
@@ -63,6 +63,10 @@ public class StatusSelectController implements Initializable
         System.out.println("Instance ID: " + System.identityHashCode(appmodel));
     }    
 
+    /**
+     * Handles confirming
+     * @param event 
+     */
     @FXML
     private void handleconfirm(ActionEvent event) 
     {
@@ -90,6 +94,10 @@ public class StatusSelectController implements Initializable
         
     }
 
+    /**
+     * Handles cancelling
+     * @param event 
+     */
     @FXML
     private void handleCancel(ActionEvent event) 
     {

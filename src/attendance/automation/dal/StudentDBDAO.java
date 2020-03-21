@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author lumby
+ * @author SKRUMM
  */
 public class StudentDBDAO implements StudentDBDAOInterface
 {
@@ -151,7 +151,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
     /**
      * TODO make a method that chekcs if the studentDay exists
      * @param username
-     * @return
+     * @return the current day
      * @throws AttendanceAutomationDalException 
      */
     @Override
@@ -203,7 +203,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
     }
 
     /**
-     *
+     * Sends an update to DayStudent between layers
      * @param sd
      * @return boolean
      * @throws attendance.automation.dal.AttendanceAutomationDalException
@@ -341,6 +341,13 @@ public class StudentDBDAO implements StudentDBDAOInterface
         }
     }
 
+    /**
+     * Checks if the students day exists
+     * @param username
+     * @param date
+     * @return if the day exists
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException
     {
@@ -377,6 +384,13 @@ public class StudentDBDAO implements StudentDBDAOInterface
        
     }
 
+    /**
+     * Gets the student day
+     * @param s
+     * @param date
+     * @return the student day
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException
     {
@@ -444,11 +458,6 @@ public class StudentDBDAO implements StudentDBDAOInterface
     
         for (StudentDay day : test.getAllDaysForStudent(s)) {
              System.out.println(day.getDate().getDayOfWeek());
-        
-           
-
-        
-        
        }
 }
 }

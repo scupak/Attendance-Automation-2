@@ -9,7 +9,7 @@ package attendance.automation.dal.Interface;
 
 /**
  *
- * @author kacpe
+ * @author SKRUMM
  */
 public interface DALFacadeInterface extends MockDataInterface, StudentDBDAOInterface
 {

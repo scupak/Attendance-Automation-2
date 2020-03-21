@@ -11,7 +11,7 @@ import java.io.IOException;
 import javafx.collections.ObservableList;
 /**
  *
- * @author kacpe
+ * @author SKRUMM
  */
 public class TeacherManager implements TeacherManagerInterface
 {
@@ -21,9 +21,6 @@ public class TeacherManager implements TeacherManagerInterface
     public TeacherManager() throws IOException
     {
         dalfacade = new DALFacade();
-        
-       
-
     }
     
      /**

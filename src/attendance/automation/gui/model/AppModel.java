@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ import javafx.scene.chart.XYChart;
 
 /**
  *
- * @author kacpe
+ * @author SKRUMM
  */
 public class AppModel {
 
@@ -63,7 +62,7 @@ public class AppModel {
     /**
      * Gets the list of teachers
      *
-     * @return
+     * @return the list of teachers
      */
     public ObservableList classList() {
         return bllfacade.getTeacherClassList();
@@ -72,7 +71,7 @@ public class AppModel {
     /**
      * Gets the list of students
      *
-     * @return
+     * @return the list of students
      */
     public ObservableList<Student> studentList() {
         return bllfacade.getTeacherStudentList();
@@ -81,7 +80,7 @@ public class AppModel {
     /**
      * sets the pie chart
      *
-     * @return
+     * @return the pie chart
      */
     public ObservableList<PieChart.Data> setPiechartData(Student s) throws AttendanceAutomationDalException {
 
@@ -183,7 +182,7 @@ public class AppModel {
     /**
      * Sets the bar chart for present studens
      *
-     * @return
+     * @return the bar chart
      */
     public XYChart.Series setPresence() {
 
@@ -202,7 +201,7 @@ public class AppModel {
     /**
      * Sets the bar chart for absent studens
      *
-     * @return
+     * @return the bar chart
      */
     public XYChart.Series setAbsent() {
 
@@ -221,7 +220,7 @@ public class AppModel {
     /**
      * Gets teacher username
      *
-     * @return
+     * @return the teachers username
      */
     public String getTeahcerUsername() {
         return bllfacade.getUsernameTeacher();
@@ -230,7 +229,7 @@ public class AppModel {
     /**
      * Gets teacher password
      *
-     * @return
+     * @return the teachers password
      */
     public String getTeacherPassword() {
         return bllfacade.getPasswordTeacher();
@@ -239,7 +238,7 @@ public class AppModel {
     /**
      * Gets student username
      *
-     * @return
+     * @return the students user name
      */
     public String getStudentUsername() {
         return bllfacade.getUsernameStudent();
@@ -248,7 +247,7 @@ public class AppModel {
     /**
      * Gets student password
      *
-     * @return
+     * @return the students password
      */
     public String getStudentPassword() {
         return bllfacade.getPasswordStudent();
@@ -271,6 +270,12 @@ public class AppModel {
         stage.show();
     }
 
+    /**
+     * Sends an updated student day through the layers
+     * @param sd
+     * @return the update
+     * @throws AttendanceAutomationDalException 
+     */
     public boolean updateDayStudent(StudentDay sd) throws AttendanceAutomationDalException{
 
         return bllfacade.sendUpdateDayStudent(sd);
@@ -316,35 +321,77 @@ public class AppModel {
 
     }
 
+    /**
+     * Checks the current day
+     * @param username
+     * @return the current day
+     * @throws AttendanceAutomationDalException 
+     */
     public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
         return bllfacade.checkCurrentDay(username);
     }
     
+    /**
+     * Checks if the student exists
+     * @param username
+     * @param date
+     * @return if the student exists
+     * @throws AttendanceAutomationDalException 
+     */
     public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException
     {
         return bllfacade.doesStudentDayExist(username, date);
     }
     
+    /**
+     * Gets the student day
+     * @param s
+     * @param date
+     * @return the student day
+     * @throws AttendanceAutomationDalException 
+     */
     public StudentDay getStudentDay(Student s, LocalDate date)throws AttendanceAutomationDalException
     {
         return bllfacade.getStudentDay(s,date);
     }
 
+    /**
+     * Checks the students credentials, and if they match
+     * @param s
+     * @return wether or not the credentials match
+     * @throws AttendanceAutomationDalException 
+     */
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException {
         return bllfacade.checkCredStudent(s);
     }
 
+    /**
+     * Sets the status of the day
+     * @param status
+     * @throws AttendanceAutomationDalException 
+     */
     public void setDayStatus(int status) throws AttendanceAutomationDalException
     {
         String username = getCurrentStudent().getUsername();
         bllfacade.setDayStatus(status, username);
     }
 
+    /**
+     * Gets a list of all the daysfor a student
+     * @param student
+     * @return the list of the students days
+     * @throws AttendanceAutomationDalException 
+     */
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
        return bllfacade.getAllDaysForAstudent(student);
     }
     
+    /**
+     * gets a list of all the students
+     * @return a list of all the students
+     * @throws AttendanceAutomationDalException 
+     */
     public List<Student> getallStudents() throws AttendanceAutomationDalException
     {
         return bllfacade.getallStudents();

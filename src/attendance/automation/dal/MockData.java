@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author Charlotte
+ * @author SKRUMM
  */
 public class MockData implements MockDataInterface
 {
@@ -59,7 +59,7 @@ public class MockData implements MockDataInterface
     /**
      * Get student password
      *
-     * @return
+     * @return student password
      */
     public String getPasswordStudent()
     {
@@ -158,6 +158,10 @@ public class MockData implements MockDataInterface
         
     }
 
+    /**
+     * Checks the day
+     * @return false
+     */
     public boolean checkDay()
     {
         return false;

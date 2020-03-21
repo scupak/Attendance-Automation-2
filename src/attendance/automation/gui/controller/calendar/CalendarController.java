@@ -38,7 +38,12 @@ public class CalendarController implements Initializable{
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-@FXML
+    /**
+     * Handles logging out of the system
+     * @param event
+     * @throws IOException 
+     */
+    @FXML
     private void HandleLogout(ActionEvent event) throws IOException {
         
         Window window = maincalendarpane.getScene().getWindow();
@@ -50,6 +55,11 @@ public class CalendarController implements Initializable{
         appmodel.handelLogout();
     }
 
+    /**
+     * handles navigating back to the main view
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void handelBackToMainView(ActionEvent event) throws IOException {
         

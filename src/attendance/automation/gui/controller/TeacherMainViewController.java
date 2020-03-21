@@ -7,7 +7,6 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.gui.controller.TeacherClassViewController;
 import attendance.automation.gui.model.AppModel;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +28,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author zilot
+ * @author SKRUMM
  */
 public class TeacherMainViewController implements Initializable
 {

@@ -7,7 +7,7 @@ package attendance.automation.dal;
 
 /**
  *
- * @author lumby
+ * @author SKRUMM
  */
 public class AttendanceAutomationDalException extends Exception
 {
@@ -16,14 +16,28 @@ public class AttendanceAutomationDalException extends Exception
         super();
     }
 
+    /**
+     * Outputs a message if this exception occurs
+     * @param message 
+     */
     public AttendanceAutomationDalException(String message) {
         super(message);
     }
 
+    /**
+     * Outputs a message if this exception occurs, throws a cause
+     * @param message
+     * @param cause 
+     */
     public AttendanceAutomationDalException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * Outputs a message if this exception occurs, throws an exception
+     * @param message
+     * @param ex 
+     */
     public AttendanceAutomationDalException(String message, Exception ex) {
         super(message, ex);
     }

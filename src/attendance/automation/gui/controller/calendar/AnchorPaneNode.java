@@ -5,10 +5,7 @@ import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.AppModel;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.IntegerProperty;
@@ -17,8 +14,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.util.converter.LocalDateTimeStringConverter;
 
 /**
  * Create an anchor pane that can store additional data.
@@ -72,19 +67,13 @@ public class AnchorPaneNode extends AnchorPane{
             }
             else{System.out.println("studentday is null");
             }
-            
-           
-          
-            
-           
-                
-        
-        
-        
-        
+
         } );
     }
-    
+    /**
+     * Updates the anchor pane node
+     * @throws AttendanceAutomationDalException 
+     */
     public void updateAnchorPaneNodeStudentDay() throws AttendanceAutomationDalException{
        /* if(appModel.doesStudentDayExist(appModel.getCurrentStudent().getUsername(), date)){
         studentday = this.appModel.getStudentDay(appModel.getCurrentStudent(), date);
@@ -98,7 +87,9 @@ public class AnchorPaneNode extends AnchorPane{
                 
             }
        
-       
+       /**
+        * Makes a new thread to run updates
+        */
        new Thread(new Runnable() {
             @Override
             public void run() {
@@ -134,47 +125,47 @@ public class AnchorPaneNode extends AnchorPane{
                        //then you set to your node or container or layout
                          setBackground(new Background(myBF));
                         
-                        
-                        
                         }
-                        
-                        
-                        
-                        
+    
                     }
                     
-                    
-                    
-                    
-                    
-                    
-            
-            
-            
-            
-            
                 } catch (AttendanceAutomationDalException ex) {
                     Logger.getLogger(AnchorPaneNode.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }).start();
-    
-    
     }
 
+    /**
+     * Gets the local date
+     * @return the local date
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Sets the date to the current new value
+     * @param date
+     * @throws AttendanceAutomationDalException 
+     */
     public void setDate(LocalDate date) throws AttendanceAutomationDalException {
         this.date = date;
         updateAnchorPaneNodeStudentDay();
     }
 
+    /**
+     * Gets a student day
+     * @return student day
+     */
     public StudentDay getStudentday() {
         return studentday;
     }
 
+    /**
+     * Sets the student day to the current info
+     * @param studentday 
+     */
     public void setStudentday(StudentDay studentday) {
         this.studentday = studentday;
     }

@@ -2,17 +2,10 @@ package attendance.automation.gui.controller.calendar;
 
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.AppModel;
-import java.awt.Image;
-import java.awt.Rectangle;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
-
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -21,8 +14,6 @@ import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
-
 
 public class FullCalendarView {
 
@@ -235,14 +226,26 @@ public class FullCalendarView {
         populateCalendar(currentYearMonth);
     }
 
+    /**
+     * Gets the current view
+     * @return view
+     */
     public VBox getView() {
         return view;
     }
 
+    /**
+     * Gets all calendar days
+     * @return all calendar days
+     */
     public ArrayList<AnchorPaneNode> getAllCalendarDays() {
         return allCalendarDays;
     }
-
+    
+    /**
+     * Sets all calendar days
+     * @param allCalendarDays 
+     */
     public void setAllCalendarDays(ArrayList<AnchorPaneNode> allCalendarDays) {
         this.allCalendarDays = allCalendarDays;
     }

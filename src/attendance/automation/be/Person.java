@@ -5,13 +5,12 @@
  */
 package attendance.automation.be;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
  *
- * @author Christina
+ * @author SKRUMM
  */
 public abstract class Person
 {
@@ -19,7 +18,12 @@ public abstract class Person
     public StringProperty username;
     public StringProperty password;
 
-    
+    /**
+     * This defines what a person is, to the program
+     * @param name
+     * @param username
+     * @param password 
+     */
     public Person(String name, String username, String password)
     {
         this.name = new SimpleStringProperty(name);

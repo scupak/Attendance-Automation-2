@@ -11,14 +11,13 @@ import attendance.automation.dal.Interface.DALFacadeInterface;
 import attendance.automation.dal.Interface.MockDataInterface;
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import javafx.collections.ObservableList;
 
 /**
  *
- * @author kacpe
+ * @author SKRUMM
  */
 public class DALFacade implements DALFacadeInterface
 {
@@ -35,7 +34,7 @@ public class DALFacade implements DALFacadeInterface
     }
     
     /**
-     * gets a list of all students in database
+     * Gets a list of all students in database
      * @return students list
      * @throws AttendanceAutomationDalException 
      */
@@ -46,7 +45,7 @@ public class DALFacade implements DALFacadeInterface
     }
 
     /**
-     * get a specific student based on username
+     * Get a specific student based on username
      * @param s
      * @return returnStudent
      * @throws AttendanceAutomationDalException 
@@ -58,7 +57,7 @@ public class DALFacade implements DALFacadeInterface
     }
 
     /**
-     *  checks if a student exist in the databases
+     * Checks if a student exists in the databases
      * @param s
      * @return boolean
      * @throws AttendanceAutomationDalException 
@@ -94,7 +93,7 @@ public class DALFacade implements DALFacadeInterface
     /**
      * Get student password
      *
-     * @return
+     * @return the password
      */
     @Override
     public String getPasswordStudent() 
@@ -182,7 +181,7 @@ public class DALFacade implements DALFacadeInterface
     /**
      * TODO make a method that chekcs if the studentDay exists
      * @param username
-     * @return
+     * @return the current day
      * @throws AttendanceAutomationDalException 
      */
     public int checkCurrentDay(String username) throws AttendanceAutomationDalException
@@ -191,7 +190,7 @@ public class DALFacade implements DALFacadeInterface
     }
     
     /**
-     *
+     * Sends an update from DayStudent between layers
      * @param sd
      * @return boolean
      */
@@ -202,7 +201,7 @@ public class DALFacade implements DALFacadeInterface
     }
 
     /**
-     * make it so this method only updates the day and does not make a new day
+     * Make it so this method only updates the day and does not make a new day
      * @param status
      * @param username 
      */
@@ -214,7 +213,7 @@ public class DALFacade implements DALFacadeInterface
     }
     
      /**
-     * get a list of days for a student
+     * Get a list of days for a student
      * @param student
      * @return studentDays
      * @throws AttendanceAutomationDalException 
@@ -224,11 +223,25 @@ public class DALFacade implements DALFacadeInterface
       return studentdbdao.getAllDaysForStudent(student);
     }
 
+    /**
+     * Checks if the student day exists
+     * @param username
+     * @param date
+     * @return if the student day exists
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public boolean doesStudentDayExist(String username, LocalDate date)throws AttendanceAutomationDalException {
         return studentdbdao.doesStudentDayExist(username, date);
     }
-
+    
+    /**
+     * Gets the student day
+     * @param s
+     * @param date
+     * @return the student day
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException {
        return studentdbdao.getStudentDay(s,date);
