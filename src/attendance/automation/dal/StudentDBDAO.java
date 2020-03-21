@@ -442,13 +442,14 @@ public class StudentDBDAO implements StudentDBDAOInterface
 //            System.out.println(student);
 //        }
     
-        /*for (StudentDay day : test.getAllDaysForStudent(s)) {
-             System.out.println(day);
-        }*/
+        for (StudentDay day : test.getAllDaysForStudent(s)) {
+             System.out.println(day.getDate().getDayOfWeek());
+        
            
 
         
         
        }
+}
 }
 

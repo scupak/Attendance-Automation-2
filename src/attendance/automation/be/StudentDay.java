@@ -40,6 +40,7 @@ public class StudentDay
     
     public int getAttendant()
     {
+        
         return attendant;
     }
     public int getNotAttendant()
@@ -76,11 +77,13 @@ public class StudentDay
     public void setStudent(Student student) {
         this.student = student;
     }
+    
 
     @Override
     public String toString() {
         return "StudentDay{" + "Date=" + Date + ", student=" + student + ", attendanceStatus=" + attendanceStatus + '}';
     }
+    
     
     
     
