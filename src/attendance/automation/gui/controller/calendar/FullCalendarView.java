@@ -1,5 +1,6 @@
 package attendance.automation.gui.controller.calendar;
 
+import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.AppModel;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -15,6 +16,8 @@ import javafx.scene.text.Text;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -33,7 +36,7 @@ public class FullCalendarView {
      * Create a calendar view
      * @param yearMonth year month to create the calendar of
      */
-    public FullCalendarView(YearMonth yearMonth, AppModel apModel) {
+    public FullCalendarView(YearMonth yearMonth, AppModel apModel) throws AttendanceAutomationDalException {
         currentYearMonth = yearMonth;
         this.appModel = apModel;
         // Create the calendar grid pane
@@ -128,14 +131,26 @@ public class FullCalendarView {
        ImageView previousMonth  = new ImageView(new javafx.scene.image.Image("attendance/automation/gui/icons/leftarrow.png"));
        //previousMonth.setGraphic(image);
       
-        previousMonth.setOnMouseClicked(e -> previousMonth());
+        previousMonth.setOnMouseClicked(e -> {
+            try {
+                previousMonth();
+            } catch (AttendanceAutomationDalException ex) {
+                Logger.getLogger(FullCalendarView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         //Button nextMonth = new Button();
         
         ImageView nextMonth = new ImageView(new javafx.scene.image.Image("attendance/automation/gui/icons/rightarrow.png"));
         //nextMonth.setGraphic(image2);
         
         
-        nextMonth.setOnMouseClicked(e -> nextMonth());
+        nextMonth.setOnMouseClicked(e -> {
+            try {
+                nextMonth();
+            } catch (AttendanceAutomationDalException ex) {
+                Logger.getLogger(FullCalendarView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         /*
         HBox titleBar = new HBox(previousMonth, calendarTitle ,nextMonth );
@@ -172,7 +187,7 @@ public class FullCalendarView {
      * Set the days of the calendar to correspond to the appropriate date
      * @param yearMonth year and month of month to render
      */
-    public void populateCalendar(YearMonth yearMonth) {
+    public void populateCalendar(YearMonth yearMonth) throws AttendanceAutomationDalException {
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
         // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
@@ -207,7 +222,7 @@ public class FullCalendarView {
     /**
      * Move the month back by one. Repopulate the calendar with the correct dates.
      */
-    private void previousMonth() {
+    private void previousMonth() throws AttendanceAutomationDalException {
         currentYearMonth = currentYearMonth.minusMonths(1);
         populateCalendar(currentYearMonth);
     }
@@ -215,7 +230,7 @@ public class FullCalendarView {
     /**
      * Move the month forward by one. Repopulate the calendar with the correct dates.
      */
-    private void nextMonth() {
+    private void nextMonth() throws AttendanceAutomationDalException {
         currentYearMonth = currentYearMonth.plusMonths(1);
         populateCalendar(currentYearMonth);
     }

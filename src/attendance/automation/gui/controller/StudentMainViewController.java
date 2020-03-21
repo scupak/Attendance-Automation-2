@@ -158,7 +158,7 @@ public class StudentMainViewController implements Initializable
      * @param event
      */
     @FXML
-    private void handelCalenderview(ActionEvent event)
+    private void handelCalenderview(ActionEvent event) throws AttendanceAutomationDalException
     {
 
         try
