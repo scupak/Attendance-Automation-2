@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.chart.XYChart;
 
 /**
  *
@@ -116,15 +117,15 @@ public class StudentManager implements StudentManagerInterface
         return dalfacade.getStudent(s);
     }
     
-    public static void main(String[] args) throws IOException, AttendanceAutomationDalException
+    public static void main(String[] args) throws IOException, AttendanceAutomationDalException, IOException, IOException, IOException
     {
         StudentManager test = new StudentManager();
-        Student se = new Student("djkghsl", "rwebleya", "MckxbMH", 0, "monday", 0);
+        Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);
        
-        System.out.println(se.getPassword());
-        System.out.println(se.getUsername());
         
-        test.checkCredStudent(se);
+        
+       
+        
     }
         
         
@@ -187,44 +188,13 @@ public class StudentManager implements StudentManagerInterface
         return dalfacade.getStudentDay(s,date);
     }
 
+   
     
+            
     @Override
-    public double pieChartDataPresence(Student s) throws AttendanceAutomationDalException
+    public double pieChartData(Student s, int attendanceStatusCheck) throws AttendanceAutomationDalException
     {
-         ArrayList<StudentDay> days = new ArrayList<StudentDay>();
-        ArrayList<StudentDay> presence = new ArrayList<StudentDay>();
-        
-        
-        days.addAll(getAllDaysForAstudent(s));
-        
-        for (StudentDay day : days)
-        {
-          if(day.getAttendanceStatus() == 1)
-          {
-              presence.add(day);
-          }
-        }
-       
-        double procent;
-        
-        if(!presence.isEmpty())
-       {
-           double p = presence.size();
-           
-           procent = (p / days.size()) * 100;
-       } 
-        else
-        {
-            procent = presence.size();
-        }
-        
-        return procent;
-    }
-    
-    @Override
-    public double pieChartDataAbsent(Student s) throws AttendanceAutomationDalException
-    {
-         ArrayList<StudentDay> days = new ArrayList<StudentDay>();
+        ArrayList<StudentDay> days = new ArrayList<StudentDay>();
         ArrayList<StudentDay> absent = new ArrayList<StudentDay>();
         
         
@@ -232,7 +202,7 @@ public class StudentManager implements StudentManagerInterface
         
         for (StudentDay day : days)
         {
-          if(day.getAttendanceStatus() == 0)
+          if(day.getAttendanceStatus() == attendanceStatusCheck)
           {
               absent.add(day);
           }
@@ -243,7 +213,6 @@ public class StudentManager implements StudentManagerInterface
         if(!absent.isEmpty())
        {
            double p = absent.size();
-           
            procent = (p / days.size()) * 100;
        } 
         else
@@ -254,35 +223,66 @@ public class StudentManager implements StudentManagerInterface
         return procent;
     }
     
-    @Override
-    public double pieChartDataNotSet(Student s) throws AttendanceAutomationDalException
-    {
-         ArrayList<StudentDay> days = new ArrayList<StudentDay>();
-        ArrayList<StudentDay> notSet = new ArrayList<StudentDay>();
-        
-        
-        days.addAll(getAllDaysForAstudent(s));
-        
-        for (StudentDay day : days)
-        {
-          if(day.getAttendanceStatus() == -1)
-          {
-              notSet.add(day);
-          }
-        }
-       
-        double procent;
-        
-        if(!notSet.isEmpty())
-       {
-           procent = (notSet.size() / days.size()) * 100;
-       } 
-        else
-        {
-            procent = notSet.size();
-        }
-        
-        return procent;
-    }
 
+    public XYChart.Series setPresence(Student s , int attendanceStatusCheck, String columName) throws AttendanceAutomationDalException {
+
+        XYChart.Series presence = new XYChart.Series<>();
+        ArrayList<StudentDay> p = new ArrayList<>();
+        int mondayC = 0;
+        int tuesdayC = 0;
+        int wednesdayC = 0;
+        int thursdayC = 0;
+        int fridayC = 0;
+        int saturdayC = 0;
+        int sundayC = 0;
+        
+       
+      
+        
+        for (StudentDay studentDay : getAllDaysForAstudent(s))
+        {
+            if(studentDay.getAttendanceStatus() == attendanceStatusCheck)
+            {
+                p.add(studentDay);
+            }
+            
+        }
+        
+        for (StudentDay day : p)
+        {
+            if("monday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                mondayC++;
+            }
+            else if("tuesday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                tuesdayC++;
+            }
+            else if("wednesday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                wednesdayC++;
+            }
+            else if("thursday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                thursdayC++;
+            }
+            else if("friday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                fridayC++;
+            }
+            
+        }
+        System.out.println(mondayC + "  " + tuesdayC + "    " + wednesdayC + "  " + thursdayC + "    " + fridayC);
+
+        presence.setName(columName);
+        presence.getData().add(new XYChart.Data("Monday", mondayC));
+        presence.getData().add(new XYChart.Data("Tuesday", tuesdayC));
+        presence.getData().add(new XYChart.Data("Wednesday", wednesdayC));
+        presence.getData().add(new XYChart.Data("Thursday", thursdayC));
+        presence.getData().add(new XYChart.Data("Friday", fridayC));
+
+        return presence;
+    }
+   
+     
 }

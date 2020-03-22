@@ -40,9 +40,13 @@ public class AppModel {
     private final String thursday = "Thursday";
     private final String friday = "Friday";
     private final BLLFacade bllfacade;
+    private final int present = 1;
+    private final int absent = 0;
+    private final int notSet = -1;
     private ObservableList<PieChart.Data> pieChartData;
     private Student currentStudent;
     private boolean isStatusSelectOpen = false;
+    
 
     private AppModel() throws IOException {
         bllfacade = new BLLFacade();
@@ -85,70 +89,10 @@ public class AppModel {
      * @return the pie chart
      */
     public ObservableList<PieChart.Data> setPiechartData(Student s) throws AttendanceAutomationDalException {
-
-//        ArrayList<StudentDay> days = new ArrayList<StudentDay>();
-//        ArrayList<StudentDay> presence = new ArrayList<StudentDay>();
-//        ArrayList<StudentDay> absent = new ArrayList<StudentDay>();
-//        ArrayList<StudentDay> notSet = new ArrayList<StudentDay>();
-//        
-//        days.addAll(bllfacade.getAllDaysForAstudent(s));
-//        System.out.println(days.size() + "the size of days");
-//        
-//        
-//        for (StudentDay day : days)
-//        {
-//            if(day.getAttendanceStatus() == 1)
-//            {
-//                presence.add(day);
-//            }
-//            else if(day.getAttendanceStatus() == 0)
-//            {
-//                absent.add(day);
-//            }
-//            else if(day.getAttendanceStatus() == -1)
-//            {
-//                notSet.add(day);
-//            }
-//        }
-//        
-//        double presenceProcent;
-//        double absentProcent;
-//        double notSetProcent; 
-//       
-//        if(presence.size() != 0)
-//       {
-//           double p = presence.size();
-//           
-//           presenceProcent = (p / days.size()) * 100;
-//       } 
-//        else
-//        {
-//            presenceProcent = presence.size();
-//        }
-//        if(absent.size() != 0)
-//       {
-//           double a = absent.size();
-//           absentProcent = (a / days.size()) * 100;
-//           
-//       }
-//        else
-//        {
-//            absentProcent = absent.size();
-//        }
-//        if(notSet.size() != 0)
-//       {
-//           double n = notSet.size();
-//          notSetProcent = (n / days.size()) * 100;
-//          
-//       }
-//        else
-//        {
-//            notSetProcent = notSet.size();
-//        }
-//        
-        double presenceProcent = bllfacade.pieChartDataPresence(s);
-        double absentProcent = bllfacade.pieChartDataAbsent(s);
-        double notSetProcent = bllfacade.pieChartDataNotSet(s);
+     
+        double presenceProcent = bllfacade.pieChartData(s, present);
+        double absentProcent = bllfacade.pieChartData(s, absent);
+        double notSetProcent = bllfacade.pieChartData(s, notSet);
         
         
         pieChartData = FXCollections.observableArrayList(
@@ -185,58 +129,7 @@ public class AppModel {
      */
     public XYChart.Series setPresence(Student s) throws AttendanceAutomationDalException {
 
-        XYChart.Series presence = new XYChart.Series<>();
-        ArrayList<StudentDay> p = new ArrayList<>();
-        int mondayC = 0;
-        int tuesdayC = 0;
-        int wednesdayC = 0;
-        int thursdayC = 0;
-        int fridayC = 0;
-        int saturdayC = 0;
-        int sundayC = 0;
-        
-        for (StudentDay studentDay : appmodel.getAllDaysForAstudent(s))
-        {
-            if(studentDay.getAttendanceStatus() == 1)
-            {
-                p.add(studentDay);
-            }
-            
-        }
-        
-        for (StudentDay day : p)
-        {
-            if("monday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                mondayC++;
-            }
-            else if("tuesday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                tuesdayC++;
-            }
-            else if("wednsesday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                wednesdayC++;
-            }
-            else if("thursday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                thursdayC++;
-            }
-            else if("friday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                fridayC++;
-            }
-            
-        }
-
-        presence.setName("Presence");
-        presence.getData().add(new XYChart.Data(monday, mondayC));
-        presence.getData().add(new XYChart.Data(tuesday, tuesdayC));
-        presence.getData().add(new XYChart.Data(wednesday, wednesdayC));
-        presence.getData().add(new XYChart.Data(thursday, thursdayC));
-        presence.getData().add(new XYChart.Data(friday, fridayC));
-
-        return presence;
+        return bllfacade.setPresence(s, present, "present");
     }
    
 
@@ -247,60 +140,7 @@ public class AppModel {
      */
     public XYChart.Series setAbsent(Student s) throws AttendanceAutomationDalException {
 
-        XYChart.Series absent = new XYChart.Series<>();
-        
-         ArrayList<StudentDay> a = new ArrayList<>();
-        int mondayC = 0;
-        int tuesdayC = 0;
-        int wednesdayC = 0;
-        int thursdayC = 0;
-        int fridayC = 0;
-        int saturdayC = 0;
-        int sundayC = 0;
-        
-        for (StudentDay studentDay : appmodel.getAllDaysForAstudent(s))
-        {
-            if(studentDay.getAttendanceStatus() == 0)
-            {
-                a.add(studentDay);
-            }
-            
-        }
-        
-        for (StudentDay day : a)
-        {
-            if("monday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                mondayC++;
-            }
-            else if("tuesday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                tuesdayC++;
-            }
-            else if("wednsesday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                wednesdayC++;
-            }
-            else if("thursday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                thursdayC++;
-            }
-            else if("friday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
-            {
-                fridayC++;
-            }
-            
-        }
-        
-
-        absent.setName("Absent");
-        absent.getData().add(new XYChart.Data(monday, mondayC));
-        absent.getData().add(new XYChart.Data(tuesday, tuesdayC));
-        absent.getData().add(new XYChart.Data(wednesday, wednesdayC));
-        absent.getData().add(new XYChart.Data(thursday, thursdayC));
-        absent.getData().add(new XYChart.Data(friday, fridayC));
-
-        return absent;
+        return bllfacade.setPresence(s, absent, "absent");
     }
 
     /**

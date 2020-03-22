@@ -10,6 +10,7 @@ import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.time.LocalDate;
 import java.util.List;
+import javafx.scene.chart.XYChart;
 
 /**
  *
@@ -105,9 +106,8 @@ public interface StudentManagerInterface
      */
     public StudentDay getStudentDay(Student s, LocalDate date)throws AttendanceAutomationDalException;
     
-    public double pieChartDataPresence(Student s) throws AttendanceAutomationDalException;
+    public double pieChartData(Student s, int attendanceStatusCheck) throws AttendanceAutomationDalException;
     
-    public double pieChartDataAbsent(Student s) throws AttendanceAutomationDalException;
-    
-    public double pieChartDataNotSet(Student s) throws AttendanceAutomationDalException;
+    public XYChart.Series setPresence(Student s , int attendanceStatusCheck, String columName) throws AttendanceAutomationDalException;
+     
 }

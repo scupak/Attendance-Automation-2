@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 
 /**
  *
@@ -204,20 +205,16 @@ public class BLLFacade implements BLLFacadeInterface
     }
     
     @Override
-    public double pieChartDataPresence(Student s) throws AttendanceAutomationDalException
+    public double pieChartData(Student s, int attendanceStatusCheck) throws AttendanceAutomationDalException
     {
-        return studentmanager.pieChartDataPresence(s);
+        return studentmanager.pieChartData(s, attendanceStatusCheck);
     }
+   
+     public XYChart.Series setPresence(Student s , int attendanceStatusCheck, String columName) throws AttendanceAutomationDalException
+     {
+         return studentmanager.setPresence(s ,attendanceStatusCheck, columName);
+
+     }
+     
     
-    @Override
-    public double pieChartDataAbsent(Student s) throws AttendanceAutomationDalException
-    {
-        return studentmanager.pieChartDataAbsent(s);
-    }
-    
-    @Override
-    public double pieChartDataNotSet(Student s) throws AttendanceAutomationDalException
-    {
-        return studentmanager.pieChartDataNotSet(s);
-    }
 }
