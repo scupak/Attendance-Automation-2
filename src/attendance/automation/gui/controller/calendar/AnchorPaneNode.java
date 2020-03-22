@@ -12,14 +12,17 @@ import java.time.YearMonth;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.IntegerProperty;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * Create an anchor pane that can store additional data.
@@ -49,6 +52,17 @@ public class AnchorPaneNode extends AnchorPane{
         
         // Add action handler for mouse clicked
         this.setOnMouseClicked(e -> {
+            
+            System.out.println(this.appModel.getIsStatusSelectOpen());
+            
+            if (this.appModel.getIsStatusSelectOpen() == false && studentday != null) {
+                
+                if(studentday.getDate().equals(LocalDate.now())){
+                
+               
+                this.appModel.setIsStatusSelectOpen(true);
+                
+           
            
              try {
            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StatusSelect.fxml"));
@@ -62,25 +76,60 @@ public class AnchorPaneNode extends AnchorPane{
         // Get the controller and add the calendar view to it
         
         StatusSelectController controller = loader.getController();
+        controller.setDate(date);
+        controller.setAnchorpanenode(this);
         
         
         primaryStage.setHeight(415);
         primaryStage.setWidth(393);
         primaryStage.setResizable(false);
+        
+       primaryStage.setOnCloseRequest((WindowEvent event) -> {
+                             System.out.println("window closed");
+                             
+                             this.appModel.setIsStatusSelectOpen(false);
+           });
+        
+        
         primaryStage.show();
+        
         } catch (IOException ex) {
            
         }
+                }
+            }      
             
-            
-            if(studentday != null){
+            if(studentday != null && !studentday.getDate().equals(LocalDate.now()) ){
             
              System.out.println(studentday);
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Oops");
+            alert.setHeaderText("Oops, something went wrong");
+            alert.setContentText("As a student you can only edit the current day!");
+            alert.showAndWait();
             
             
             }
-            else{System.out.println("studentday is null");
+            else if(studentday != null){
+                
+                 System.out.println(studentday);
+            
+            
+            
             }
+            else if(studentday == null){
+                
+                System.out.println("studentday is null");
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Oops");
+            alert.setHeaderText("Oops, something went wrong");
+            alert.setContentText("No classes set for this day, you can only edit days with classes");
+            alert.showAndWait();
+            
+            }
+            
+            
 
         } );
     }
@@ -94,12 +143,15 @@ public class AnchorPaneNode extends AnchorPane{
         }*/
        
       // studentday = this.appModel.getStudentDay(appModel.getCurrentStudent(), date);
-       for (AnchorPaneNode node : this.view.getAllCalendarDays()) {
+     /*  for (AnchorPaneNode node : this.view.getAllCalendarDays()) {
                 
                 
                 node.setBackground(Background.EMPTY);
                 
             }
+       */
+       
+                setBackground(Background.EMPTY);
        
        /**
         * Makes a new thread to run updates
