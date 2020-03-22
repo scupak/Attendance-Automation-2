@@ -5,6 +5,9 @@
  */
 package attendance.automation.gui.controller;
 
+import attendance.automation.be.StudentDay;
+import attendance.automation.dal.AttendanceAutomationDalException;
+import attendance.automation.gui.controller.calendar.AnchorPaneNode;
 import attendance.automation.gui.model.AppModel;
 import java.io.IOException;
 import java.net.URL;
@@ -13,12 +16,15 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -44,6 +50,10 @@ public class StatusSelectController implements Initializable
     private RadioButton notSetButton;
     
     private LocalDate date;
+    @FXML
+    private Label dateLabel;
+    
+    private AnchorPaneNode anchorpanenode;
 
     /**
      * Initializes the controller class.
@@ -57,6 +67,7 @@ public class StatusSelectController implements Initializable
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
             appmodel = AppModel.getInstance();
+            
          } 
          catch (IOException ex) 
          {
@@ -64,6 +75,7 @@ public class StatusSelectController implements Initializable
          }
         //A check to see if were woriking with the same instance of appmodel.appmodel = AppModel.getInstance();
         System.out.println("Instance ID: " + System.identityHashCode(appmodel));
+        
     }    
 
     /**
@@ -71,13 +83,16 @@ public class StatusSelectController implements Initializable
      * @param event 
      */
     @FXML
-    private void handleconfirm(ActionEvent event) 
+    private void handleconfirm(ActionEvent event) throws AttendanceAutomationDalException 
     {
+        appmodel.setIsStatusSelectOpen(false);
         
         if(absentButton.isSelected())
         {
             System.out.println("absent");
            Stage stage = (Stage) confirmButton.getScene().getWindow();
+           appmodel.sendupdateDayStudent(new StudentDay(date, appmodel.getCurrentStudent(),  StudentDay.notAttendant));
+           anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
         
@@ -85,6 +100,8 @@ public class StatusSelectController implements Initializable
         {
             System.out.println("present");
            Stage stage = (Stage) confirmButton.getScene().getWindow();
+           appmodel.sendupdateDayStudent(new StudentDay(date, appmodel.getCurrentStudent(),  StudentDay.attendant));
+           anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
         
@@ -92,6 +109,8 @@ public class StatusSelectController implements Initializable
         {
             System.out.println("notset");
            Stage stage = (Stage) confirmButton.getScene().getWindow();
+           appmodel.sendupdateDayStudent(new StudentDay(date, appmodel.getCurrentStudent(),  StudentDay.notSetAtt));
+           anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
         
@@ -104,8 +123,31 @@ public class StatusSelectController implements Initializable
     @FXML
     private void handleCancel(ActionEvent event) 
     {
+        appmodel.setIsStatusSelectOpen(false);
         Stage stage = (Stage) cancelbutton.getScene().getWindow();
         stage.close();
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+        
+        dateLabel.setText(date.toString());
+    }
+
+    public AnchorPaneNode getAnchorpanenode() {
+        return anchorpanenode;
+    }
+
+    public void setAnchorpanenode(AnchorPaneNode anchorpanenode) {
+        this.anchorpanenode = anchorpanenode;
+    }
+    
+    
+    
+    
 
 }

@@ -42,9 +42,11 @@ public class AppModel {
     private final BLLFacade bllfacade;
     private ObservableList<PieChart.Data> pieChartData;
     private Student currentStudent;
+    private boolean isStatusSelectOpen = false;
 
     private AppModel() throws IOException {
         bllfacade = new BLLFacade();
+        
     }
 
     /**
@@ -358,7 +360,7 @@ public class AppModel {
      * @return the update
      * @throws AttendanceAutomationDalException 
      */
-    public boolean updateDayStudent(StudentDay sd) throws AttendanceAutomationDalException{
+    public boolean sendupdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException{
 
         return bllfacade.sendUpdateDayStudent(sd);
     }
@@ -478,4 +480,14 @@ public class AppModel {
     {
         return bllfacade.getallStudents();
     }
+
+    public boolean getIsStatusSelectOpen() {
+        return isStatusSelectOpen;
+    }
+
+    public void setIsStatusSelectOpen(boolean isStatusSelectOpen) {
+        this.isStatusSelectOpen = isStatusSelectOpen;
+    }
+    
+    
 }

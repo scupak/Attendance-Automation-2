@@ -92,4 +92,7 @@
          </BorderPane.margin>
       </HBox>
    </bottom>
+   <top>
+      <Label fx:id="dateLabel" text="date" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>
