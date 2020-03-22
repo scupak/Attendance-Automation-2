@@ -179,6 +179,7 @@ public class FullCalendarView {
      * @param yearMonth year and month of month to render
      */
     public void populateCalendar(YearMonth yearMonth) throws AttendanceAutomationDalException {
+        appModel.setThreadcounter(0);
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
         // Dial back the day until it is SUNDAY (unless the month starts on a sunday)

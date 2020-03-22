@@ -35,6 +35,7 @@ public class AnchorPaneNode extends AnchorPane{
     private AppModel appModel;
     private StudentDay studentday;
     private IntegerProperty status;
+    
 
     /**
      * Create a anchor pane node.Date is not assigned in the constructor.
@@ -138,6 +139,7 @@ public class AnchorPaneNode extends AnchorPane{
      * @throws AttendanceAutomationDalException 
      */
     public void updateAnchorPaneNodeStudentDay() throws AttendanceAutomationDalException{
+       appModel.setThreadcounter(appModel.getThreadcounter() +1);
        /* if(appModel.doesStudentDayExist(appModel.getCurrentStudent().getUsername(), date)){
         studentday = this.appModel.getStudentDay(appModel.getCurrentStudent(), date);
         }*/
@@ -195,10 +197,13 @@ public class AnchorPaneNode extends AnchorPane{
     
                     }
                     
+                    System.out.println(appModel.getThreadcounter());
+                    
                 } catch (AttendanceAutomationDalException ex) {
                     Logger.getLogger(AnchorPaneNode.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            
         }).start();
     }
 

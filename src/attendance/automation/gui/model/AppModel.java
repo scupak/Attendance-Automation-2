@@ -47,6 +47,7 @@ public class AppModel {
     private Student currentStudent;
     private boolean isStatusSelectOpen = false;
     
+    private int threadcounter = 0;
 
     private AppModel() throws IOException {
         bllfacade = new BLLFacade();
@@ -330,6 +331,15 @@ public class AppModel {
     public void setIsStatusSelectOpen(boolean isStatusSelectOpen) {
         this.isStatusSelectOpen = isStatusSelectOpen;
     }
+
+    public int getThreadcounter() {
+        return threadcounter;
+    }
+
+    public void setThreadcounter(int threadcounter) {
+        this.threadcounter = threadcounter;
+    }
+    
     
     
 }
