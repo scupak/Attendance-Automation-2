@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -55,6 +56,9 @@ public class AnchorPaneNode extends AnchorPane{
             System.out.println(this.appModel.getIsStatusSelectOpen());
             
             if (this.appModel.getIsStatusSelectOpen() == false && studentday != null) {
+                
+                if(studentday.getDate().equals(LocalDate.now())){
+                
                
                 this.appModel.setIsStatusSelectOpen(true);
                 
@@ -92,16 +96,39 @@ public class AnchorPaneNode extends AnchorPane{
         } catch (IOException ex) {
            
         }
+                }
             }      
             
-            if(studentday != null){
+            if(studentday != null && !studentday.getDate().equals(LocalDate.now()) ){
             
              System.out.println(studentday);
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Oops");
+            alert.setHeaderText("Oops, something went wrong");
+            alert.setContentText("As a student you can only edit the current day!");
+            alert.showAndWait();
             
             
             }
-            else{System.out.println("studentday is null");
+            else if(studentday != null){
+                
+                 System.out.println(studentday);
+            
+            
+            
             }
+            else if(studentday == null){
+                
+                System.out.println("studentday is null");
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Oops");
+            alert.setHeaderText("Oops, something went wrong");
+            alert.setContentText("No classes set for this day, you can only edit days with classes");
+            alert.showAndWait();
+            
+            }
+            
             
 
         } );
