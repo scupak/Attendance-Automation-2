@@ -9,6 +9,7 @@ import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.dal.DALFacade;
+import attendance.automation.dal.Interface.DALFacadeInterface;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ import javafx.scene.chart.XYChart;
 public class StudentManager implements StudentManagerInterface
 {
 
-    private final DALFacade dalfacade;
+    private final DALFacadeInterface dalfacade;
     
-    public StudentManager() throws IOException
+    public StudentManager(DALFacadeInterface dalfacade) throws IOException
     {
-        dalfacade = new DALFacade();   
+        this.dalfacade = dalfacade; 
     }
      
      /**
@@ -119,7 +120,7 @@ public class StudentManager implements StudentManagerInterface
     
     public static void main(String[] args) throws IOException, AttendanceAutomationDalException, IOException, IOException, IOException
     {
-        StudentManager test = new StudentManager();
+        StudentManager test = new StudentManager(new DALFacade());
         Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);
        
         
