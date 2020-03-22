@@ -190,7 +190,14 @@ public class StudentManager implements StudentManagerInterface
 
    
     
-            
+     /**
+     * sets the pie chart
+     *
+     * @param s
+     * @param attendanceStatusCheck
+     * @return the pie chart
+     * @throws attendance.automation.dal.AttendanceAutomationDalException
+     */       
     @Override
     public double pieChartData(Student s, int attendanceStatusCheck) throws AttendanceAutomationDalException
     {
@@ -224,6 +231,16 @@ public class StudentManager implements StudentManagerInterface
     }
     
 
+    /**
+     * Sets a barChart depentet on attendanceStatusCheck and columName
+     *
+     * @param s
+     * @param attendanceStatusCheck
+     * @param columName
+     * @return the bar chart
+     * @throws attendance.automation.dal.AttendanceAutomationDalException
+     */
+    @Override
     public XYChart.Series setPresence(Student s , int attendanceStatusCheck, String columName) throws AttendanceAutomationDalException {
 
         XYChart.Series presence = new XYChart.Series<>();
@@ -235,9 +252,6 @@ public class StudentManager implements StudentManagerInterface
         int fridayC = 0;
         int saturdayC = 0;
         int sundayC = 0;
-        
-       
-      
         
         for (StudentDay studentDay : getAllDaysForAstudent(s))
         {

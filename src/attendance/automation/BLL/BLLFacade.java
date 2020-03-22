@@ -204,12 +204,27 @@ public class BLLFacade implements BLLFacadeInterface
        return studentmanager.getStudentDay(s,date);
     }
     
+    /**
+     * sets the pie chart
+     * @param s
+     * @param attendanceStatusCheck
+     * @return
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public double pieChartData(Student s, int attendanceStatusCheck) throws AttendanceAutomationDalException
     {
         return studentmanager.pieChartData(s, attendanceStatusCheck);
     }
    
+    /**
+     * sets a bar chart
+     * @param s
+     * @param attendanceStatusCheck
+     * @param columName
+     * @return
+     * @throws AttendanceAutomationDalException 
+     */
      public XYChart.Series setPresence(Student s , int attendanceStatusCheck, String columName) throws AttendanceAutomationDalException
      {
          return studentmanager.setPresence(s ,attendanceStatusCheck, columName);
