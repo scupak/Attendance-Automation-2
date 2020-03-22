@@ -153,7 +153,7 @@ public class AnchorPaneNode extends AnchorPane{
             }
        */
        
-                setBackground(Background.EMPTY);
+                //this.setBackground(Background.EMPTY);
        
        /**
         * Makes a new thread to run updates
@@ -162,6 +162,7 @@ public class AnchorPaneNode extends AnchorPane{
             @Override
             public void run() {
                 
+                setBackground(Background.EMPTY);
                 try {
                     studentday = appModel.getStudentDay(appModel.getCurrentStudent(), date);
                     
@@ -197,7 +198,7 @@ public class AnchorPaneNode extends AnchorPane{
     
                     }
                     
-                    System.out.println(appModel.getThreadcounter());
+                    System.out.println(appModel.getThreadcounter() +"  "+  Thread.currentThread().getName());
                     
                 } catch (AttendanceAutomationDalException ex) {
                     Logger.getLogger(AnchorPaneNode.class.getName()).log(Level.SEVERE, null, ex);
@@ -222,7 +223,7 @@ public class AnchorPaneNode extends AnchorPane{
      */
     public void setDate(LocalDate date) throws AttendanceAutomationDalException {
         this.date = date;
-        updateAnchorPaneNodeStudentDay();
+        
     }
 
     /**
