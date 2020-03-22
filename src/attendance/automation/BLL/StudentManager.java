@@ -11,6 +11,7 @@ import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.dal.DALFacade;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -184,6 +185,104 @@ public class StudentManager implements StudentManagerInterface
     @Override
     public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException {
         return dalfacade.getStudentDay(s,date);
+    }
+
+    
+    @Override
+    public double pieChartDataPresence(Student s) throws AttendanceAutomationDalException
+    {
+         ArrayList<StudentDay> days = new ArrayList<StudentDay>();
+        ArrayList<StudentDay> presence = new ArrayList<StudentDay>();
+        
+        
+        days.addAll(getAllDaysForAstudent(s));
+        
+        for (StudentDay day : days)
+        {
+          if(day.getAttendanceStatus() == 1)
+          {
+              presence.add(day);
+          }
+        }
+       
+        double procent;
+        
+        if(!presence.isEmpty())
+       {
+           double p = presence.size();
+           
+           procent = (p / days.size()) * 100;
+       } 
+        else
+        {
+            procent = presence.size();
+        }
+        
+        return procent;
+    }
+    
+    @Override
+    public double pieChartDataAbsent(Student s) throws AttendanceAutomationDalException
+    {
+         ArrayList<StudentDay> days = new ArrayList<StudentDay>();
+        ArrayList<StudentDay> absent = new ArrayList<StudentDay>();
+        
+        
+        days.addAll(getAllDaysForAstudent(s));
+        
+        for (StudentDay day : days)
+        {
+          if(day.getAttendanceStatus() == 0)
+          {
+              absent.add(day);
+          }
+        }
+       
+        double procent;
+        
+        if(!absent.isEmpty())
+       {
+           double p = absent.size();
+           
+           procent = (p / days.size()) * 100;
+       } 
+        else
+        {
+            procent = absent.size();
+        }
+        
+        return procent;
+    }
+    
+    @Override
+    public double pieChartDataNotSet(Student s) throws AttendanceAutomationDalException
+    {
+         ArrayList<StudentDay> days = new ArrayList<StudentDay>();
+        ArrayList<StudentDay> notSet = new ArrayList<StudentDay>();
+        
+        
+        days.addAll(getAllDaysForAstudent(s));
+        
+        for (StudentDay day : days)
+        {
+          if(day.getAttendanceStatus() == -1)
+          {
+              notSet.add(day);
+          }
+        }
+       
+        double procent;
+        
+        if(!notSet.isEmpty())
+       {
+           procent = (notSet.size() / days.size()) * 100;
+       } 
+        else
+        {
+            procent = notSet.size();
+        }
+        
+        return procent;
     }
 
 }

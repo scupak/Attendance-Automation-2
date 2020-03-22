@@ -104,4 +104,10 @@ public interface StudentManagerInterface
      * @throws AttendanceAutomationDalException 
      */
     public StudentDay getStudentDay(Student s, LocalDate date)throws AttendanceAutomationDalException;
+    
+    public double pieChartDataPresence(Student s) throws AttendanceAutomationDalException;
+    
+    public double pieChartDataAbsent(Student s) throws AttendanceAutomationDalException;
+    
+    public double pieChartDataNotSet(Student s) throws AttendanceAutomationDalException;
 }

@@ -202,4 +202,22 @@ public class BLLFacade implements BLLFacadeInterface
     public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException {
        return studentmanager.getStudentDay(s,date);
     }
+    
+    @Override
+    public double pieChartDataPresence(Student s) throws AttendanceAutomationDalException
+    {
+        return studentmanager.pieChartDataPresence(s);
+    }
+    
+    @Override
+    public double pieChartDataAbsent(Student s) throws AttendanceAutomationDalException
+    {
+        return studentmanager.pieChartDataAbsent(s);
+    }
+    
+    @Override
+    public double pieChartDataNotSet(Student s) throws AttendanceAutomationDalException
+    {
+        return studentmanager.pieChartDataNotSet(s);
+    }
 }

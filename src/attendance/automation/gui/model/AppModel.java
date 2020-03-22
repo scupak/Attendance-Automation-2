@@ -84,67 +84,69 @@ public class AppModel {
      */
     public ObservableList<PieChart.Data> setPiechartData(Student s) throws AttendanceAutomationDalException {
 
-        ArrayList<StudentDay> days = new ArrayList<StudentDay>();
-        ArrayList<StudentDay> presence = new ArrayList<StudentDay>();
-        ArrayList<StudentDay> absent = new ArrayList<StudentDay>();
-        ArrayList<StudentDay> notSet = new ArrayList<StudentDay>();
-        
-        days.addAll(bllfacade.getAllDaysForAstudent(s));
-        System.out.println(days.size() + "the size of days");
-        
-        
-        for (StudentDay day : days)
-        {
-            if(day.getAttendanceStatus() == 1)
-            {
-                presence.add(day);
-            }
-            else if(day.getAttendanceStatus() == 0)
-            {
-                absent.add(day);
-            }
-            else if(day.getAttendanceStatus() == -1)
-            {
-                notSet.add(day);
-            }
-        }
-        
-        double presenceProcent;
-        double absentProcent;
-        double notSetProcent; 
-       
-        if(presence.size() != 0)
-       {
-           double p = presence.size();
-           
-           presenceProcent = (p / days.size()) * 100;
-       } 
-        else
-        {
-            presenceProcent = presence.size();
-        }
-        if(absent.size() != 0)
-       {
-           double a = absent.size();
-           absentProcent = (a / days.size()) * 100;
-           
-       }
-        else
-        {
-            absentProcent = absent.size();
-        }
-        if(notSet.size() != 0)
-       {
-           double n = notSet.size();
-          notSetProcent = (n / days.size()) * 100;
-          
-       }
-        else
-        {
-            notSetProcent = notSet.size();
-        }
-        
-        
+//        ArrayList<StudentDay> days = new ArrayList<StudentDay>();
+//        ArrayList<StudentDay> presence = new ArrayList<StudentDay>();
+//        ArrayList<StudentDay> absent = new ArrayList<StudentDay>();
+//        ArrayList<StudentDay> notSet = new ArrayList<StudentDay>();
+//        
+//        days.addAll(bllfacade.getAllDaysForAstudent(s));
+//        System.out.println(days.size() + "the size of days");
+//        
+//        
+//        for (StudentDay day : days)
+//        {
+//            if(day.getAttendanceStatus() == 1)
+//            {
+//                presence.add(day);
+//            }
+//            else if(day.getAttendanceStatus() == 0)
+//            {
+//                absent.add(day);
+//            }
+//            else if(day.getAttendanceStatus() == -1)
+//            {
+//                notSet.add(day);
+//            }
+//        }
+//        
+//        double presenceProcent;
+//        double absentProcent;
+//        double notSetProcent; 
+//       
+//        if(presence.size() != 0)
+//       {
+//           double p = presence.size();
+//           
+//           presenceProcent = (p / days.size()) * 100;
+//       } 
+//        else
+//        {
+//            presenceProcent = presence.size();
+//        }
+//        if(absent.size() != 0)
+//       {
+//           double a = absent.size();
+//           absentProcent = (a / days.size()) * 100;
+//           
+//       }
+//        else
+//        {
+//            absentProcent = absent.size();
+//        }
+//        if(notSet.size() != 0)
+//       {
+//           double n = notSet.size();
+//          notSetProcent = (n / days.size()) * 100;
+//          
+//       }
+//        else
+//        {
+//            notSetProcent = notSet.size();
+//        }
+//        
+        double presenceProcent = bllfacade.pieChartDataPresence(s);
+        double absentProcent = bllfacade.pieChartDataAbsent(s);
+        double notSetProcent = bllfacade.pieChartDataNotSet(s);
         
         
         pieChartData = FXCollections.observableArrayList(
