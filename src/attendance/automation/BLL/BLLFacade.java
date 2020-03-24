@@ -10,6 +10,7 @@ import attendance.automation.BLL.Interface.StudentManagerInterface;
 import attendance.automation.BLL.Interface.BLLFacadeInterface;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
+import attendance.automation.be.Teacher;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.dal.DALFacade;
 import java.io.IOException;
@@ -231,6 +232,18 @@ public class BLLFacade implements BLLFacadeInterface
          return studentmanager.setPresence(s ,attendanceStatusCheck, columName);
 
      }
+
+    @Override
+    public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException
+    {
+        return teachermanager.checkCredTeacher(t);
+    }
+
+    @Override
+    public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException
+    {
+        return teachermanager.getTeacher(t);
+    }
      
     
 }
