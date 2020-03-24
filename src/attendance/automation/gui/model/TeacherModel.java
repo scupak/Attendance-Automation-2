@@ -6,6 +6,7 @@
 package attendance.automation.gui.model;
 
 import attendance.automation.BLL.BLLFacade;
+import attendance.automation.BLL.Interface.BLLFacadeInterface;
 import attendance.automation.gui.model.Interface.TeacherModelInterface;
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
  */
 public class TeacherModel implements TeacherModelInterface
 {
-    private BLLFacade bllfacade;
+    private BLLFacadeInterface bllfacade;
     
     public TeacherModel() throws IOException
     {

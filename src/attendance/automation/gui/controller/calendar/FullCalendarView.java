@@ -2,6 +2,7 @@ package attendance.automation.gui.controller.calendar;
 
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -22,13 +23,13 @@ public class FullCalendarView {
     private VBox view;
     private Text calendarTitle;
     private YearMonth currentYearMonth;
-    private ModelFacade modelfacade;
+    private ModelFacadeInterface modelfacade;
 
     /**
      * Create a calendar view
      * @param yearMonth year month to create the calendar of
      */
-    public FullCalendarView(YearMonth yearMonth, ModelFacade modelfacade) throws AttendanceAutomationDalException {
+    public FullCalendarView(YearMonth yearMonth, ModelFacadeInterface modelfacade) throws AttendanceAutomationDalException {
         currentYearMonth = yearMonth;
         this.modelfacade = modelfacade;
         // Create the calendar grid pane

@@ -10,6 +10,7 @@ import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.calendar.CalendarController;
 import attendance.automation.gui.controller.calendar.FullCalendarView;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
@@ -59,7 +60,7 @@ public class StudentMainViewController implements Initializable
     private Label lbWelcome;
 
     private Student user;
-    private ModelFacade modelfacade;
+    private ModelFacadeInterface modelfacade;
 
     @FXML
     private Label currentClassText;

@@ -9,6 +9,7 @@ import attendance.automation.be.Student;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.StudentMainViewController;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +48,7 @@ public class SignInViewController implements Initializable
     private Label label;
 
     private List<Student> StudentList;
-    private ModelFacade modelfacade;
+    private ModelFacadeInterface modelfacade;
     public Student stud;
 
     /**

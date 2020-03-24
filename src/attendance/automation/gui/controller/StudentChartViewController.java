@@ -7,6 +7,7 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +41,7 @@ public class StudentChartViewController implements Initializable
     private BarChart<?, ?> barChart;
     @FXML
     private HBox hBox;
-    private ModelFacade modelfacade;
+    private ModelFacadeInterface modelfacade;
 
     /**
      * Initializes the controller class.

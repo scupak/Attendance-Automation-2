@@ -6,6 +6,7 @@
 package attendance.automation.gui.model;
 
 import attendance.automation.BLL.BLLFacade;
+import attendance.automation.BLL.Interface.BLLFacadeInterface;
 import attendance.automation.be.Student;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.SignInViewController;
@@ -23,7 +24,7 @@ import javafx.stage.Stage;
  */
 public class BaseModel implements BaseModelInterface
 {
-    private final BLLFacade bllfacade;
+    private final BLLFacadeInterface bllfacade;
     Calendar calendar = Calendar.getInstance();
     private boolean isStatusSelectOpen = false;
     private int threadcounter = 0;

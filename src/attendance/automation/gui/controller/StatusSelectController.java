@@ -9,6 +9,7 @@ import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.calendar.AnchorPaneNode;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +36,7 @@ import javafx.stage.WindowEvent;
 public class StatusSelectController implements Initializable 
 {
 
-    private ModelFacade modelfacade;
+    private ModelFacadeInterface modelfacade;
     
     @FXML
     private Button confirmButton;

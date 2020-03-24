@@ -6,6 +6,7 @@
 package attendance.automation.gui.model;
 
 import attendance.automation.BLL.BLLFacade;
+import attendance.automation.BLL.Interface.BLLFacadeInterface;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
@@ -25,7 +26,7 @@ import javafx.scene.chart.XYChart;
 public class StudentModel implements StudentModelInterface
 {
     private Student currentStudent;
-    private BLLFacade bllfacade;
+    private BLLFacadeInterface bllfacade;
     private final int present = 1;
     private final int absent = 0;
     private final int notSet = -1;

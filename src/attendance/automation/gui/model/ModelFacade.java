@@ -8,7 +8,11 @@ package attendance.automation.gui.model;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import attendance.automation.gui.model.Interface.BaseModelInterface;
+import attendance.automation.gui.model.Interface.MockModelInterface;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
+import attendance.automation.gui.model.Interface.StudentModelInterface;
+import attendance.automation.gui.model.Interface.TeacherModelInterface;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,10 +27,10 @@ import javafx.scene.chart.XYChart;
 public class ModelFacade implements ModelFacadeInterface
 {
     private static ModelFacade modelfacade = null;
-    private MockModel mockmodel;
-    private StudentModel studentmodel;
-    private TeacherModel teachermodel;
-    private BaseModel basemodel;
+    private MockModelInterface mockmodel;
+    private StudentModelInterface studentmodel;
+    private TeacherModelInterface teachermodel;
+    private BaseModelInterface basemodel;
     
     private ModelFacade() throws IOException
     {

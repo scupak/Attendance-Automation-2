@@ -7,6 +7,7 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.gui.controller.TeacherClassViewController;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
@@ -44,7 +45,7 @@ public class TeacherMainViewController implements Initializable
     @FXML
     private Button logOutButton;
 
-    private ModelFacade modelfacade;
+    private ModelFacadeInterface modelfacade;
 
     /**
      * Initializes the controller class.

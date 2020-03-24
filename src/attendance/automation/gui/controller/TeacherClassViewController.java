@@ -7,6 +7,7 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +48,7 @@ public class TeacherClassViewController implements Initializable
     @FXML
     private PieChart pieChart;
 
-    private ModelFacade modelfacade;
+    private ModelFacadeInterface modelfacade;
 
     @FXML
     public TableColumn<Student, String> name;
