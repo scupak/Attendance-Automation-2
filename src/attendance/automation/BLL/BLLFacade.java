@@ -11,6 +11,7 @@ import attendance.automation.BLL.Interface.BLLFacadeInterface;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import attendance.automation.dal.DALFacade;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -35,7 +36,7 @@ public class BLLFacade implements BLLFacadeInterface
      */
     public BLLFacade() throws IOException
     {
-        studentmanager = new StudentManager();
+        studentmanager = new StudentManager(new DALFacade());
         teachermanager = new TeacherManager(); 
     }
     

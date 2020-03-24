@@ -202,6 +202,7 @@ public class FullCalendarView {
             
             
             ap.setDate(calendarDate);
+            ap.updateAnchorPaneNodeStudentDay();
             ap.setTopAnchor(txt, 16.0);
             ap.setLeftAnchor(txt, 16.0);
             ap.getChildren().add(txt);
