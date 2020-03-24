@@ -2,6 +2,7 @@ package attendance.automation.gui.controller.calendar;
 
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.ModelFacade;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -21,15 +22,15 @@ public class FullCalendarView {
     private VBox view;
     private Text calendarTitle;
     private YearMonth currentYearMonth;
-    private AppModel appModel;
+    private ModelFacade modelfacade;
 
     /**
      * Create a calendar view
      * @param yearMonth year month to create the calendar of
      */
-    public FullCalendarView(YearMonth yearMonth, AppModel apModel) throws AttendanceAutomationDalException {
+    public FullCalendarView(YearMonth yearMonth, ModelFacade modelfacade) throws AttendanceAutomationDalException {
         currentYearMonth = yearMonth;
-        this.appModel = apModel;
+        this.modelfacade = modelfacade;
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
         calendar.setId("calendargrid");
@@ -39,7 +40,7 @@ public class FullCalendarView {
         // Create rows and columns with anchor panes for the calendar
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
-                AnchorPaneNode ap = new AnchorPaneNode(this,appModel);
+                AnchorPaneNode ap = new AnchorPaneNode(this,modelfacade);
                    //previous sizes 56, 56
                 ap.setPrefSize(130,130);
                 calendar.add(ap,j,i);
@@ -179,7 +180,7 @@ public class FullCalendarView {
      * @param yearMonth year and month of month to render
      */
     public void populateCalendar(YearMonth yearMonth) throws AttendanceAutomationDalException {
-        appModel.setThreadcounter(0);
+        modelfacade.setThreadcounter(0);
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
         // Dial back the day until it is SUNDAY (unless the month starts on a sunday)

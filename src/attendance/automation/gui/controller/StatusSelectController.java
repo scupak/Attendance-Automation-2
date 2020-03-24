@@ -9,6 +9,7 @@ import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.calendar.AnchorPaneNode;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ import javafx.stage.WindowEvent;
 public class StatusSelectController implements Initializable 
 {
 
-    private AppModel appmodel;
+    private ModelFacade modelfacade;
     
     @FXML
     private Button confirmButton;
@@ -66,7 +67,7 @@ public class StatusSelectController implements Initializable
             /**
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
-            appmodel = AppModel.getInstance();
+            modelfacade = ModelFacade.getInstance();
             
          } 
          catch (IOException ex) 
@@ -74,7 +75,7 @@ public class StatusSelectController implements Initializable
             Logger.getLogger(SignInViewController.class.getName()).log(Level.SEVERE, null, ex);
          }
         //A check to see if were woriking with the same instance of appmodel.appmodel = AppModel.getInstance();
-        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
+        System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         
     }    
 
@@ -85,13 +86,13 @@ public class StatusSelectController implements Initializable
     @FXML
     private void handleconfirm(ActionEvent event) throws AttendanceAutomationDalException 
     {
-        appmodel.setIsStatusSelectOpen(false);
+        modelfacade.setIsStatusSelectOpen(false);
         
         if(absentButton.isSelected())
         {
             System.out.println("absent");
            Stage stage = (Stage) confirmButton.getScene().getWindow();
-           appmodel.sendupdateDayStudent(new StudentDay(date, appmodel.getCurrentStudent(),  StudentDay.notAttendant));
+           modelfacade.sendupdateDayStudent(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.notAttendant));
            anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
@@ -100,7 +101,7 @@ public class StatusSelectController implements Initializable
         {
             System.out.println("present");
            Stage stage = (Stage) confirmButton.getScene().getWindow();
-           appmodel.sendupdateDayStudent(new StudentDay(date, appmodel.getCurrentStudent(),  StudentDay.attendant));
+           modelfacade.sendupdateDayStudent(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.attendant));
            anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
@@ -109,7 +110,7 @@ public class StatusSelectController implements Initializable
         {
             System.out.println("notset");
            Stage stage = (Stage) confirmButton.getScene().getWindow();
-           appmodel.sendupdateDayStudent(new StudentDay(date, appmodel.getCurrentStudent(),  StudentDay.notSetAtt));
+           modelfacade.sendupdateDayStudent(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.notSetAtt));
            anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
@@ -123,7 +124,7 @@ public class StatusSelectController implements Initializable
     @FXML
     private void handleCancel(ActionEvent event) 
     {
-        appmodel.setIsStatusSelectOpen(false);
+        modelfacade.setIsStatusSelectOpen(false);
         Stage stage = (Stage) cancelbutton.getScene().getWindow();
         stage.close();
     }

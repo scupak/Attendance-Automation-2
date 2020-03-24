@@ -7,6 +7,7 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,7 +47,7 @@ public class TeacherClassViewController implements Initializable
     @FXML
     private PieChart pieChart;
 
-    private AppModel appmodel;
+    private ModelFacade modelfacade;
 
     @FXML
     public TableColumn<Student, String> name;
@@ -65,12 +66,12 @@ public class TeacherClassViewController implements Initializable
             /**
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
-            appmodel = AppModel.getInstance();
+            modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
             Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
-        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
+        System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         populateList();
         fillPieChart();
 
@@ -111,7 +112,7 @@ public class TeacherClassViewController implements Initializable
         name.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
         absenceProcent.setCellValueFactory(new PropertyValueFactory<Student, Integer>("absenceProcent"));
         dayMostAbsent.setCellValueFactory(new PropertyValueFactory<Student, String>("dayMostAbsent"));
-        classTableView.setItems(appmodel.studentList());
+        classTableView.setItems(modelfacade.studentList());
     }
 
     /**
@@ -120,11 +121,11 @@ public class TeacherClassViewController implements Initializable
     private void fillPieChart()
     {
         int totalAbsence = 0;
-        for (Student student : appmodel.studentList())
+        for (Student student : modelfacade.studentList())
         {
             totalAbsence = totalAbsence + student.getAbsenceProcent();
         }
-        totalAbsence = totalAbsence / appmodel.studentList().size();
+        totalAbsence = totalAbsence / modelfacade.studentList().size();
 
         int totalPresence = 100 - totalAbsence;
 

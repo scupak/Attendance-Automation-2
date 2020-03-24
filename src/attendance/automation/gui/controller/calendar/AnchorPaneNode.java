@@ -4,6 +4,7 @@ import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.StatusSelectController;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -32,7 +33,7 @@ public class AnchorPaneNode extends AnchorPane{
     // Date associated with this pane
     private LocalDate date;
     private FullCalendarView view;
-    private AppModel appModel;
+    private ModelFacade modelfacade;
     private StudentDay studentday;
     private IntegerProperty status;
     
@@ -43,10 +44,10 @@ public class AnchorPaneNode extends AnchorPane{
      * @param appModel
      * @param children children of the anchor pane
      */
-    public AnchorPaneNode(FullCalendarView View,AppModel appModel,Node... children) throws AttendanceAutomationDalException {
+    public AnchorPaneNode(FullCalendarView View,ModelFacade modelfacade,Node... children) throws AttendanceAutomationDalException {
         super(children);
         this.view = View;
-        this.appModel = appModel;
+        this.modelfacade = modelfacade;
         
        // updateAnchorPaneNodeStudentDay();
         
@@ -54,14 +55,14 @@ public class AnchorPaneNode extends AnchorPane{
         // Add action handler for mouse clicked
         this.setOnMouseClicked(e -> {
             
-            System.out.println(this.appModel.getIsStatusSelectOpen());
+            System.out.println(this.modelfacade.getIsStatusSelectOpen());
             
-            if (this.appModel.getIsStatusSelectOpen() == false && studentday != null) {
+            if (this.modelfacade.getIsStatusSelectOpen() == false && studentday != null) {
                 
                 if(studentday.getDate().equals(LocalDate.now())){
                 
                
-                this.appModel.setIsStatusSelectOpen(true);
+                this.modelfacade.setIsStatusSelectOpen(true);
                 
            
            
@@ -88,7 +89,7 @@ public class AnchorPaneNode extends AnchorPane{
        primaryStage.setOnCloseRequest((WindowEvent event) -> {
                              System.out.println("window closed");
                              
-                             this.appModel.setIsStatusSelectOpen(false);
+                             this.modelfacade.setIsStatusSelectOpen(false);
            });
         
         
@@ -139,7 +140,7 @@ public class AnchorPaneNode extends AnchorPane{
      * @throws AttendanceAutomationDalException 
      */
     public void updateAnchorPaneNodeStudentDay() throws AttendanceAutomationDalException{
-       appModel.setThreadcounter(appModel.getThreadcounter() +1);
+       modelfacade.setThreadcounter(modelfacade.getThreadcounter() +1);
        /* if(appModel.doesStudentDayExist(appModel.getCurrentStudent().getUsername(), date)){
         studentday = this.appModel.getStudentDay(appModel.getCurrentStudent(), date);
         }*/
@@ -164,7 +165,7 @@ public class AnchorPaneNode extends AnchorPane{
                 
                 setBackground(Background.EMPTY);
                 try {
-                    studentday = appModel.getStudentDay(appModel.getCurrentStudent(), date);
+                    studentday = modelfacade.getStudentDay(modelfacade.getCurrentStudent(), date);
                     
                     if(studentday != null){
                         
@@ -198,7 +199,7 @@ public class AnchorPaneNode extends AnchorPane{
     
                     }
                     
-                    System.out.println(appModel.getThreadcounter() +"  "+  Thread.currentThread().getName());
+                    System.out.println(modelfacade.getThreadcounter() +"  "+  Thread.currentThread().getName());
                     
                 } catch (AttendanceAutomationDalException ex) {
                     Logger.getLogger(AnchorPaneNode.class.getName()).log(Level.SEVERE, null, ex);

@@ -10,6 +10,7 @@ import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.calendar.CalendarController;
 import attendance.automation.gui.controller.calendar.FullCalendarView;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
@@ -58,7 +59,7 @@ public class StudentMainViewController implements Initializable
     private Label lbWelcome;
 
     private Student user;
-    private AppModel appmodel;
+    private ModelFacade modelfacade;
 
     @FXML
     private Label currentClassText;
@@ -80,31 +81,31 @@ public class StudentMainViewController implements Initializable
             /**
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
-            appmodel = AppModel.getInstance();
+            modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
-        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
+        System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         
         try
         {
             checkDay();
             /*TODO needs to be changed so that both a teachers  or a students name can be displayed*/
-            setName(appmodel.getCurrentStudent());
+            setName(modelfacade.getCurrentStudent());
         } catch (AttendanceAutomationDalException ex)
         {
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        System.out.println(appmodel.getCurrentStudent());
+        System.out.println(modelfacade.getCurrentStudent());
     }
 
     public void checkDay() throws AttendanceAutomationDalException
     {
          
-            String username = appmodel.getCurrentStudent().getUsername();
-            int status = appmodel.checkCurrentDay(username);
+            String username = modelfacade.getCurrentStudent().getUsername();
+            int status = modelfacade.checkCurrentDay(username);
         
             if (status == 0 || status == 1)
             {
@@ -148,7 +149,7 @@ public class StudentMainViewController implements Initializable
         {
             ((Stage) window).close();
         }
-        appmodel.handelLogout();
+        modelfacade.handelLogout();
     }
 
     /**
@@ -175,7 +176,7 @@ public class StudentMainViewController implements Initializable
             
             CalendarController controller = loader.getController();
             
-            controller.calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(),appmodel).getView());
+            controller.calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(),modelfacade).getView());
 
         } catch (IOException ex)
         {
@@ -217,11 +218,11 @@ public class StudentMainViewController implements Initializable
         //sm.addData();
         if (rbHeretoday.isSelected())
         {
-            appmodel.setDayStatus(1);
+            modelfacade.setDayStatus(1);
         }
         else if(rbNotHeretoday.isSelected())
         {
-            appmodel.setDayStatus(0);
+            modelfacade.setDayStatus(0);
         }
         
         thankYouMessage();

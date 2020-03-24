@@ -6,6 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -76,7 +77,7 @@ public class StudentCalenderViewController implements Initializable
     @FXML
     private Label weekLabel;
 
-    private AppModel appmodel;
+    private ModelFacade modelfacade;
 
     public StudentCalenderViewController()
     {
@@ -94,12 +95,12 @@ public class StudentCalenderViewController implements Initializable
             /**
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
-            appmodel = AppModel.getInstance();
+            modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
-        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
+        System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         setWeekLabel();
 
     }
@@ -134,7 +135,7 @@ public class StudentCalenderViewController implements Initializable
         {
             ((Stage) window).close();
         }
-        appmodel.handelLogout();
+        modelfacade.handelLogout();
     }
 
     /**
@@ -151,8 +152,8 @@ public class StudentCalenderViewController implements Initializable
      */
     private void setWeekLabel()
     {
-        String label = "Week " + appmodel.getCurrentWeek() + " of"
-                + " " + appmodel.getYear();
+        String label = "Week " + modelfacade.getCurrentWeek() + " of"
+                + " " + modelfacade.getYear();
 
         weekLabel.setText(label);
     }

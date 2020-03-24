@@ -2,6 +2,7 @@ package attendance.automation.gui.controller.calendar;
 
 import attendance.automation.gui.controller.StudentCalenderViewController;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +23,7 @@ public class CalendarController implements Initializable{
     @FXML public Pane calendarPane;
     @FXML
     private Pane maincalendarpane;
-    private AppModel appmodel;
+    private ModelFacade modelfacade;
     
     
 
@@ -33,7 +34,7 @@ public class CalendarController implements Initializable{
             /**
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
-            appmodel = AppModel.getInstance();
+            modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,7 +53,7 @@ public class CalendarController implements Initializable{
         {
             ((Stage) window).close();
         }
-        appmodel.handelLogout();
+        modelfacade.handelLogout();
     }
 
     /**

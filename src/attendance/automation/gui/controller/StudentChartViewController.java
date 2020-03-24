@@ -7,6 +7,7 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.AppModel;
+import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,7 +40,7 @@ public class StudentChartViewController implements Initializable
     private BarChart<?, ?> barChart;
     @FXML
     private HBox hBox;
-    private AppModel appmodel;
+    private ModelFacade modelfacade;
 
     /**
      * Initializes the controller class.
@@ -52,12 +53,12 @@ public class StudentChartViewController implements Initializable
             /**
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
-            appmodel = AppModel.getInstance();
+            modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
-        System.out.println("Instance ID: " + System.identityHashCode(appmodel));
+        System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         try
         {
             setPieChartData();
@@ -85,7 +86,7 @@ public class StudentChartViewController implements Initializable
         {
             ((Stage) window).close();
         }
-        appmodel.handelLogout();
+        modelfacade.handelLogout();
     }
 
     /**
@@ -108,7 +109,7 @@ public class StudentChartViewController implements Initializable
      */
     public void setPieChartData() throws AttendanceAutomationDalException
     {
-        pieChart.getData().addAll(appmodel.setPiechartData(appmodel.getCurrentStudent()));
+        pieChart.getData().addAll(modelfacade.setPiechartData(modelfacade.getCurrentStudent()));
         pieChart.setTitle("Total Overview");
     }
 
@@ -118,7 +119,7 @@ public class StudentChartViewController implements Initializable
     public void setBarData() throws AttendanceAutomationDalException
     {
         barChart.setTitle("Week overview");
-        barChart.getData().addAll(appmodel.setPresence(appmodel.getCurrentStudent()), appmodel.setAbsent(appmodel.getCurrentStudent()));
+        barChart.getData().addAll(modelfacade.setPresence(modelfacade.getCurrentStudent()), modelfacade.setAbsent(modelfacade.getCurrentStudent()));
 
     }
 
