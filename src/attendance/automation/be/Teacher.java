@@ -6,9 +6,6 @@
 package attendance.automation.be;
 
 import java.util.ArrayList;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -42,34 +39,34 @@ public class Teacher extends Person
     }
     
    
-    public StringProperty getName()
+    public String getName()
     {
-        return name;
+        return name.get();
     }
 
-    public void setName(StringProperty name)
+    public void setName(String name)
     {
-        this.name = name;
+        this.name.set(name);
     }
 
-    public StringProperty getUsername()
+    public String getUsername()
     {
-        return username;
+        return username.get();
     }
 
-    public void setUsername(StringProperty username)
+    public void setUsername(String username)
     {
-        this.username = username;
+        this.username.set(username);
     }
 
-    public StringProperty getPassword()
+    public String getPassword()
     {
-        return password;
+        return password.get();
     }
 
-    public void setPassword(StringProperty password)
+    public void setPassword(String password)
     {
-        this.password = password;
+        this.password.set(password);
     }
     
     
