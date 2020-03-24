@@ -6,6 +6,8 @@
 package attendance.automation.BLL.Interface;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.Teacher;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import javafx.collections.ObservableList;
 
 /**
@@ -43,6 +45,10 @@ public interface TeacherManagerInterface
      * @return getPasswordTeacher
      */
     public String getPasswordTeacher();
+    
+    public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException;
+    
+    public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException;
     
     
            
