@@ -24,6 +24,12 @@ public class Teacher extends Person
         super(name, username, password);
         this.classID = new ArrayList<>();
     }
+    
+    public Teacher(String name, String username, String password)
+    {
+        super(name, username, password);
+        this.classID = new ArrayList<>();
+    }
 
     public ArrayList<String> getClassID()
     {
