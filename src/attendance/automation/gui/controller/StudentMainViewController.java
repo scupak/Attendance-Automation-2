@@ -9,7 +9,6 @@ import attendance.automation.be.Student;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.calendar.CalendarController;
 import attendance.automation.gui.controller.calendar.FullCalendarView;
-import attendance.automation.gui.model.AppModel;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;

@@ -8,7 +8,6 @@ package attendance.automation.gui.controller;
 import attendance.automation.be.Student;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.controller.StudentMainViewController;
-import attendance.automation.gui.model.AppModel;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;

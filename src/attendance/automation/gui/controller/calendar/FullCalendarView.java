@@ -1,9 +1,7 @@
 package attendance.automation.gui.controller.calendar;
 
 import attendance.automation.dal.AttendanceAutomationDalException;
-import attendance.automation.gui.model.AppModel;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
-import attendance.automation.gui.model.ModelFacade;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
