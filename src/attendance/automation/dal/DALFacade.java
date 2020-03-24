@@ -7,9 +7,11 @@ package attendance.automation.dal;
 
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
+import attendance.automation.be.Teacher;
 import attendance.automation.dal.Interface.DALFacadeInterface;
 import attendance.automation.dal.Interface.MockDataInterface;
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
+import attendance.automation.dal.Interface.TeacherDBDAOInterface;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,11 +28,13 @@ public class DALFacade implements DALFacadeInterface
     
     StudentDBDAOInterface studentdbdao;
     MockDataInterface mockdata;
+    TeacherDBDAOInterface teacherdbdao;
     
     public DALFacade() throws IOException
     {
         studentdbdao = new StudentDBDAO();
         mockdata = new MockData();
+        teacherdbdao = new TeacherDBDAO();
     }
     
     /**
@@ -247,4 +251,35 @@ public class DALFacade implements DALFacadeInterface
        return studentdbdao.getStudentDay(s,date);
     }
     
+    /**
+     * gets a list of all teachers in database
+     * @return
+     * @throws AttendanceAutomationDalException 
+     */
+    public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException
+    {
+        return teacherdbdao.getAllTeachers();
+    }
+    
+    /**
+     * get a specific teacher based on username
+     * @param t
+     * @return
+     * @throws AttendanceAutomationDalException 
+     */
+    public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException
+    {
+        return teacherdbdao.getTeacher(t);
+    }
+    
+    /**
+     * checks if a Teacher exist in the databases
+     * @param t
+     * @return
+     * @throws AttendanceAutomationDalException 
+     */
+    public boolean TeacherExist(Teacher t) throws AttendanceAutomationDalException
+    {
+        return teacherdbdao.TeacherExist(t);
+    }
 }
