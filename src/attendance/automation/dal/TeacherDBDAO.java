@@ -6,6 +6,7 @@
 package attendance.automation.dal;
 
 import attendance.automation.be.Teacher;
+import attendance.automation.dal.Interface.TeacherDBDAOInterface;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author lumby
  */
-public class TeacherDBDAO
+public class TeacherDBDAO implements TeacherDBDAOInterface
 {
     
     private final DatabaseConnector dbCon;
@@ -30,6 +31,11 @@ public class TeacherDBDAO
         dbCon = new DatabaseConnector();
     }
     
+    /**
+     * gets a list of all teachers in database
+     * @return
+     * @throws AttendanceAutomationDalException 
+     */
      public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException
     {
         ArrayList<Teacher> students = new ArrayList<>();
@@ -123,4 +129,5 @@ public class TeacherDBDAO
             throw new AttendanceAutomationDalException("could not find the Teacher in the dataabase", ex);
         }
     }
+    
 }
