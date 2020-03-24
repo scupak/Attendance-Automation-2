@@ -6,6 +6,7 @@
 package attendance.automation.be;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 
 /**
@@ -15,17 +16,33 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Class
 {
 
-    private final String teacherUsrName;
-    private final SimpleIntegerProperty classID;
-    private final String studentUsrName;
-    private final String[] classes;
+    private  String teacherUsrName;
+    private  SimpleStringProperty classID;
+    private  String studentUsrName;
+    private  String[] classes;
     
-        public Class(int classID, String teacherUsrName, String studentUsrName, String[] classes)
+        public Class(String classID, String teacherUsrName, String studentUsrName, String[] classes)
     {
-        this.classID = new SimpleIntegerProperty(classID);
+        this.classID = new SimpleStringProperty(classID);
         this.teacherUsrName = teacherUsrName;
         this.studentUsrName = studentUsrName;
         this.classes = classes;
     }
+
+    public Class(SimpleStringProperty classID) {
+        this.classID = classID;
+    }
+
+    public String getClassID() {
+        return classID.get();
+    }
+
+    public void setClassID(String classID) {
+        this.classID.set(teacherUsrName);
+    }
+    
+    
+        
+       
     
 }
