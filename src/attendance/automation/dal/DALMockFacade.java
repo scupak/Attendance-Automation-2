@@ -20,6 +20,8 @@ import javafx.collections.ObservableList;
  * @author anton
  */
 public class DALMockFacade implements DALFacadeInterface{
+    
+    /*lav en liste af students/dage som du kan give til  */
 
     @Override
     public String getUsernameStudent() {
