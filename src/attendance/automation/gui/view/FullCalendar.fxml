@@ -47,5 +47,6 @@
             </HBox>
          </children>
       </VBox>
+      <Label fx:id="userModeLabel" layoutX="410.0" layoutY="6.0" prefHeight="17.0" prefWidth="84.0" styleClass="Label" />
    </children>
 </Pane>

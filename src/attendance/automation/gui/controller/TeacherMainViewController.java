@@ -58,6 +58,7 @@ public class TeacherMainViewController implements Initializable
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
             modelfacade = ModelFacade.getInstance();
+            System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Teacher main view error!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(TeacherMainViewController.class.getName()).log(Level.SEVERE, null, ex);

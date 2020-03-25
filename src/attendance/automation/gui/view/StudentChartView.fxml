@@ -53,5 +53,6 @@
                 </BarChart>
             </children>
         </HBox>
+      <Label fx:id="userModeLabel" layoutX="392.0" layoutY="6.0" prefHeight="17.0" prefWidth="88.0" styleClass="Label" />
     </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import attendance.automation.enums.UserMode;
 import attendance.automation.gui.controller.StudentMainViewController;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
@@ -95,7 +96,7 @@ public class SignInViewController implements Initializable
         if (modelfacade.checkCredStudent(s) == true )
         {
             modelfacade.setCurrentStudent(s);
-            
+            modelfacade.setCurrentUserMode(UserMode.STUDENT);
             FXMLLoader fxmlLoader = new FXMLLoader();
 
             Parent root;
@@ -110,6 +111,7 @@ public class SignInViewController implements Initializable
             signInView.close();
         } else if (user.toLowerCase().equals(modelfacade.getTeahcerUsername()) && pass.equals(modelfacade.getTeacherPassword()))
         {
+            modelfacade.setCurrentUserMode(UserMode.TEACHER);
             FXMLLoader fxmlLoader = new FXMLLoader();
 
             Parent root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/view/TeacherMainView.fxml").openStream());

@@ -1,5 +1,6 @@
 package attendance.automation.gui.controller.calendar;
 
+import attendance.automation.enums.UserMode;
 import attendance.automation.gui.controller.StudentCalenderViewController;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
@@ -12,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -25,6 +27,8 @@ public class CalendarController implements Initializable{
     @FXML
     private Pane maincalendarpane;
     private ModelFacadeInterface modelfacade;
+    @FXML
+    private Label userModeLabel;
     
     
 
@@ -36,6 +40,11 @@ public class CalendarController implements Initializable{
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
             modelfacade = ModelFacade.getInstance();
+            System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
+            if (modelfacade.getCurrentUserMode() == UserMode.TEACHER)
+            {
+                userModeLabel.setText("Admin Mode");
+            }
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Student calendar view error!", "Error", JOptionPane.ERROR_MESSAGE);

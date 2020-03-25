@@ -9,6 +9,7 @@ import attendance.automation.BLL.BLLFacade;
 import attendance.automation.BLL.Interface.BLLFacadeInterface;
 import attendance.automation.be.Student;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import attendance.automation.enums.UserMode;
 import attendance.automation.gui.controller.SignInViewController;
 import attendance.automation.gui.model.Interface.BaseModelInterface;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class BaseModel implements BaseModelInterface
     Calendar calendar = Calendar.getInstance();
     private boolean isStatusSelectOpen = false;
     private int threadcounter = 0;
+    private UserMode usermode;
 
     
     public BaseModel() throws IOException
@@ -129,5 +131,26 @@ public class BaseModel implements BaseModelInterface
     public void setThreadcounter(int threadcounter) {
         this.threadcounter = threadcounter;
     }
+
+    /**
+     * Sets the parameter that tells the program if its a teacher or student using the program. 
+     * @param usermode 
+     */
+    @Override
+    public void setCurrentUserMode(UserMode usermode) {
+        this.usermode = usermode;
+    }
+
+    
+    /**
+     * Get the currentuserMode
+     * @return 
+     */
+    @Override
+    public UserMode getCurrentUserMode() {
+        return usermode;
+    }
+    
+    
     
 }

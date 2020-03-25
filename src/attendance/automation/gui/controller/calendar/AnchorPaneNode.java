@@ -2,6 +2,7 @@ package attendance.automation.gui.controller.calendar;
 
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import attendance.automation.enums.UserMode;
 import attendance.automation.gui.controller.StatusSelectController;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
@@ -60,7 +61,7 @@ public class AnchorPaneNode extends AnchorPane{
             
             if (this.modelfacade.getIsStatusSelectOpen() == false && studentday != null) {
                 
-                if(studentday.getDate().equals(LocalDate.now())){
+                if(studentday.getDate().equals(LocalDate.now()) || modelfacade.getCurrentUserMode() == UserMode.TEACHER){
                 
                
                 this.modelfacade.setIsStatusSelectOpen(true);
@@ -102,7 +103,7 @@ public class AnchorPaneNode extends AnchorPane{
                 }
             }      
             
-            if(studentday != null && !studentday.getDate().equals(LocalDate.now()) ){
+            if(studentday != null && !studentday.getDate().equals(LocalDate.now()) && modelfacade.getCurrentUserMode() == UserMode.STUDENT ){
             
              System.out.println(studentday);
               Alert alert = new Alert(Alert.AlertType.INFORMATION);

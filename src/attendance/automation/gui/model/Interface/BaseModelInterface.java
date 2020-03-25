@@ -7,6 +7,7 @@ package attendance.automation.gui.model.Interface;
 
 import attendance.automation.be.Student;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import attendance.automation.enums.UserMode;
 import java.io.IOException;
 
 /**
@@ -15,6 +16,19 @@ import java.io.IOException;
  */
 public interface BaseModelInterface 
 {
+    
+    /**
+     * Sets the parameter that tells the program if its a teacher or student using the program. 
+     * @param usermode 
+     */
+    public void setCurrentUserMode(UserMode usermode);
+    
+    /**
+     * Get the currentuserMode
+     * @return 
+     */
+    public UserMode getCurrentUserMode();
+    
     /**
      * opens a new window
      *
@@ -22,8 +36,7 @@ public interface BaseModelInterface
      */
     public void handelLogout() throws IOException;
     
-    
-    
+
     /**
      * Get the year
      *

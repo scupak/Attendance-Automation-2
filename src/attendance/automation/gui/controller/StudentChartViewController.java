@@ -6,6 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.dal.AttendanceAutomationDalException;
+import attendance.automation.enums.UserMode;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
@@ -19,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.BarChart;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -42,6 +44,8 @@ public class StudentChartViewController implements Initializable
     @FXML
     private HBox hBox;
     private ModelFacadeInterface modelfacade;
+    @FXML
+    private Label userModeLabel;
 
     /**
      * Initializes the controller class.
@@ -55,6 +59,11 @@ public class StudentChartViewController implements Initializable
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
             modelfacade = ModelFacade.getInstance();
+            System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
+            if (modelfacade.getCurrentUserMode() == UserMode.TEACHER)
+            {
+                userModeLabel.setText("Admin Mode");
+            }
         } catch (IOException ex) {
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Chart view error!", "Error", JOptionPane.ERROR_MESSAGE);

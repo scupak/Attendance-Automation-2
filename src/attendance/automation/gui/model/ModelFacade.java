@@ -8,6 +8,7 @@ package attendance.automation.gui.model;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import attendance.automation.enums.UserMode;
 import attendance.automation.gui.model.Interface.BaseModelInterface;
 import attendance.automation.gui.model.Interface.MockModelInterface;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
@@ -298,6 +299,24 @@ public class ModelFacade implements ModelFacadeInterface
     @Override
     public void setThreadcounter(int threadcounter) {
         basemodel.setThreadcounter(threadcounter);
+    }
+
+    /**
+     * Sets the parameter that tells the program if its a teacher or student using the program. 
+     * @param usermode 
+     */
+    @Override
+    public void setCurrentUserMode(UserMode usermode) {
+        basemodel.setCurrentUserMode(usermode);
+    }
+
+      /**
+     * Get the currentuserMode
+     * @return 
+     */
+    @Override
+    public UserMode getCurrentUserMode() {
+        return basemodel.getCurrentUserMode();
     }
     
 }
