@@ -81,7 +81,7 @@ public class SignInViewController implements Initializable
      * @throws IOException
      */
     @FXML
-    private void handleSignIn(ActionEvent event)
+    private void handleSignIn(ActionEvent event) 
     {
 
         String user = username.getText();
