@@ -8,8 +8,10 @@ package attendance.automation.gui.model;
 import attendance.automation.BLL.BLLFacade;
 import attendance.automation.BLL.Interface.BLLFacadeInterface;
 import attendance.automation.be.Student;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.Interface.MockModelInterface;
 import java.io.IOException;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 
@@ -45,8 +47,14 @@ public class MockModel implements MockModelInterface
      * @return the list of students
      */
     @Override
-    public ObservableList<Student> studentList() {
-        return bllfacade.getTeacherStudentList();
+    public ObservableList<Student> studentList() throws AttendanceAutomationDalException 
+    {
+        ObservableList<Student> students = FXCollections.observableArrayList();
+        for (Student student : bllfacade.getTeacherStudentList())
+        {
+            students.add(student);
+        }
+        return students;
     }
     
     

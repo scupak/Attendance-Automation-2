@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="534.0" prefWidth="757.0" styleClass="AnchorPane" stylesheets="@../css/Graphics.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherClassViewController">
    <children>
       <StackPane layoutY="19.0" prefHeight="66.0" prefWidth="757.0" styleClass="StackPane" />
-      <TableView fx:id="classTableView" layoutX="14.0" layoutY="92.0" prefHeight="427.0" prefWidth="362.0">
+      <TableView fx:id="classTableView" layoutX="14.0" layoutY="92.0" onMouseClicked="#handleOpenStudentsView" prefHeight="427.0" prefWidth="362.0">
         <columns>
           <TableColumn fx:id="name" prefWidth="144.00006675720215" resizable="false" text="Name" />
           <TableColumn fx:id="absenceProcent" prefWidth="76.7999267578125" resizable="false" text="Absence %" />

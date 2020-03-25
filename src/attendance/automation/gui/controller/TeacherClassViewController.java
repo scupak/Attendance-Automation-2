@@ -6,6 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
@@ -28,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -62,18 +65,28 @@ public class TeacherClassViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        try {
+        try
+        {
             /**
-             *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+             * We use get instance instead of new to make sure we use the same
+             * appmodel in all classes.
              */
             modelfacade = ModelFacade.getInstance();
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
-        populateList();
-        fillPieChart();
+        try
+        {
+            populateList();
+            fillPieChart();
+        } catch (AttendanceAutomationDalException ex)
+        {
+            Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 
         classNameLabel.setText("CSe2019A");
         classNameLabel.setAlignment(Pos.CENTER);
@@ -107,7 +120,7 @@ public class TeacherClassViewController implements Initializable
     /**
      * Populates the TableView.
      */
-    private void populateList()
+    private void populateList() throws AttendanceAutomationDalException
     {
         name.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
         absenceProcent.setCellValueFactory(new PropertyValueFactory<Student, Integer>("absenceProcent"));
@@ -118,7 +131,7 @@ public class TeacherClassViewController implements Initializable
     /**
      * Fills the pie chart with information.
      */
-    private void fillPieChart()
+    private void fillPieChart() throws AttendanceAutomationDalException
     {
         int totalAbsence = 0;
         for (Student student : modelfacade.studentList())
@@ -144,4 +157,27 @@ public class TeacherClassViewController implements Initializable
         pieChart.setMinSize(100, 100);
 
     }
+
+    @FXML
+    private void handleOpenStudentsView(MouseEvent event) throws IOException, AttendanceAutomationDalException
+    {
+        if (event.getClickCount() == 2)
+        {
+            modelfacade.setCurrentStudent(classTableView.getSelectionModel().getSelectedItem());
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
+            Parent root = loader.load();
+            StudentMainViewController SCVController = loader.getController();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle(classTableView.getSelectionModel().getSelectedItem().getName());
+            stage.show();
+            
+            Stage oldstage = (Stage) ((Node) classTableView).getScene().getWindow();
+            oldstage.close();
+            
+        }
+    }
+
 }

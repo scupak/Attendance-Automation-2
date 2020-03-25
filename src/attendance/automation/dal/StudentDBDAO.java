@@ -63,7 +63,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
                 int absence = rs.getInt("absenceProcent");
                 String dayMostAbsent = rs.getString("dayMostAbsent");
                 int classID = rs.getInt("classID");
-                students.add(new Student(username, name, password, absence, dayMostAbsent, classID));
+                students.add(new Student(name, username, password, absence, dayMostAbsent, classID));
 
             }
             return students;

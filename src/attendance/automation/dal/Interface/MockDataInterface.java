@@ -6,6 +6,8 @@
 package attendance.automation.dal.Interface;
 
 import attendance.automation.be.Student;
+import attendance.automation.dal.AttendanceAutomationDalException;
+import java.util.List;
 import javafx.collections.ObservableList;
 
 /**
@@ -67,7 +69,7 @@ public interface MockDataInterface
      * Gets a list of all the students that a teacher has
      * @return the list of the teachers students
      */
-    public ObservableList<Student> teacherStudentList();
+    public List<Student> teacherStudentList() throws AttendanceAutomationDalException ;
     
     /**
      * Gets a list of all the classes that a teacher has

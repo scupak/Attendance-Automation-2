@@ -6,6 +6,7 @@
 package attendance.automation.gui.model.Interface;
 
 import attendance.automation.be.Student;
+import attendance.automation.dal.AttendanceAutomationDalException;
 import javafx.collections.ObservableList;
 
 /**
@@ -26,7 +27,7 @@ public interface MockModelInterface
      *
      * @return the list of students
      */
-    public ObservableList<Student> studentList();
+    public ObservableList<Student> studentList() throws AttendanceAutomationDalException;
     
     /**
      * updates existing Data-Object if name matches

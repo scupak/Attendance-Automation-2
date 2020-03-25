@@ -69,7 +69,7 @@ public class ModelFacade implements ModelFacadeInterface
      * @return the list of students
      */
     @Override
-    public ObservableList<Student> studentList() {
+    public ObservableList<Student> studentList() throws AttendanceAutomationDalException {
         return mockmodel.studentList();
     }
 

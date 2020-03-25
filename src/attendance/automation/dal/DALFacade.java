@@ -166,9 +166,9 @@ public class DALFacade implements DALFacadeInterface
      * @return TeacherStudentList
      */
     @Override
-    public ObservableList<Student> teacherStudentList()
+    public List<Student> teacherStudentList() throws AttendanceAutomationDalException 
     {
-        return mockdata.teacherStudentList();
+        return studentdbdao.getAllStudents();
     }
 
     /**

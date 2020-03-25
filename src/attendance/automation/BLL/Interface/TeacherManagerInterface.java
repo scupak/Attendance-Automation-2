@@ -8,6 +8,7 @@ package attendance.automation.BLL.Interface;
 import attendance.automation.be.Student;
 import attendance.automation.be.Teacher;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import java.util.List;
 import javafx.collections.ObservableList;
 
 /**
@@ -22,7 +23,7 @@ public interface TeacherManagerInterface
      *
      * @return teacherStudentList
      */
-    public ObservableList<Student> getTeacherStudentList();
+    public List<Student> getTeacherStudentList() throws AttendanceAutomationDalException;
     
     
      /**
