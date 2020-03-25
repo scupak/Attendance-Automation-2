@@ -79,7 +79,7 @@ public class SignInViewController implements Initializable
      * @throws IOException
      */
     @FXML
-    private void handleSignIn(ActionEvent event) throws IOException, AttendanceAutomationDalException
+    private void handleSignIn(ActionEvent event) 
     {
 
         String user = username.getText();
@@ -89,7 +89,7 @@ public class SignInViewController implements Initializable
         Student s = new Student("hello", user, pass, 0, "everyday", 0);
         
         Stage signInView = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+try{
         if (modelfacade.checkCredStudent(s) == true )
         {
             modelfacade.setCurrentStudent(s);
@@ -136,6 +136,17 @@ public class SignInViewController implements Initializable
             alert.setContentText("Wrong username or password, please try again");
             alert.showAndWait();
         }
+        
+}
+catch(AttendanceAutomationDalException ex){
+
+
+}      
+catch (IOException ex) {
+            Logger.getLogger(SignInViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
 
     }
 
