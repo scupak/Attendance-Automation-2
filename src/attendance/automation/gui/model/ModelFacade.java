@@ -7,6 +7,7 @@ package attendance.automation.gui.model;
 
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
+import attendance.automation.be.Teacher;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.enums.UserMode;
 import attendance.automation.gui.model.Interface.BaseModelInterface;
@@ -319,4 +320,16 @@ public class ModelFacade implements ModelFacadeInterface
         return basemodel.getCurrentUserMode();
     }
     
+    @Override
+    public void setCurrentTeacher(Teacher currentTeacher) throws AttendanceAutomationDalException
+    {
+        teachermodel.setCurrentTeacher(currentTeacher);
+    }
+
+    @Override
+    public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException
+    {
+        return teachermodel.checkCredTeacher(t);
+    }
+
 }

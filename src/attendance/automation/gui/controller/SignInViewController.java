@@ -6,6 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.Teacher;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.enums.UserMode;
 import attendance.automation.gui.controller.StudentMainViewController;
@@ -88,8 +89,9 @@ public class SignInViewController implements Initializable
         String user = username.getText();
         String pass = password.getText();
         
-        //login with database
+        //login with database 
         Student s = new Student("hello", user, pass, 0, "everyday", 0);
+        Teacher t = new Teacher("hello", user, pass);
         
         Stage signInView = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try{
@@ -109,7 +111,7 @@ public class SignInViewController implements Initializable
             stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
             stage.show();
             signInView.close();
-        } else if (user.toLowerCase().equals(modelfacade.getTeahcerUsername()) && pass.equals(modelfacade.getTeacherPassword()))
+        } else if (modelfacade.checkCredTeacher(t))
         {
             modelfacade.setCurrentUserMode(UserMode.TEACHER);
             FXMLLoader fxmlLoader = new FXMLLoader();
