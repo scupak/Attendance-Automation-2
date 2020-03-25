@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javax.swing.JOptionPane;
 
 public class FullCalendarView {
 
@@ -140,6 +141,7 @@ public class FullCalendarView {
                 nextMonth();
             } catch (AttendanceAutomationDalException ex) {
                 Logger.getLogger(FullCalendarView.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Calendar error!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
         

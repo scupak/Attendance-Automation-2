@@ -30,6 +30,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -83,6 +84,7 @@ public class StudentMainViewController implements Initializable
              */
             modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Student main view error!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
@@ -95,6 +97,7 @@ public class StudentMainViewController implements Initializable
             setName(modelfacade.getCurrentStudent());
         } catch (AttendanceAutomationDalException ex)
         {
+            JOptionPane.showMessageDialog(null, "Student main view error!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -181,6 +184,7 @@ public class StudentMainViewController implements Initializable
         } catch (IOException ex)
         {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Unknown calendar error!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

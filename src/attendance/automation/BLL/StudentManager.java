@@ -121,12 +121,7 @@ public class StudentManager implements StudentManagerInterface
     public static void main(String[] args) throws IOException, AttendanceAutomationDalException, IOException, IOException, IOException
     {
         StudentManager test = new StudentManager(new DALFacade());
-        Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);
-       
-        
-        
-       
-        
+        Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);  
     }
         
         

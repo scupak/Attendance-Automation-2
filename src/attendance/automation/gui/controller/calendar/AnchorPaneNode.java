@@ -24,6 +24,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  * Create an anchor pane that can store additional data.
@@ -203,6 +204,7 @@ public class AnchorPaneNode extends AnchorPane{
                     
                 } catch (AttendanceAutomationDalException ex) {
                     Logger.getLogger(AnchorPaneNode.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Calendar error!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
             

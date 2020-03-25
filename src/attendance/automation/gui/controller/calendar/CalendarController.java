@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javax.swing.JOptionPane;
 
 public class CalendarController implements Initializable{
 
@@ -37,6 +38,7 @@ public class CalendarController implements Initializable{
             modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Stodent calendar view error!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     /**

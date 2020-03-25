@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -56,6 +57,7 @@ public class StudentChartViewController implements Initializable
             modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Chart view error!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));

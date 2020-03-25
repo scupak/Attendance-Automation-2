@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -58,6 +59,7 @@ public class TeacherMainViewController implements Initializable
              */
             modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Teacher main view error!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(TeacherMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.

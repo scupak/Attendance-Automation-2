@@ -29,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -68,6 +69,7 @@ public class TeacherClassViewController implements Initializable
              */
             modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Teacher class view error!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
