@@ -5,6 +5,9 @@
  */
 package attendance.automation.gui.model.Interface;
 
+import attendance.automation.be.Teacher;
+import attendance.automation.dal.AttendanceAutomationDalException;
+
 
 /**
  *
@@ -13,6 +16,8 @@ package attendance.automation.gui.model.Interface;
 public interface TeacherModelInterface 
 {
    
+    public void setCurrentTeacher(Teacher currentTeacher) throws AttendanceAutomationDalException;
     
+    public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException;
     
 }

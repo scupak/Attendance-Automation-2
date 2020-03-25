@@ -6,6 +6,7 @@
 package attendance.automation.gui.model.Interface;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.Teacher;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import javafx.collections.ObservableList;
 
@@ -65,4 +66,6 @@ public interface MockModelInterface
      * @return the students password
      */
     public String getStudentPassword();
+    
+    
 }
