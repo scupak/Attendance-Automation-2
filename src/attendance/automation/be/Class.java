@@ -15,31 +15,43 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Class
 {
-
+    private  SimpleStringProperty classname;
+    private int classid;
     private  String teacherUsrName;
-    private  SimpleStringProperty classID;
     private  String studentUsrName;
     private  String[] classes;
     
-        public Class(String classID, String teacherUsrName, String studentUsrName, String[] classes)
+        public Class(String classname,int classid, String teacherUsrName, String studentUsrName, String[] classes)
     {
-        this.classID = new SimpleStringProperty(classID);
+        this.classname = new SimpleStringProperty(classname);
+        this.classid = classid;
         this.teacherUsrName = teacherUsrName;
         this.studentUsrName = studentUsrName;
         this.classes = classes;
+        
     }
 
-    public Class(SimpleStringProperty classID) {
-        this.classID = classID;
+    public Class(String classname, int classid) {
+        this.classname.set(classname);
+        this.classid = classid;
     }
 
-    public String getClassID() {
-        return classID.get();
+    public String getClassName() {
+        return classname.get();
     }
 
-    public void setClassID(String classID) {
-        this.classID.set(teacherUsrName);
+    public void setClassName(String classname) {
+        this.classname.set(classname);
     }
+
+    public int getClassid() {
+        return classid;
+    }
+
+    public void setClassid(int classid) {
+        this.classid = classid;
+    }
+    
     
     
         
