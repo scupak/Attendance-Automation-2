@@ -38,7 +38,7 @@ public class CalendarController implements Initializable{
             modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Stodent calendar view error!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Student calendar view error!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     /**
@@ -47,15 +47,22 @@ public class CalendarController implements Initializable{
      * @throws IOException 
      */
     @FXML
-    private void HandleLogout(ActionEvent event) throws IOException {
+    private void HandleLogout(ActionEvent event) {
         
-        Window window = maincalendarpane.getScene().getWindow();
-
-        if (window instanceof Stage)
+        try
         {
-            ((Stage) window).close();
+            Window window = maincalendarpane.getScene().getWindow();
+            
+            if (window instanceof Stage)
+            {
+                ((Stage) window).close();
+            }
+            modelfacade.handelLogout();
+        } catch (IOException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        modelfacade.handelLogout();
     }
 
     /**
@@ -64,11 +71,18 @@ public class CalendarController implements Initializable{
      * @throws IOException 
      */
     @FXML
-    private void handelBackToMainView(ActionEvent event) throws IOException {
+    private void handelBackToMainView(ActionEvent event) {
         
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
-
-         maincalendarpane.getChildren().setAll(pane);
+        try
+        {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
+            
+            maincalendarpane.getChildren().setAll(pane);
+        } catch (IOException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Cannot handle going back to main view!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }

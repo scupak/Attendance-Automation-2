@@ -29,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,6 +64,7 @@ public class SignInViewController implements Initializable
              */
             modelfacade = ModelFacade.getInstance();
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Cannot initialize program!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(SignInViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.appmodel = AppModel.getInstance();
@@ -79,7 +81,7 @@ public class SignInViewController implements Initializable
      * @throws IOException
      */
     @FXML
-    private void handleSignIn(ActionEvent event) throws IOException, AttendanceAutomationDalException
+    private void handleSignIn(ActionEvent event)
     {
 
         String user = username.getText();
@@ -89,7 +91,7 @@ public class SignInViewController implements Initializable
         Student s = new Student("hello", user, pass, 0, "everyday", 0);
         
         Stage signInView = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+        try{
         if (modelfacade.checkCredStudent(s) == true )
         {
             modelfacade.setCurrentStudent(s);
@@ -135,6 +137,13 @@ public class SignInViewController implements Initializable
             alert.setHeaderText("Oops, something went wrong");
             alert.setContentText("Wrong username or password, please try again");
             alert.showAndWait();
+        }
+        }
+        catch(AttendanceAutomationDalException ex){
+            JOptionPane.showMessageDialog(null, "Cannot verify credentials, please try again!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IOException EX){
+            JOptionPane.showMessageDialog(null, "Cannot read FXML file(s)!", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }

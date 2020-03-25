@@ -85,6 +85,7 @@ public class TeacherClassViewController implements Initializable
             fillPieChart();
         } catch (AttendanceAutomationDalException ex)
         {
+            JOptionPane.showMessageDialog(null, "Cannot populate list, or fill the pie chart!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         

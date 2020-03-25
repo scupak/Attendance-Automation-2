@@ -86,10 +86,11 @@ public class StatusSelectController implements Initializable
      * @param event 
      */
     @FXML
-    private void handleconfirm(ActionEvent event) throws AttendanceAutomationDalException 
+    private void handleconfirm(ActionEvent event) 
     {
         modelfacade.setIsStatusSelectOpen(false);
         
+        try{
         if(absentButton.isSelected())
         {
             System.out.println("absent");
@@ -115,6 +116,10 @@ public class StatusSelectController implements Initializable
            modelfacade.sendupdateDayStudent(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.notSetAtt));
            anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
+        }
+        }
+        catch(AttendanceAutomationDalException ex){
+            JOptionPane.showMessageDialog(null, "Cannot update to/from DB!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }

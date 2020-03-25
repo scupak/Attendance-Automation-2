@@ -67,6 +67,7 @@ public class StudentChartViewController implements Initializable
             setBarData();
         } catch (AttendanceAutomationDalException ex)
         {
+            JOptionPane.showMessageDialog(null, "Cannot get required data!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
@@ -80,15 +81,22 @@ public class StudentChartViewController implements Initializable
      * @throws IOException
      */
     @FXML
-    private void HandleLogout(ActionEvent event) throws IOException
+    private void HandleLogout(ActionEvent event)
     {
-        Window window = studentChartRootpane.getScene().getWindow();
-
-        if (window instanceof Stage)
+        try
         {
-            ((Stage) window).close();
+            Window window = studentChartRootpane.getScene().getWindow();
+            
+            if (window instanceof Stage)
+            {
+                ((Stage) window).close();
+            }
+            modelfacade.handelLogout();
+        } catch (IOException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        modelfacade.handelLogout();
     }
 
     /**
@@ -106,6 +114,7 @@ public class StudentChartViewController implements Initializable
             
             studentChartRootpane.getChildren().setAll(pane);
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Cannot handle back to main view!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

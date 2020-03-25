@@ -90,23 +90,18 @@ public class StudentMainViewController implements Initializable
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         
-        try
-        {
-            checkDay();
-            /*TODO needs to be changed so that both a teachers  or a students name can be displayed*/
-            setName(modelfacade.getCurrentStudent());
-        } catch (AttendanceAutomationDalException ex)
-        {
-            JOptionPane.showMessageDialog(null, "Student main view error!", "Error", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        checkDay();
+        /*TODO needs to be changed so that both a teachers  or a students name can be displayed*/
+        setName(modelfacade.getCurrentStudent());
         
         System.out.println(modelfacade.getCurrentStudent());
     }
 
-    public void checkDay() throws AttendanceAutomationDalException
+    public void checkDay()
     {
          
+        try
+        {
             String username = modelfacade.getCurrentStudent().getUsername();
             int status = modelfacade.checkCurrentDay(username);
         
@@ -118,6 +113,11 @@ public class StudentMainViewController implements Initializable
             {
                 failMessage();
             }
+        } catch (AttendanceAutomationDalException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Cannot check day for selected username!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
@@ -143,16 +143,23 @@ public class StudentMainViewController implements Initializable
      * @throws IOException
      */
     @FXML
-    private void HandleLogout(ActionEvent event) throws IOException
+    private void HandleLogout(ActionEvent event)
     {
 
-        Window window = studentRootPane.getScene().getWindow();
-
-        if (window instanceof Stage)
+        try
         {
-            ((Stage) window).close();
+            Window window = studentRootPane.getScene().getWindow();
+            
+            if (window instanceof Stage)
+            {
+                ((Stage) window).close();
+            }
+            modelfacade.handelLogout();
+        } catch (IOException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        modelfacade.handelLogout();
     }
 
     /**
@@ -161,7 +168,7 @@ public class StudentMainViewController implements Initializable
      * @param event
      */
     @FXML
-    private void handelCalenderview(ActionEvent event) throws AttendanceAutomationDalException
+    private void handelCalenderview(ActionEvent event)
     {
 
         try
@@ -184,7 +191,10 @@ public class StudentMainViewController implements Initializable
         } catch (IOException ex)
         {
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "Unknown calendar error!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cannot read FXML file(s)!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(AttendanceAutomationDalException ex){
+            JOptionPane.showMessageDialog(null, "Cannot access calendar from DB", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -216,9 +226,9 @@ public class StudentMainViewController implements Initializable
      * @param event
      */
     @FXML
-    private void handelSubmit(ActionEvent event) throws AttendanceAutomationDalException
+    private void handelSubmit(ActionEvent event)
     {
-
+        try{
         //sm.addData();
         if (rbHeretoday.isSelected())
         {
@@ -230,7 +240,10 @@ public class StudentMainViewController implements Initializable
         }
         
         thankYouMessage();
-
+        }
+        catch(AttendanceAutomationDalException ex){
+            JOptionPane.showMessageDialog(null, "Unable to update status for student in DB!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     /**

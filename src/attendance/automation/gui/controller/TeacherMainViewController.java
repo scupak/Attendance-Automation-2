@@ -78,8 +78,9 @@ public class TeacherMainViewController implements Initializable
      * @throws IOException
      */
     @FXML
-    private void handleNext(ActionEvent event) throws IOException
+    private void handleNext(ActionEvent event)
     {
+        try{
         if (classListView.getSelectionModel().getSelectedItem() != null)
         {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClassView.fxml"));
@@ -102,6 +103,10 @@ public class TeacherMainViewController implements Initializable
             alert.setContentText("Please select a class to continue");
             alert.showAndWait();
         }
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, "Cannot read FXML file(s)!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -119,10 +124,17 @@ public class TeacherMainViewController implements Initializable
      * @throws Exception
      */
     @FXML
-    private void handleLogOut(ActionEvent event) throws Exception
+    private void handleLogOut(ActionEvent event)
     {
-        modelfacade.handelLogout();
-        Stage oldStage = (Stage) logOutButton.getScene().getWindow();
-        oldStage.close();
+        try
+        {
+            modelfacade.handelLogout();
+            Stage oldStage = (Stage) logOutButton.getScene().getWindow();
+            oldStage.close();
+        } catch (IOException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(TeacherMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
