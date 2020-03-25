@@ -98,12 +98,16 @@ public class StudentChartViewController implements Initializable
      * @throws IOException
      */
     @FXML
-    private void handelBackToMainView(ActionEvent event) throws IOException
+    private void handelBackToMainView(ActionEvent event) 
     {
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
-
-        studentChartRootpane.getChildren().setAll(pane);
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
+            
+            studentChartRootpane.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
