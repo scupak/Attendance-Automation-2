@@ -142,7 +142,7 @@ public class AnchorPaneNode extends AnchorPane{
      * @throws AttendanceAutomationDalException 
      */
     public void updateAnchorPaneNodeStudentDay() throws AttendanceAutomationDalException{
-       modelfacade.setThreadcounter(modelfacade.getThreadcounter() +1);
+      // modelfacade.setThreadcounter(modelfacade.getThreadcounter() +1);
        /* if(appModel.doesStudentDayExist(appModel.getCurrentStudent().getUsername(), date)){
         studentday = this.appModel.getStudentDay(appModel.getCurrentStudent(), date);
         }*/
@@ -161,17 +161,10 @@ public class AnchorPaneNode extends AnchorPane{
        /**
         * Makes a new thread to run updates
         */
-       new Thread(new Runnable() {
-            @Override
-            public void run() {
-                
-                setBackground(Background.EMPTY);
-                try {
-                    studentday = modelfacade.getStudentDay(modelfacade.getCurrentStudent(), date);
-                    
-                    if(studentday != null){
+           setBackground(Background.EMPTY);
+         if(studentday != null){
                         
-                        
+                        setBackground(Background.EMPTY);
                    
                         if(studentday.getAttendanceStatus() == StudentDay.attendant){
                         BackgroundFill myBF = new BackgroundFill(Color.rgb(120, 245, 66), new CornerRadii(0),
@@ -200,16 +193,56 @@ public class AnchorPaneNode extends AnchorPane{
                         }
     
                     }
-                    
-                    System.out.println(modelfacade.getThreadcounter() +"  "+  Thread.currentThread().getName());
-                    
-                } catch (AttendanceAutomationDalException ex) {
-                    Logger.getLogger(AnchorPaneNode.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(null, "Calendar error!", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            
-        }).start();
+//         
+//       new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                
+//                setBackground(Background.EMPTY);
+//                try {
+//                    studentday = modelfacade.getStudentDay(modelfacade.getCurrentStudent(), date);
+//                    
+//                    if(studentday != null){
+//                        
+//                        
+//                   
+//                        if(studentday.getAttendanceStatus() == StudentDay.attendant){
+//                        BackgroundFill myBF = new BackgroundFill(Color.rgb(120, 245, 66), new CornerRadii(0),
+//                             new Insets(0.0,0.0,0.0,0.0));// or null for the padding
+//                       //then you set to your node or container or layout
+//                         setBackground(new Background(myBF));
+//                        
+//                        
+//                        
+//                        }
+//                        else if(studentday.getAttendanceStatus() == StudentDay.notAttendant){
+//                        BackgroundFill myBF = new BackgroundFill(Color.rgb(245, 66, 66), new CornerRadii(0),
+//                             new Insets(0.0,0.0,0.0,0.0));// or null for the padding
+//                       //then you set to your node or container or layout
+//                         setBackground(new Background(myBF));
+//                        
+//                        
+//                        
+//                        }
+//                        else if(studentday.getAttendanceStatus() == StudentDay.notSetAtt){
+//                        BackgroundFill myBF = new BackgroundFill(Color.rgb(66, 170, 245), new CornerRadii(0),
+//                             new Insets(0.0,0.0,0.0,0.0));// or null for the padding
+//                       //then you set to your node or container or layout
+//                         setBackground(new Background(myBF));
+//                        
+//                        }
+//    
+//                    }
+//                    
+//                    System.out.println(modelfacade.getThreadcounter() +"  "+  Thread.currentThread().getName());
+//                    
+//                } catch (AttendanceAutomationDalException ex) {
+//                    Logger.getLogger(AnchorPaneNode.class.getName()).log(Level.SEVERE, null, ex);
+//                    JOptionPane.showMessageDialog(null, "Calendar error!", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//            }
+//            
+//        }).start();
     }
 
     /**

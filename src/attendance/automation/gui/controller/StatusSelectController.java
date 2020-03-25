@@ -95,7 +95,11 @@ public class StatusSelectController implements Initializable
         {
             System.out.println("absent");
            Stage stage = (Stage) confirmButton.getScene().getWindow();
+           //updates database
            modelfacade.sendupdateDayStudent(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.notAttendant));
+           //updates the  anchorpanenodes studentday
+           anchorpanenode.setStudentday(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.notAttendant));
+           //updates the anchorpanenodes background color
            anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
@@ -104,7 +108,11 @@ public class StatusSelectController implements Initializable
         {
             System.out.println("present");
            Stage stage = (Stage) confirmButton.getScene().getWindow();
+            //updates database
            modelfacade.sendupdateDayStudent(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.attendant));
+           //updates the  anchorpanenodes studentday
+           anchorpanenode.setStudentday(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.attendant));
+           //updates the anchorpanenodes background color
            anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
@@ -113,7 +121,11 @@ public class StatusSelectController implements Initializable
         {
             System.out.println("notset");
            Stage stage = (Stage) confirmButton.getScene().getWindow();
+            //updates database
            modelfacade.sendupdateDayStudent(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.notSetAtt));
+            //updates the  anchorpanenodes studentday
+           anchorpanenode.setStudentday(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.notSetAtt));
+            //updates the anchorpanenodes background color
            anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
