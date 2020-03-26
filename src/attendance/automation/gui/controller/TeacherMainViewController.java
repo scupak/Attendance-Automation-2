@@ -116,8 +116,7 @@ public class TeacherMainViewController implements Initializable
      */
     public void populateList(String username)
     {
-        System.out.println(modelfacade.classList(username).toString());
-        //classListView.setItems(modelfacade.classList(username));
+        classListView.setItems(modelfacade.classList(username));
     }
 
     /**
