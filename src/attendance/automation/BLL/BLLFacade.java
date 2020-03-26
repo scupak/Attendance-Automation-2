@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
+import attendance.automation.be.Class;
 
 /**
  *
@@ -243,6 +244,12 @@ public class BLLFacade implements BLLFacadeInterface
     public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException
     {
         return teachermanager.getTeacher(t);
+    }
+    
+    @Override
+    public ObservableList<Class> getTeacherClasses(String username)
+    {
+        return teachermanager.getTeacherClasses(username);
     }
      
     

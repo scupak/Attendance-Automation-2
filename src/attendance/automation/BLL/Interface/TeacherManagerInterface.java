@@ -10,6 +10,7 @@ import attendance.automation.be.Teacher;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.util.List;
 import javafx.collections.ObservableList;
+import attendance.automation.be.Class;
 
 /**
  *
@@ -51,6 +52,6 @@ public interface TeacherManagerInterface
     
     public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException;
     
-    
+    public ObservableList<Class> getTeacherClasses(String username);
            
 }

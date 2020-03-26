@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import javafx.collections.ObservableList;
+import attendance.automation.be.Class;
 
 /**
  *
@@ -281,5 +282,10 @@ public class DALFacade implements DALFacadeInterface
     public boolean TeacherExist(Teacher t) throws AttendanceAutomationDalException
     {
         return teacherdbdao.TeacherExist(t);
+    }
+    
+    public ObservableList<Class> getTeacherClasses(String username)
+    {
+        return teacherdbdao.getTeacherClasses(username);
     }
 }

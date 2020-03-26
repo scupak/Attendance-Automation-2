@@ -12,6 +12,7 @@ import attendance.automation.dal.DALFacade;
 import java.io.IOException;
 import java.util.List;
 import javafx.collections.ObservableList;
+import attendance.automation.be.Class;
 /**
  *
  * @author SKRUMM
@@ -108,5 +109,11 @@ public class TeacherManager implements TeacherManagerInterface
     public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException
     {
         return dalfacade.getTeacher(t);
+    }
+    
+    @Override
+    public ObservableList<Class> getTeacherClasses(String username)
+    {
+        return dalfacade.getTeacherClasses(username);
     }
 }

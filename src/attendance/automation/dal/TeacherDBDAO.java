@@ -133,7 +133,7 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
         }
     }
     
-    public ObservableList<Class> TeacherClasses(String username)
+    public ObservableList<Class> getTeacherClasses(String username)
     {
         ObservableList<Class> classes = FXCollections.observableArrayList();
         
