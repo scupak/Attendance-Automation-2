@@ -21,7 +21,7 @@ public interface MockModelInterface
      *
      * @return the list of teachers
      */
-    public ObservableList classList();
+    //public ObservableList classList();
     
     /**
      * Gets the list of students

@@ -26,14 +26,6 @@ public interface TeacherManagerInterface
      */
     public List<Student> getTeacherStudentList() throws AttendanceAutomationDalException;
     
-    
-     /**
-     * get the ObservableList of classes
-     *
-     * @return teacherClassList
-     */
-    public ObservableList getTeacherClassList();
-    
     /**
      * Get teacher username
      *

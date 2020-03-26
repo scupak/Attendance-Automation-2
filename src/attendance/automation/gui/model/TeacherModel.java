@@ -11,6 +11,8 @@ import attendance.automation.be.Teacher;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.Interface.TeacherModelInterface;
 import java.io.IOException;
+import javafx.collections.ObservableList;
+import attendance.automation.be.Class;
 
 /**
  *
@@ -40,7 +42,10 @@ public class TeacherModel implements TeacherModelInterface
         return bllfacade.checkCredTeacher(t);
     }
             
-    
+    public ObservableList<Class> classList(String username)
+    {
+        return bllfacade.getTeacherClasses(username);
+    }
     
             
 }

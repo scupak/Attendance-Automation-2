@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import attendance.automation.be.Class;
 
 /**
  * FXML Controller class
@@ -36,7 +37,7 @@ public class TeacherMainViewController implements Initializable
 {
 
     @FXML
-    private ListView<?> classListView;
+    private ListView<Class> classListView;
     @FXML
     private Button nextButton;
 
@@ -66,7 +67,7 @@ public class TeacherMainViewController implements Initializable
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         
-        populateList();
+        populateList("jeppe123");
         welcomeMessage.setText("Welcome Jeppe!");
         welcomeMessage.setAlignment(Pos.CENTER);
     }
@@ -113,9 +114,10 @@ public class TeacherMainViewController implements Initializable
     /**
      * Populates the ListView
      */
-    public void populateList()
+    public void populateList(String username)
     {
-        classListView.setItems(modelfacade.classList());
+        System.out.println(modelfacade.classList(username).toString());
+        //classListView.setItems(modelfacade.classList(username));
     }
 
     /**

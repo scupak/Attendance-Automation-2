@@ -21,6 +21,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import attendance.automation.be.Class;
 
 /**
  *
@@ -61,8 +62,8 @@ public class ModelFacade implements ModelFacadeInterface
      * @return the list of teachers
      */
     @Override
-    public ObservableList classList() {
-        return mockmodel.classList();
+    public ObservableList<Class> classList(String username) {
+        return teachermodel.classList(username);
     }
 
      /**

@@ -7,6 +7,8 @@ package attendance.automation.gui.model.Interface;
 
 import attendance.automation.be.Teacher;
 import attendance.automation.dal.AttendanceAutomationDalException;
+import javafx.collections.ObservableList;
+import attendance.automation.be.Class;
 
 
 /**
@@ -19,5 +21,7 @@ public interface TeacherModelInterface
     public void setCurrentTeacher(Teacher currentTeacher) throws AttendanceAutomationDalException;
     
     public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException;
+
+    public ObservableList<Class> classList(String username);
     
 }

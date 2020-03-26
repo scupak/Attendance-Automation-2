@@ -73,16 +73,6 @@ public class BLLFacade implements BLLFacadeInterface
     }
     
     /**
-    * Gets a teachers classes as a list
-    * @return the teachers classes as a list
-    */
-    @Override
-    public ObservableList getTeacherClassList() 
-    {
-       return teachermanager.getTeacherClassList();
-    }
-
-    /**
      * Gets the username of the selected teacher
      * @return the username of the teacher
      */
