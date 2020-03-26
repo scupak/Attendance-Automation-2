@@ -46,16 +46,16 @@ public class MockModel implements MockModelInterface
      *
      * @return the list of students
      */
-    @Override
-    public ObservableList<Student> studentList() throws AttendanceAutomationDalException 
-    {
-        ObservableList<Student> students = FXCollections.observableArrayList();
-        for (Student student : bllfacade.getTeacherStudentList())
-        {
-            students.add(student);
-        }
-        return students;
-    }
+//    @Override
+//    public ObservableList<Student> studentList() throws AttendanceAutomationDalException 
+//    {
+//        ObservableList<Student> students = FXCollections.observableArrayList();
+//        for (Student student : bllfacade.getTeacherStudentList())
+//        {
+//            students.add(student);
+//        }
+//        return students;
+//    }
     
     
      /**

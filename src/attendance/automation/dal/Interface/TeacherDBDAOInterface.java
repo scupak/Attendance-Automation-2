@@ -7,6 +7,7 @@ package attendance.automation.dal.Interface;
 
 import attendance.automation.be.Teacher;
 import attendance.automation.be.Class;
+import attendance.automation.be.Student;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.util.List;
 import javafx.collections.ObservableList;
@@ -25,5 +26,7 @@ public interface TeacherDBDAOInterface
     public boolean TeacherExist(Teacher t) throws AttendanceAutomationDalException;
     
     public ObservableList<attendance.automation.be.Class> getTeacherClasses(String username);
+    
+     public List<Student> teacherStudentList(int classid) throws AttendanceAutomationDalException;
     
 }

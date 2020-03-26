@@ -90,7 +90,7 @@ public class TeacherClassViewController implements Initializable
         }
         
 
-        classNameLabel.setText("CSe2019A");
+        classNameLabel.setText(modelfacade.getCurrentClass().getClassName());
         classNameLabel.setAlignment(Pos.CENTER);
         absenceProcent.setSortType(TableColumn.SortType.DESCENDING);
         classTableView.getSortOrder().addAll(absenceProcent);
@@ -127,7 +127,7 @@ public class TeacherClassViewController implements Initializable
         name.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
         absenceProcent.setCellValueFactory(new PropertyValueFactory<Student, Integer>("absenceProcent"));
         dayMostAbsent.setCellValueFactory(new PropertyValueFactory<Student, String>("dayMostAbsent"));
-        classTableView.setItems(modelfacade.studentList());
+        classTableView.setItems(modelfacade.teacherStudentList(modelfacade.getCurrentClass().getClassid()));
     }
 
     /**
@@ -136,11 +136,11 @@ public class TeacherClassViewController implements Initializable
     private void fillPieChart() throws AttendanceAutomationDalException
     {
         int totalAbsence = 0;
-        for (Student student : modelfacade.studentList())
+        for (Student student : modelfacade.teacherStudentList(modelfacade.getCurrentClass().getClassid()))
         {
             totalAbsence = totalAbsence + student.getAbsenceProcent();
         }
-        totalAbsence = totalAbsence / modelfacade.studentList().size();
+        totalAbsence = totalAbsence / modelfacade.teacherStudentList(modelfacade.getCurrentClass().getClassid()).size();
 
         int totalPresence = 100 - totalAbsence;
 

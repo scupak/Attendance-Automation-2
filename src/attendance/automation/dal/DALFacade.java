@@ -164,13 +164,10 @@ public class DALFacade implements DALFacadeInterface
     /**
      * Create and add students to an ObservableLIst
      *
+     * @param classid
      * @return TeacherStudentList
      */
-    @Override
-    public List<Student> teacherStudentList() throws AttendanceAutomationDalException 
-    {
-        return studentdbdao.getAllStudents();
-    }
+    
 
     /**
      * Create and add classes to an ObservableList
@@ -288,4 +285,14 @@ public class DALFacade implements DALFacadeInterface
     {
         return teacherdbdao.getTeacherClasses(username);
     }
+
+    @Override
+    public List<Student> teacherStudentList(int classid) throws AttendanceAutomationDalException {
+       return teacherdbdao.teacherStudentList(classid);
+    }
+
+    
+    
+
+    
 }

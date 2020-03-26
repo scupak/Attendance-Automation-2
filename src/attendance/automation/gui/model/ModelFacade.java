@@ -72,8 +72,8 @@ public class ModelFacade implements ModelFacadeInterface
      * @return the list of students
      */
     @Override
-    public ObservableList<Student> studentList() throws AttendanceAutomationDalException {
-        return mockmodel.studentList();
+    public ObservableList<Student>  teacherStudentList(int classid) throws AttendanceAutomationDalException {
+        return teachermodel.teacherStudentList(classid);
     }
 
     /**
@@ -331,6 +331,21 @@ public class ModelFacade implements ModelFacadeInterface
     public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException
     {
         return teachermodel.checkCredTeacher(t);
+    }
+
+    @Override
+    public Teacher getCurrentTeacher() {
+        return teachermodel.getCurrentTeacher();
+    }
+
+    @Override
+    public Class getCurrentClass() {
+       return teachermodel.getCurrentClass();
+    }
+
+    @Override
+    public void setCurrentClass(Class currentClass) {
+        teachermodel.setCurrentClass(currentClass);
     }
 
 }

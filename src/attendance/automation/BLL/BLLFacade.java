@@ -67,9 +67,9 @@ public class BLLFacade implements BLLFacadeInterface
      * @return a list of the teachers students
      */
     @Override
-    public List<Student> getTeacherStudentList() throws AttendanceAutomationDalException 
+    public List<Student> getTeacherStudentList(int classid) throws AttendanceAutomationDalException 
     {
-        return teachermanager.getTeacherStudentList();
+        return teachermanager.getTeacherStudentList(classid);
     }
     
     /**

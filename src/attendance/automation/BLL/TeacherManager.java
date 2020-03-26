@@ -32,9 +32,9 @@ public class TeacherManager implements TeacherManagerInterface
      *
      * @return teacherStudentList
      */
-    public List<Student> getTeacherStudentList() throws AttendanceAutomationDalException
+    public List<Student> getTeacherStudentList(int classid) throws AttendanceAutomationDalException
     {
-        return dalfacade.teacherStudentList();
+        return dalfacade.teacherStudentList(classid);
     }
 
     /**

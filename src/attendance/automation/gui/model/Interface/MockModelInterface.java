@@ -28,7 +28,7 @@ public interface MockModelInterface
      *
      * @return the list of students
      */
-    public ObservableList<Student> studentList() throws AttendanceAutomationDalException;
+//    public ObservableList<Student> studentList() throws AttendanceAutomationDalException;
     
     /**
      * updates existing Data-Object if name matches

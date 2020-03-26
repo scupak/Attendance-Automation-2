@@ -97,6 +97,7 @@ public class StudentCalenderViewController implements Initializable
              *  We use get instance instead of new to make sure we use the same appmodel in all classes.
              */
             modelfacade = ModelFacade.getInstance();
+            
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Student calendar view controller error!", "Error", JOptionPane.ERROR_MESSAGE);

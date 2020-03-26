@@ -65,11 +65,6 @@ public interface MockDataInterface
      */
     public void setPasswordTeacher(String passwordTeacher);
     
-    /**
-     * Gets a list of all the students that a teacher has
-     * @return the list of the teachers students
-     */
-    public List<Student> teacherStudentList() throws AttendanceAutomationDalException ;
     
     /**
      * Gets a list of all the classes that a teacher has

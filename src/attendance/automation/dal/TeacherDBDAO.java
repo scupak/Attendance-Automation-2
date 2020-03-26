@@ -7,6 +7,7 @@ package attendance.automation.dal;
 
 import attendance.automation.be.Teacher;
 import attendance.automation.be.Class;
+import attendance.automation.be.Student;
 import attendance.automation.dal.Interface.TeacherDBDAOInterface;
 import java.io.IOException;
 import java.sql.Connection;
@@ -19,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -171,12 +173,52 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
         
         return classes;
     }
+    @Override
+     public List<Student>  teacherStudentList(int classIdInClass) throws AttendanceAutomationDalException
+    {
+         ObservableList<Student> students = FXCollections.observableArrayList();
+
+        try (Connection con = dbCon.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement("SELECT Class.className, Class.classID ,Student.username,Student.name,Student.password,Student.absenceProcent,Student.dayMostAbsent "
+                                                      + "FROM [Class] "
+                                                      + "JOIN [Student] " 
+                                                      + "ON Class.classID = Student.classID "
+                                                      + "WHERE Class.classID = ?");
+            
+            ps.setInt(1, classIdInClass);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                String username = rs.getString("username");
+                String name = rs.getString("name");
+                String password = rs.getString("password");
+                int absence = rs.getInt("absenceProcent");
+                String dayMostAbsent = rs.getString("dayMostAbsent");
+                int classID = rs.getInt("classID");
+                students.add(new Student(name, username, password, absence, dayMostAbsent, classID));
+
+            }
+            return students;
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Could not get all students from database!", "Error", JOptionPane.ERROR_MESSAGE);
+            throw new AttendanceAutomationDalException("could not get all students from database", ex);
+        }
+    }
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, AttendanceAutomationDalException {
         TeacherDBDAO tb = new TeacherDBDAO();
         
-        System.out.println(tb.getTeacherClasses("jeppe123"));
-        
+        //System.out.println(tb.getTeacherClasses("jeppe123"));
+//
+//        for (Student allStudentsInClas : tb.getAllStudentsInClass(2)) {
+//
+//            System.out.println(allStudentsInClas);
+//        }
+
     }
     
 }

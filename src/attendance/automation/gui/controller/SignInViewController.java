@@ -113,6 +113,7 @@ public class SignInViewController implements Initializable
             signInView.close();
         } else if (modelfacade.checkCredTeacher(t))
         {
+            modelfacade.setCurrentTeacher(t);
             modelfacade.setCurrentUserMode(UserMode.TEACHER);
             FXMLLoader fxmlLoader = new FXMLLoader();
 

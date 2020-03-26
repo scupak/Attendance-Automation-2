@@ -67,8 +67,8 @@ public class TeacherMainViewController implements Initializable
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         
-        populateList("jeppe123");
-        welcomeMessage.setText("Welcome Jeppe!");
+        populateList(modelfacade.getCurrentTeacher().getUsername());
+        welcomeMessage.setText("Welcome " + modelfacade.getCurrentTeacher().getName() + "!");
         welcomeMessage.setAlignment(Pos.CENTER);
     }
 
@@ -85,6 +85,7 @@ public class TeacherMainViewController implements Initializable
         try{
         if (classListView.getSelectionModel().getSelectedItem() != null)
         {
+            modelfacade.setCurrentClass(classListView.getSelectionModel().getSelectedItem());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClassView.fxml"));
             Parent root = loader.load();
             TeacherClassViewController TCVController = loader.getController();
@@ -113,6 +114,7 @@ public class TeacherMainViewController implements Initializable
 
     /**
      * Populates the ListView
+     * @param username
      */
     public void populateList(String username)
     {

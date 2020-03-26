@@ -5,8 +5,10 @@
  */
 package attendance.automation.dal;
 
+import attendance.automation.be.Class;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
+import attendance.automation.be.Teacher;
 import attendance.automation.dal.Interface.DALFacadeInterface;
 import java.time.LocalDate;
 import java.time.Month;
@@ -63,10 +65,6 @@ public class DALMockFacade implements DALFacadeInterface{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public ObservableList<Student> teacherStudentList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public ObservableList teacherClassList() {
@@ -133,6 +131,32 @@ public class DALMockFacade implements DALFacadeInterface{
 
     @Override
     public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean TeacherExist(Teacher t) throws AttendanceAutomationDalException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ObservableList<Class> getTeacherClasses(String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    @Override
+    public List<Student> teacherStudentList(int classid) throws AttendanceAutomationDalException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
