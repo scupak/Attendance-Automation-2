@@ -32,7 +32,7 @@ public class Class
     }
 
     public Class(String classname, int classid) {
-        this.classname.set(classname);
+        this.classname = new SimpleStringProperty(classname);
         this.classid = classid;
     }
 
@@ -51,6 +51,12 @@ public class Class
     public void setClassid(int classid) {
         this.classid = classid;
     }
+
+    @Override
+    public String toString() {
+        return getClassName().trim();
+    }
+    
     
     
     

@@ -24,5 +24,6 @@ public interface TeacherDBDAOInterface
      
     public boolean TeacherExist(Teacher t) throws AttendanceAutomationDalException;
     
-    public ObservableList<Class> getTeacherClasses(String username);
+    public ObservableList<attendance.automation.be.Class> getTeacherClasses(String username);
+    
 }

@@ -133,6 +133,7 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
         }
     }
     
+    @Override
     public ObservableList<Class> getTeacherClasses(String username)
     {
         ObservableList<Class> classes = FXCollections.observableArrayList();
@@ -156,6 +157,9 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
                 String name = rs.getString("className");
                 int id = rs.getInt("classID");
                 
+                System.out.println(name);
+                System.out.println(id);
+                
                 classes.add(new Class(name, id));
             }
             
@@ -166,6 +170,13 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
         }
         
         return classes;
+    }
+    
+    public static void main(String[] args) throws IOException {
+        TeacherDBDAO tb = new TeacherDBDAO();
+        
+        System.out.println(tb.getTeacherClasses("jeppe123"));
+        
     }
     
 }
