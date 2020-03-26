@@ -6,6 +6,7 @@
 package attendance.automation.dal;
 
 import attendance.automation.be.Teacher;
+import attendance.automation.be.Class;
 import attendance.automation.dal.Interface.TeacherDBDAOInterface;
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -128,6 +131,41 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw new AttendanceAutomationDalException("could not find the Teacher in the dataabase", ex);
         }
+    }
+    
+    public ObservableList<Class> TeacherClasses(String username)
+    {
+        ObservableList<Class> classes = FXCollections.observableArrayList();
+        
+        try (Connection con = dbCon.getConnection())
+        {
+            String sql = "SELECT Class.className, Class.classID "
+                        + "FROM [Class] "
+                        + "JOIN [ClassTeacher] "
+                        + "ON Class.classID = ClassTeacher.classID "
+                        + "WHERE ClassTeacher.teacherUsername = ?";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setString(1, username);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                String name = rs.getString("className");
+                int id = rs.getInt("classID");
+                
+                classes.add(new Class(name, id));
+            }
+            
+        }
+        catch (SQLException ex)
+        {
+                    
+        }
+        
+        return classes;
     }
     
 }
