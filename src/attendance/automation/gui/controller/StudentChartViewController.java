@@ -42,7 +42,6 @@ public class StudentChartViewController implements Initializable
     @FXML
     private BarChart<?, ?> barChart;
     @FXML
-    private HBox hBox;
     private ModelFacadeInterface modelfacade;
     @FXML
     private Label userModeLabel;
@@ -62,7 +61,7 @@ public class StudentChartViewController implements Initializable
             System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
             if (modelfacade.getCurrentUserMode() == UserMode.TEACHER)
             {
-                userModeLabel.setText("Admin Mode");
+                userModeLabel.setText(modelfacade.getCurrentTeacher().getName() + " is currently in " +"Admin Mode " + "Accesing " + modelfacade.getCurrentStudent().getName() + "s profile");
             }
         } catch (IOException ex) {
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,30 +82,7 @@ public class StudentChartViewController implements Initializable
 
     }
 
-    /**
-     * logs out the current user, and opens the signInView
-     *
-     * @param event
-     * @throws IOException
-     */
-    @FXML
-    private void HandleLogout(ActionEvent event)
-    {
-        try
-        {
-            Window window = studentChartRootpane.getScene().getWindow();
-            
-            if (window instanceof Stage)
-            {
-                ((Stage) window).close();
-            }
-            modelfacade.handelLogout();
-        } catch (IOException ex)
-        {
-            JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     /**
      * opens the studentMainView

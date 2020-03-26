@@ -91,7 +91,7 @@ public class StudentMainViewController implements Initializable
             System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
             if (modelfacade.getCurrentUserMode() == UserMode.TEACHER)
             {
-                userModeLabel.setText("Admin Mode");
+                userModeLabel.setText(modelfacade.getCurrentTeacher().getName() + " is currently in " +"Admin Mode " + "Accesing " + modelfacade.getCurrentStudent().getName() + "s profile");
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Student main view error!", "Error", JOptionPane.ERROR_MESSAGE);

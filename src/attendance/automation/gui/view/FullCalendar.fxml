@@ -10,12 +10,7 @@
 <Pane fx:id="maincalendarpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="941.0" styleClass="AnchorPane" stylesheets="@../css/Graphics.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.calendar.CalendarController">
    <children>
       <Pane fx:id="calendarPane" layoutX="14.0" layoutY="14.0" prefHeight="407.0" prefWidth="747.0" />
-      <Button id="ButtonLogout" layoutX="346.0" layoutY="453.0" mnemonicParsing="false" onAction="#HandleLogout" prefHeight="72.0" prefWidth="77.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button id="HomeButton" layoutX="452.0" layoutY="454.0" mnemonicParsing="false" onAction="#handelBackToMainView" prefHeight="71.0" prefWidth="78.0">
+      <Button id="HomeButton" layoutX="402.0" layoutY="441.0" mnemonicParsing="false" onAction="#handelBackToMainView" prefHeight="71.0" prefWidth="78.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -47,6 +42,6 @@
             </HBox>
          </children>
       </VBox>
-      <Label fx:id="userModeLabel" layoutX="410.0" layoutY="6.0" prefHeight="17.0" prefWidth="84.0" styleClass="Label" />
+      <Label fx:id="userModeLabel" layoutX="241.0" layoutY="6.0" prefHeight="17.0" prefWidth="400.0" styleClass="Label" />
    </children>
 </Pane>

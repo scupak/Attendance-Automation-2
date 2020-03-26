@@ -43,36 +43,15 @@ public class CalendarController implements Initializable{
             System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
             if (modelfacade.getCurrentUserMode() == UserMode.TEACHER)
             {
-                userModeLabel.setText("Admin Mode");
+               userModeLabel.setText(modelfacade.getCurrentTeacher().getName() + " is currently in " +"Admin Mode " + "Accesing " + modelfacade.getCurrentStudent().getName() + "s profile");
             }
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Student calendar view error!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    /**
-     * Handles logging out of the system
-     * @param event
-     * @throws IOException 
-     */
-    @FXML
-    private void HandleLogout(ActionEvent event) {
-        
-        try
-        {
-            Window window = maincalendarpane.getScene().getWindow();
-            
-            if (window instanceof Stage)
-            {
-                ((Stage) window).close();
-            }
-            modelfacade.handelLogout();
-        } catch (IOException ex)
-        {
-            JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
+    
 
     /**
      * handles navigating back to the main view
