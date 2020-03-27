@@ -68,6 +68,9 @@ public class SignInViewController implements Initializable
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Cannot initialize program!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(SignInViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(SignInViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.appmodel = AppModel.getInstance();
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));

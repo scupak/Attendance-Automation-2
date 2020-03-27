@@ -24,7 +24,7 @@ public class MockModel implements MockModelInterface
     private BLLFacadeInterface bllfacade;
      private ObservableList<PieChart.Data> pieChartData;
     
-    public MockModel() throws IOException
+    public MockModel() throws IOException, Exception
     {
         bllfacade = new BLLFacade();
     }

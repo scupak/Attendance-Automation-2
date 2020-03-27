@@ -75,7 +75,10 @@ public class StatusSelectController implements Initializable
          {
             Logger.getLogger(SignInViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Sign in view controller error!", "Error", JOptionPane.ERROR_MESSAGE);
-         }
+         } catch (Exception ex) {
+             JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(StatusSelectController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //A check to see if were woriking with the same instance of appmodel.appmodel = AppModel.getInstance();
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         

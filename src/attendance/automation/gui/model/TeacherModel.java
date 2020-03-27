@@ -27,7 +27,7 @@ public class TeacherModel implements TeacherModelInterface
     private Teacher currentTeacher;
     private Class currentClass;
     
-    public TeacherModel() throws IOException
+    public TeacherModel() throws IOException, Exception
     {
         bllfacade = new BLLFacade();
     }
