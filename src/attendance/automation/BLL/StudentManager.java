@@ -293,6 +293,12 @@ public class StudentManager implements StudentManagerInterface
 
         return presence;
     }
+
+    @Override
+    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
+        
+        dalfacade.updateStudentabsenceProcent( currentStudent, absenceProcentforstudent);
+    }
    
      
 }

@@ -5,16 +5,11 @@ import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.enums.UserMode;
 import attendance.automation.gui.controller.StatusSelectController;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
-import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.property.IntegerProperty;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -25,7 +20,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javax.swing.JOptionPane;
 
 /**
  * Create an anchor pane that can store additional data.

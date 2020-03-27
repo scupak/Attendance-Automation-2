@@ -5,6 +5,9 @@
  */
 package attendance.automation.BLL.Interface;
 
+import attendance.automation.be.Student;
+import attendance.automation.dal.AttendanceAutomationDalException;
+
 
 
 /**
@@ -13,6 +16,8 @@ package attendance.automation.BLL.Interface;
  */
 public interface BLLFacadeInterface extends StudentManagerInterface, TeacherManagerInterface
 {
+
+   
     
    
 }

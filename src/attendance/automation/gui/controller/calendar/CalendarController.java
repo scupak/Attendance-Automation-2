@@ -1,5 +1,6 @@
 package attendance.automation.gui.controller.calendar;
 
+import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.enums.UserMode;
 import attendance.automation.gui.controller.StudentCalenderViewController;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
@@ -16,8 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import javax.swing.JOptionPane;
 
 public class CalendarController implements Initializable{
@@ -47,6 +46,7 @@ public class CalendarController implements Initializable{
             }
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Student calendar view error!", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -67,11 +67,14 @@ public class CalendarController implements Initializable{
         try
         {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
-            
+            modelfacade.updateStudentabsenceProcent(modelfacade.getCurrentStudent(), modelfacade.getabsenceProcentforstudent(modelfacade.getCurrentStudent()) );
             maincalendarpane.getChildren().setAll(pane);
         } catch (IOException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot handle going back to main view!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+            Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AttendanceAutomationDalException ex) {
             Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
         }
         

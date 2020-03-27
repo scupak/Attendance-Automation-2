@@ -348,4 +348,14 @@ public class ModelFacade implements ModelFacadeInterface
         teachermodel.setCurrentClass(currentClass);
     }
 
+    @Override
+    public double getabsenceProcentforstudent(Student s) throws AttendanceAutomationDalException {
+      return  studentmodel.getabsenceProcentforstudent(s);
+    }
+
+    @Override
+    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
+        studentmodel.updateStudentabsenceProcent(currentStudent, absenceProcentforstudent);
+    }
+
 }

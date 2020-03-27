@@ -62,6 +62,8 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
         } catch (SQLException ex)
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Could not get all students from database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
         }
     }
@@ -103,6 +105,8 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
         } catch (SQLException ex)
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Could not find the student in the dataabase!", "Error", JOptionPane.ERROR_MESSAGE);
             throw new AttendanceAutomationDalException("could not find the student in the dataabase", ex);
         }
     }
@@ -131,6 +135,8 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
         } catch (SQLException ex)
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Could not find the teacher in the dataabase!", "Error", JOptionPane.ERROR_MESSAGE);
             throw new AttendanceAutomationDalException("could not find the Teacher in the dataabase", ex);
         }
     }
@@ -205,6 +211,7 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Could not get all students from database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
         }
     }

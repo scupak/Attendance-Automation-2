@@ -145,5 +145,16 @@ public class StudentModel implements StudentModelInterface
     public List<Student> getallStudents() throws AttendanceAutomationDalException {
         return bllfacade.getallStudents();
     }
+
+    @Override
+    public double getabsenceProcentforstudent(Student s) throws AttendanceAutomationDalException {
+        
+       return bllfacade.pieChartData(s, absent);
+    }
+
+    @Override
+    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
+        bllfacade.updateStudentabsenceProcent(currentStudent,absenceProcentforstudent);
+    }
     
 }

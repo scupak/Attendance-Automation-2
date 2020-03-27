@@ -22,9 +22,6 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import javax.swing.JOptionPane;
 
 /**
@@ -66,9 +63,11 @@ public class StudentChartViewController implements Initializable
         } catch (IOException ex) {
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Chart view error!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
@@ -79,6 +78,7 @@ public class StudentChartViewController implements Initializable
         } catch (AttendanceAutomationDalException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot get required data!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
        

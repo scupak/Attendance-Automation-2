@@ -37,6 +37,7 @@ public class GetStudentDayTask implements Runnable {
             
             System.out.println(Thread.currentThread().getName());
         } catch (AttendanceAutomationDalException ex) {
+            ex.printStackTrace();
             Logger.getLogger(GetStudentDayTask.class.getName()).log(Level.SEVERE, null, ex);
         }
         

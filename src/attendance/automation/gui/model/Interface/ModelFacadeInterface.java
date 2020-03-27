@@ -5,11 +5,15 @@
  */
 package attendance.automation.gui.model.Interface;
 
+import attendance.automation.be.Student;
+
 /**
  *
  * @author kacpe
  */
 public interface ModelFacadeInterface extends BaseModelInterface, MockModelInterface, StudentModelInterface, TeacherModelInterface
 {
+
+   
     
 }
