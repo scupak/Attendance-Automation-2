@@ -219,12 +219,10 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
     public static void main(String[] args) throws IOException, AttendanceAutomationDalException {
         TeacherDBDAO tb = new TeacherDBDAO();
         
-        //System.out.println(tb.getTeacherClasses("jeppe123"));
-//
-//        for (Student allStudentsInClas : tb.getAllStudentsInClass(2)) {
-//
-//            System.out.println(allStudentsInClas);
-//        }
+        for (Teacher allTeacher : tb.getAllTeachers()) {
+            
+            System.out.println(allTeacher.getName());
+        }
 
     }
     
