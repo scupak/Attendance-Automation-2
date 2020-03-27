@@ -352,7 +352,6 @@ public class ModelFacade implements ModelFacadeInterface
     public String hashPassword(String password)
     {
        return basemodel.hashPassword(password);
-    
     }
     
     @Override
