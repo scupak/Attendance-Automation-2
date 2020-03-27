@@ -470,7 +470,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         
         Student s = new Student("hello", "mads69", "password", ABSENT, "dayMostAbsent", ABSENT);
         
-        test.updateStudentpassword(s);
+       // test.updateStudentpassword(s);
         
         /*
         String username = "ecollicki";

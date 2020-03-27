@@ -270,7 +270,7 @@ public class BLLFacade implements BLLFacadeInterface
          
      }
      
-    public static void main(String[] args) throws IOException, AttendanceAutomationDalException
+    public static void main(String[] args) throws IOException, AttendanceAutomationDalException, Exception
     {
         BLLFacade bll = new BLLFacade();
         
