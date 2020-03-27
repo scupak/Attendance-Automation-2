@@ -82,4 +82,6 @@ public interface BaseModelInterface
     public int getThreadcounter();
     
     public void setThreadcounter(int threadcounter);
+    
+    public String hashPassword(String password);
 }

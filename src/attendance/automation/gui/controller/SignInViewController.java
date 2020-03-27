@@ -94,8 +94,8 @@ public class SignInViewController implements Initializable
         String pass = password.getText();
         
         //login with database 
-        Student s = new Student("hello", user, pass, 0, "everyday", 0);
-        Teacher t = new Teacher("hello", user, pass);
+        Student s = new Student("hello", user, modelfacade.hashPassword(pass), 0, "everyday", 0);
+        Teacher t = new Teacher("hello", user, modelfacade.hashPassword(pass));
         
         Stage signInView = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try{
