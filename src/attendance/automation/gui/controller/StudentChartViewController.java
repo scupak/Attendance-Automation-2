@@ -64,6 +64,10 @@ public class StudentChartViewController implements Initializable
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Chart view error!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));

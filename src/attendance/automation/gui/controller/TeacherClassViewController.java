@@ -77,6 +77,9 @@ public class TeacherClassViewController implements Initializable
             JOptionPane.showMessageDialog(null, "Teacher class view error!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));

@@ -32,7 +32,7 @@ public class StudentModel implements StudentModelInterface
     private final int notSet = -1;
     private ObservableList<PieChart.Data> pieChartData;
     
-    public StudentModel() throws IOException
+    public StudentModel() throws IOException, Exception
     {
         bllfacade = new BLLFacade();
     }

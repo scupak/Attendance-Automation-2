@@ -97,6 +97,9 @@ public class StudentMainViewController implements Initializable
             JOptionPane.showMessageDialog(null, "Student main view error!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));

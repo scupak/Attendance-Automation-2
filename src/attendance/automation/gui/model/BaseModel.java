@@ -32,7 +32,7 @@ public class BaseModel implements BaseModelInterface
     private UserMode usermode;
 
     
-    public BaseModel() throws IOException
+    public BaseModel() throws IOException, Exception
     {
         bllfacade = new BLLFacade();
     }

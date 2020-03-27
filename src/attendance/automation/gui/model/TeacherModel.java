@@ -26,7 +26,7 @@ public class TeacherModel implements TeacherModelInterface
     private Teacher currentTeacher;
     private Class currentClass;
     private  ObservableList<Student> Students;
-    public TeacherModel() throws IOException
+    public TeacherModel() throws IOException, Exception
     {
         bllfacade = new BLLFacade();
         Students = FXCollections.observableArrayList();

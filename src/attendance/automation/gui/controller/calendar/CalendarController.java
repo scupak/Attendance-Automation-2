@@ -48,6 +48,9 @@ public class CalendarController implements Initializable{
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Student calendar view error!", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

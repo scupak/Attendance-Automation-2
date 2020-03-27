@@ -35,7 +35,7 @@ public class ModelFacade implements ModelFacadeInterface
     private TeacherModelInterface teachermodel;
     private BaseModelInterface basemodel;
     
-    private ModelFacade() throws IOException
+    private ModelFacade() throws IOException, Exception
     {
        mockmodel = new MockModel();
        studentmodel = new StudentModel();
@@ -47,7 +47,7 @@ public class ModelFacade implements ModelFacadeInterface
      * Utilizing the singleton pattern to make sure there is only one instance
      * of modelFacade.
      */
-    public static ModelFacade getInstance() throws IOException
+    public static ModelFacade getInstance() throws IOException, Exception
     {
         if (modelfacade == null)
         {
