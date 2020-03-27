@@ -1,7 +1,5 @@
 package attendance.automation.gui.controller.calendar;
 
-import attendance.automation.be.Student;
-import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import javafx.scene.layout.AnchorPane;
@@ -146,6 +144,7 @@ public class FullCalendarView {
                 nextMonth();
             } catch (AttendanceAutomationDalException ex) {
                 Logger.getLogger(FullCalendarView.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Calendar error!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
@@ -226,6 +225,7 @@ public class FullCalendarView {
             }
         } catch (InterruptedException ex) {
             System.out.println("the treads were interrupted");
+            ex.printStackTrace();
             Logger.getLogger(FullCalendarView.class.getName()).log(Level.SEVERE, null, ex);
         }
         

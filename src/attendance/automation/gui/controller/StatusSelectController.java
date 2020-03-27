@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,7 +24,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -75,6 +73,7 @@ public class StatusSelectController implements Initializable
          {
             Logger.getLogger(SignInViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Sign in view controller error!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
          }
         //A check to see if were woriking with the same instance of appmodel.appmodel = AppModel.getInstance();
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
@@ -136,6 +135,7 @@ public class StatusSelectController implements Initializable
         }
         catch(AttendanceAutomationDalException ex){
             JOptionPane.showMessageDialog(null, "Cannot update to/from DB!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
         
     }

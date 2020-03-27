@@ -14,7 +14,6 @@ import java.io.IOException;
 import javafx.collections.ObservableList;
 import attendance.automation.be.Class;
 import attendance.automation.be.Student;
-import java.util.List;
 import javafx.collections.FXCollections;
 
 /**

@@ -17,8 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import javax.swing.JOptionPane;
 
 public class CalendarController implements Initializable{
@@ -48,6 +46,7 @@ public class CalendarController implements Initializable{
             }
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Student calendar view error!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -70,6 +69,7 @@ public class CalendarController implements Initializable{
         } catch (IOException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot handle going back to main view!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (AttendanceAutomationDalException ex) {
             Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
