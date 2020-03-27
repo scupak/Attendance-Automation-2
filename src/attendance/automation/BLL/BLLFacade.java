@@ -20,6 +20,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 import attendance.automation.be.Class;
+import attendance.automation.dal.DALFacadeFactory;
+import attendance.automation.dal.Interface.DALFacadeInterface;
 
 /**
  *
@@ -34,14 +36,16 @@ public class BLLFacade implements BLLFacadeInterface
     TeacherManagerInterface teachermanager;
     SecurityManager securityManager;
    
+    private DALFacadeInterface dalfacade;
     
     /**
      * Makes a new BLLFacade, that defines a new instance of StudentManager and TeacherManager
      * @throws IOException 
      */
-    public BLLFacade() throws IOException
+    public BLLFacade() throws IOException, Exception
     {
-        studentmanager = new StudentManager(new DALFacade());
+        dalfacade = DALFacadeFactory.CreateDALFacade(DALFacadeFactory.DALFacadeTypes.PRODUCTION);
+        studentmanager = new StudentManager(dalfacade);
         teachermanager = new TeacherManager(); 
         securityManager = new SecurityManager();
         
@@ -246,6 +250,13 @@ public class BLLFacade implements BLLFacadeInterface
     {
         return teachermanager.getTeacherClasses(username);
     }
+
+    @Override
+    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
+        
+        studentmanager.updateStudentabsenceProcent(currentStudent, absenceProcentforstudent);
+    }
+     
     
      @Override
     public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException

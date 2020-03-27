@@ -32,7 +32,7 @@ public class StudentModel implements StudentModelInterface
     private final int notSet = -1;
     private ObservableList<PieChart.Data> pieChartData;
     
-    public StudentModel() throws IOException
+    public StudentModel() throws IOException, Exception
     {
         bllfacade = new BLLFacade();
     }
@@ -144,6 +144,17 @@ public class StudentModel implements StudentModelInterface
     @Override
     public List<Student> getallStudents() throws AttendanceAutomationDalException {
         return bllfacade.getallStudents();
+    }
+
+    @Override
+    public double getabsenceProcentforstudent(Student s) throws AttendanceAutomationDalException {
+        
+       return bllfacade.pieChartData(s, absent);
+    }
+
+    @Override
+    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
+        bllfacade.updateStudentabsenceProcent(currentStudent,absenceProcentforstudent);
     }
     
 }

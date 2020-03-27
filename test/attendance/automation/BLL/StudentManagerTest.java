@@ -7,6 +7,7 @@ package attendance.automation.BLL;
 
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
+import attendance.automation.dal.DALFacadeFactory;
 import attendance.automation.dal.DALMockFacade;
 import java.time.LocalDate;
 import java.util.List;
@@ -107,7 +108,7 @@ public class StudentManagerTest {
     public void testCheckCredStudent() throws Exception {
         System.out.println("checkCredStudent");
         Student s = new Student("djkghsl", "mads69", "password", 0, "monday", 0);
-        StudentManager instance = new StudentManager(new DALMockFacade());
+        StudentManager instance = new StudentManager(DALFacadeFactory.CreateDALFacade(DALFacadeFactory.DALFacadeTypes.PRODUCTION));
         boolean expResult = true;
         boolean result = instance.checkCredStudent(s);
         assertEquals(expResult, result);

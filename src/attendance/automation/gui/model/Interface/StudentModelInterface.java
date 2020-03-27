@@ -100,4 +100,9 @@ public interface StudentModelInterface
      * @throws AttendanceAutomationDalException 
      */
     public List<Student> getallStudents() throws AttendanceAutomationDalException;
+    
+    
+    public double getabsenceProcentforstudent(Student s) throws AttendanceAutomationDalException;
+    
+    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException;
 }

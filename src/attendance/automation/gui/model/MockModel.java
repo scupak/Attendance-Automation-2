@@ -7,11 +7,8 @@ package attendance.automation.gui.model;
 
 import attendance.automation.BLL.BLLFacade;
 import attendance.automation.BLL.Interface.BLLFacadeInterface;
-import attendance.automation.be.Student;
-import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.Interface.MockModelInterface;
 import java.io.IOException;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 
@@ -24,7 +21,7 @@ public class MockModel implements MockModelInterface
     private BLLFacadeInterface bllfacade;
      private ObservableList<PieChart.Data> pieChartData;
     
-    public MockModel() throws IOException
+    public MockModel() throws IOException, Exception
     {
         bllfacade = new BLLFacade();
     }
