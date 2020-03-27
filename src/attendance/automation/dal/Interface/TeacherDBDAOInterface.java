@@ -6,7 +6,6 @@
 package attendance.automation.dal.Interface;
 
 import attendance.automation.be.Teacher;
-import attendance.automation.be.Class;
 import attendance.automation.be.Student;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import java.util.List;

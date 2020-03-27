@@ -62,6 +62,7 @@ public class TeacherMainViewController implements Initializable
             System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Teacher main view error!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(TeacherMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
@@ -109,6 +110,7 @@ public class TeacherMainViewController implements Initializable
         }
         catch(IOException ex){
             JOptionPane.showMessageDialog(null, "Cannot read FXML file(s)!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }
 
@@ -138,6 +140,7 @@ public class TeacherMainViewController implements Initializable
         } catch (IOException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(TeacherMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

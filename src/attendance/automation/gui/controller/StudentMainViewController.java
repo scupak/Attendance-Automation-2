@@ -95,6 +95,7 @@ public class StudentMainViewController implements Initializable
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Student main view error!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         //A check to see if were woriking with the same instance of appmodel.
@@ -126,6 +127,7 @@ public class StudentMainViewController implements Initializable
         } catch (AttendanceAutomationDalException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot check day for selected username!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -186,6 +188,7 @@ public class StudentMainViewController implements Initializable
         } catch (IOException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -220,9 +223,11 @@ public class StudentMainViewController implements Initializable
         {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Cannot read FXML file(s)!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
         catch(AttendanceAutomationDalException ex){
             JOptionPane.showMessageDialog(null, "Cannot access calendar from DB", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }
 
@@ -271,6 +276,7 @@ public class StudentMainViewController implements Initializable
         }
         catch(AttendanceAutomationDalException ex){
             JOptionPane.showMessageDialog(null, "Unable to update status for student in DB!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }
     

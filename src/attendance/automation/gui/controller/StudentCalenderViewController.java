@@ -101,6 +101,7 @@ public class StudentCalenderViewController implements Initializable
         } catch (IOException ex) {
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Student calendar view controller error!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
@@ -125,6 +126,7 @@ public class StudentCalenderViewController implements Initializable
         } catch (IOException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot read FXML file(s)!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -151,6 +153,7 @@ public class StudentCalenderViewController implements Initializable
         } catch (IOException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

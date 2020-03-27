@@ -72,6 +72,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Could not get all students from database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
         }
     }
@@ -118,6 +119,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Could not find the student in the database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not find the student in the dataabase", ex);
         }
     }
@@ -147,6 +149,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Could not find the student in the database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not find the student in the dataabase", ex);
         }
     }
@@ -202,6 +205,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Could not access day, or it is a day off!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return DAY_OFF;
@@ -254,6 +258,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Could not update the student's day!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
         }
     }
@@ -294,6 +299,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Could not set status of the day!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             System.out.println("SQL Error: setDayStatus  " + ex);
         }
 
@@ -343,9 +349,11 @@ public class StudentDBDAO implements StudentDBDAOInterface
 
         } catch (SQLServerException ex) {
             JOptionPane.showMessageDialog(null, "Could not get all students the database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Could not get all students the database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
         }
     }
@@ -388,6 +396,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Could not find day in database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("Could not find day in database", ex);
         }
       
@@ -445,6 +454,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Could not find day in database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
             throw new AttendanceAutomationDalException("Could not find day in database", ex);
         }
     }

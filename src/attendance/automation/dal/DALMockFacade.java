@@ -12,7 +12,6 @@ import attendance.automation.be.Teacher;
 import attendance.automation.dal.Interface.DALFacadeInterface;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
