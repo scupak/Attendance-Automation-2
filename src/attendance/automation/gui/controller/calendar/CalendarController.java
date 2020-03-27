@@ -1,5 +1,6 @@
 package attendance.automation.gui.controller.calendar;
 
+import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.enums.UserMode;
 import attendance.automation.gui.controller.StudentCalenderViewController;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
@@ -64,11 +65,13 @@ public class CalendarController implements Initializable{
         try
         {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
-            
+            modelfacade.updateStudentabsenceProcent(modelfacade.getCurrentStudent(), modelfacade.getabsenceProcentforstudent(modelfacade.getCurrentStudent()) );
             maincalendarpane.getChildren().setAll(pane);
         } catch (IOException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot handle going back to main view!", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AttendanceAutomationDalException ex) {
             Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
         }
         

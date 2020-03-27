@@ -90,4 +90,7 @@ public interface StudentDBDAOInterface
      * @throws AttendanceAutomationDalException 
      */
     public StudentDay getStudentDay(Student s, LocalDate date)throws AttendanceAutomationDalException;
+    
+    
+    public boolean updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException;
 }

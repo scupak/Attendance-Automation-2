@@ -5,6 +5,8 @@
  */
 package attendance.automation.dal.Interface;
 
+import attendance.automation.be.Student;
+
 
 
 /**
@@ -13,6 +15,8 @@ package attendance.automation.dal.Interface;
  */
 public interface DALFacadeInterface extends MockDataInterface, StudentDBDAOInterface, TeacherDBDAOInterface
 {
+
+    
     
    
 }

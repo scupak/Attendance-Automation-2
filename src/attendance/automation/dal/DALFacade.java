@@ -291,6 +291,11 @@ public class DALFacade implements DALFacadeInterface
        return teacherdbdao.teacherStudentList(classid);
     }
 
+    @Override
+    public boolean updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
+      return  studentdbdao.updateStudentabsenceProcent(currentStudent, absenceProcentforstudent);
+    }
+
     
     
 

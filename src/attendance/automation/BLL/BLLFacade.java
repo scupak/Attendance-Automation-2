@@ -241,6 +241,12 @@ public class BLLFacade implements BLLFacadeInterface
     {
         return teachermanager.getTeacherClasses(username);
     }
+
+    @Override
+    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
+        
+        studentmanager.updateStudentabsenceProcent(currentStudent, absenceProcentforstudent);
+    }
      
     
 }

@@ -97,6 +97,7 @@ public class StatusSelectController implements Initializable
            Stage stage = (Stage) confirmButton.getScene().getWindow();
            //updates database
            modelfacade.sendupdateDayStudent(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.notAttendant));
+          
            //updates the  anchorpanenodes studentday
            anchorpanenode.setStudentday(new StudentDay(date, modelfacade.getCurrentStudent(),  StudentDay.notAttendant));
            //updates the anchorpanenodes background color
@@ -129,6 +130,9 @@ public class StatusSelectController implements Initializable
            anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
+        
+         modelfacade.updateStudentabsenceProcent(modelfacade.getCurrentStudent(), modelfacade.getabsenceProcentforstudent(modelfacade.getCurrentStudent()) );
+        
         }
         catch(AttendanceAutomationDalException ex){
             JOptionPane.showMessageDialog(null, "Cannot update to/from DB!", "Error", JOptionPane.ERROR_MESSAGE);

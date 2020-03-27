@@ -456,9 +456,12 @@ public class StudentDBDAO implements StudentDBDAOInterface
        {
         StudentDBDAO test = new StudentDBDAO();
 
-        Student s = new Student("hello", "mads69", "mads69", 0, "sgp", 0);
+        Student s = new Student("hello", "atosdevin9", "mads69", 0, "sgp", 0);
+        
+        test.updateStudentabsenceProcent(s, 70);
+        /*
         String username = "ecollicki";
-        LocalDate date = LocalDate.of(2020, Month.MARCH, 21);
+        LocalDate date = LocalDate.of(2020, Month.MARCH, 21);*/
         
         //System.out.println(test.sendUpdateDayStudent(new StudentDay(date, s, PRESENT)));
         //System.out.println(test.doesStudentDayExist(username, date));
@@ -476,5 +479,43 @@ public class StudentDBDAO implements StudentDBDAOInterface
         
            System.out.println(list.size());
 }
+       
+       /*implement the method*/
+
+    @Override
+    public boolean updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
+        
+        System.err.println("updateStudentabsenceProcent");
+        
+        if(!StudentExist(currentStudent))
+        {
+            
+            return false;
+        }
+        
+        try (Connection con = dbcon.getConnection())
+        {
+            
+
+            String sql = "UPDATE [Student] SET absenceProcent = ? WHERE username = ? ";
+
+           
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+           
+            ps.setInt(1, (int) Math.round(absenceProcentforstudent));
+            ps.setString(2, currentStudent.getUsername());
+           int updatedRows = ps.executeUpdate();
+
+             return updatedRows > 0;
+            
+            
+            
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Could not update the student's day!", "Error", JOptionPane.ERROR_MESSAGE);
+            throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
+        }
+    }
 }
 

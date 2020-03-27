@@ -26,10 +26,12 @@ public class TeacherModel implements TeacherModelInterface
     private BLLFacadeInterface bllfacade;
     private Teacher currentTeacher;
     private Class currentClass;
-    
+    private  ObservableList<Student> Students;
     public TeacherModel() throws IOException
     {
         bllfacade = new BLLFacade();
+        Students = FXCollections.observableArrayList();
+        
     }
 
     @Override
@@ -58,9 +60,9 @@ public class TeacherModel implements TeacherModelInterface
     @Override
     public ObservableList<Student> teacherStudentList(int classid) throws AttendanceAutomationDalException {
         
-         ObservableList<Student> Students = FXCollections.observableArrayList();
-         
-         Students.addAll( bllfacade.getTeacherStudentList(classid));
+        
+        Students.clear();
+        Students.addAll( bllfacade.getTeacherStudentList(classid));
          
         return Students;
     }

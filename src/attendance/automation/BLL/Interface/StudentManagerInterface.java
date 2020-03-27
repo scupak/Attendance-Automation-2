@@ -124,5 +124,8 @@ public interface StudentManagerInterface
      * @throws AttendanceAutomationDalException 
      */
     public XYChart.Series setPresence(Student s , int attendanceStatusCheck, String columName) throws AttendanceAutomationDalException;
+    
+    
+    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException ;
      
 }
