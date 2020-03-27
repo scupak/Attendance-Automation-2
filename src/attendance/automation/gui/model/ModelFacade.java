@@ -353,6 +353,7 @@ public class ModelFacade implements ModelFacadeInterface
     {
        return basemodel.hashPassword(password);
     }
+    
     @Override
     public double getabsenceProcentforstudent(Student s) throws AttendanceAutomationDalException {
       return  studentmodel.getabsenceProcentforstudent(s);

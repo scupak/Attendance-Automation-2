@@ -127,6 +127,11 @@ public class Student extends Person
         this.username = username;
     }
 
+    public void setPassword(String password)
+    {
+        this.password.set(password);
+    }
+
     
     
 

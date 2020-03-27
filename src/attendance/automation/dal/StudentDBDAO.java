@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author SKRUMM
@@ -33,13 +34,14 @@ public class StudentDBDAO implements StudentDBDAOInterface
     final static int PRESENT = 1;
     final static int UNKNOWN = -1;
     final static int DAY_OFF = 2;
-    
+   
 
     private final DatabaseConnector dbcon;
 
     public StudentDBDAO() throws IOException
     {
         dbcon = new DatabaseConnector();
+       
     }
 
     /**
@@ -458,40 +460,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
             throw new AttendanceAutomationDalException("Could not find day in database", ex);
         }
     }
-    
-    
-    
-    
-       public static void main(String[] args) throws IOException, AttendanceAutomationDalException
-       {
-        StudentDBDAO test = new StudentDBDAO();
 
-        //Student s = new Student("hello", "atosdevin9", "mads69", 0, "sgp", 0);
-        
-        Student s = new Student("hello", "mads69", "password", ABSENT, "dayMostAbsent", ABSENT);
-        
-       // test.updateStudentpassword(s);
-        
-        /*
-        String username = "ecollicki";
-        LocalDate date = LocalDate.of(2020, Month.MARCH, 21);*/
-        
-        //System.out.println(test.sendUpdateDayStudent(new StudentDay(date, s, PRESENT)));
-        //System.out.println(test.doesStudentDayExist(username, date));
-//        for (Student student : test.getAllStudents())
-//        {
-//            System.out.println(student);
-//        }
-    /*
-        for (StudentDay day : test.getAllDaysForStudent(s)) {
-             System.out.println(day.getDate().getDayOfWeek());
-       }
-        */
-
-            ArrayList<Integer> list = new ArrayList<>();
-
-               System.out.println(list.size());
-    }
        
        /*implement the method*/
 
@@ -565,5 +534,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
         }
     }
+     
+  
 }
 

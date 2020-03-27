@@ -55,7 +55,7 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
                 String username = rs.getString("username");
                 String name = rs.getString("name");
                 String password = rs.getString("password");
-                students.add(new Teacher(username, name, password));
+                students.add(new Teacher(name, username, password));
 
             }
             return students;

@@ -41,12 +41,7 @@ public class SecurityManager
             throw new SecurityException(e.getMessage());
         }
     }
-    
-    public static void main(String[] args)
-    {
-        SecurityManager sm =  new SecurityManager();
-       
-    }
+  
 }
 
 
