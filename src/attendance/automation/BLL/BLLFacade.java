@@ -269,28 +269,7 @@ public class BLLFacade implements BLLFacadeInterface
         return securityManager.hashPassword(password);
          
      }
-     
-    public static void main(String[] args) throws IOException, AttendanceAutomationDalException
-    {
-        BLLFacade bll = new BLLFacade();
-        
-//       List<Student> students = bll.getallStudents();
-       List<Teacher> teachers = bll.getAllTeachers();
-       
-        for (Teacher teacher : teachers)
-        {
-            teacher.setPassword(bll.hashPassword(teacher.getPassword()));
-            System.out.println(teacher.getPassword());
-        }
-        
-        
-//        for (Student student : students)
-//        {
-//            
-//        }
-       
-        
-    }
+
 
    
 }
