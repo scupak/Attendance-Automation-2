@@ -8,6 +8,7 @@ package attendance.automation.BLL;
 import attendance.automation.BLL.Interface.TeacherManagerInterface;
 import attendance.automation.BLL.Interface.StudentManagerInterface;
 import attendance.automation.BLL.Interface.BLLFacadeInterface;
+import attendance.automation.BLL.Security.SecurityManager;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.be.Teacher;
@@ -31,6 +32,8 @@ public class BLLFacade implements BLLFacadeInterface
     
     StudentManagerInterface studentmanager;
     TeacherManagerInterface teachermanager;
+    SecurityManager securityManager;
+   
     
     /**
      * Makes a new BLLFacade, that defines a new instance of StudentManager and TeacherManager
@@ -40,6 +43,8 @@ public class BLLFacade implements BLLFacadeInterface
     {
         studentmanager = new StudentManager(new DALFacade());
         teachermanager = new TeacherManager(); 
+        securityManager = new SecurityManager();
+        
     }
     
     /**
@@ -241,6 +246,40 @@ public class BLLFacade implements BLLFacadeInterface
     {
         return teachermanager.getTeacherClasses(username);
     }
-     
     
+     @Override
+    public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException
+    {
+      return teachermanager.getAllTeachers();
+    }
+    
+     public String hashPassword(String password)
+     {
+        return securityManager.hashPassword(password);
+         
+     }
+     
+    public static void main(String[] args) throws IOException, AttendanceAutomationDalException
+    {
+        BLLFacade bll = new BLLFacade();
+        
+//       List<Student> students = bll.getallStudents();
+       List<Teacher> teachers = bll.getAllTeachers();
+       
+        for (Teacher teacher : teachers)
+        {
+            teacher.setPassword(bll.hashPassword(teacher.getPassword()));
+            System.out.println(teacher.getPassword());
+        }
+        
+        
+//        for (Student student : students)
+//        {
+//            
+//        }
+       
+        
+    }
+
+   
 }

@@ -109,7 +109,7 @@ public class BaseModel implements BaseModelInterface
      */
     @Override
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException {
-         return bllfacade.checkCredStudent(s);
+        return bllfacade.checkCredStudent(s);
     }
 
     @Override
@@ -151,6 +151,9 @@ public class BaseModel implements BaseModelInterface
         return usermode;
     }
     
-    
+    public String hashPassword(String password)
+    {
+        return bllfacade.hashPassword(password);
+    }
     
 }

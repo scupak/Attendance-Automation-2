@@ -36,6 +36,17 @@ public class TeacherManager implements TeacherManagerInterface
     {
         return dalfacade.teacherStudentList(classid);
     }
+    
+    /**
+     * gets all the teachers in the database
+     * @return teachers
+     * @throws AttendanceAutomationDalException 
+     */
+    @Override
+    public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException
+    {
+        return dalfacade.getAllTeachers();
+    }
 
     /**
      * get the ObservableList of classes

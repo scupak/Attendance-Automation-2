@@ -348,4 +348,10 @@ public class ModelFacade implements ModelFacadeInterface
         teachermodel.setCurrentClass(currentClass);
     }
 
+    @Override
+    public String hashPassword(String password)
+    {
+       return basemodel.hashPassword(password);
+    }
+
 }

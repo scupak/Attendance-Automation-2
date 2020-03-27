@@ -7,12 +7,13 @@ package attendance.automation.BLL.Interface;
 
 
 
+
 /**
  *
  * @author SKRUMM
  */
 public interface BLLFacadeInterface extends StudentManagerInterface, TeacherManagerInterface
 {
-    
+    public String hashPassword(String password);
    
 }
