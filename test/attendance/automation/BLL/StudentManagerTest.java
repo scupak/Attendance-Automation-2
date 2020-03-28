@@ -108,7 +108,7 @@ public class StudentManagerTest {
     public void testCheckCredStudent() throws Exception {
         System.out.println("checkCredStudent");
         Student s = new Student("djkghsl", "mads69", "password", 0, "monday", 0);
-        StudentManager instance = new StudentManager(DALFacadeFactory.CreateDALFacade(DALFacadeFactory.DALFacadeTypes.PRODUCTION));
+        StudentManager instance = new StudentManager(DALFacadeFactory.CreateDALFacade(DALFacadeFactory.DALFacadeTypes.MOCK));
         boolean expResult = true;
         boolean result = instance.checkCredStudent(s);
         assertEquals(expResult, result);
