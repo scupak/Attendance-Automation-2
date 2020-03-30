@@ -270,5 +270,15 @@ public class BLLFacade implements BLLFacadeInterface
          
      }
 
+    @Override
+    public String getmostabsentdayforstudent(Student currentStudent) throws AttendanceAutomationDalException {
+        return studentmanager.getmostabsentdayforstudent(currentStudent);
+    }
+
+    @Override
+    public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
+       return studentmanager.updateStudentMostAbsentDay(currentStudent, mostabsentdayforstudent);
+    }
+
    
 }

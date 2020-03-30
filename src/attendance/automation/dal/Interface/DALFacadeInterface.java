@@ -16,6 +16,10 @@ import attendance.automation.be.Student;
 public interface DALFacadeInterface extends MockDataInterface, StudentDBDAOInterface, TeacherDBDAOInterface
 {
 
+   
+
+   
+
     
     
    

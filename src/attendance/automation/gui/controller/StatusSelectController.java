@@ -134,8 +134,10 @@ public class StatusSelectController implements Initializable
            anchorpanenode.updateAnchorPaneNodeStudentDay();
            stage.close();
         }
-        //update the StudentabsenceProcent for this studeny
-         modelfacade.updateStudentabsenceProcent(modelfacade.getCurrentStudent(), modelfacade.getabsenceProcentforstudent(modelfacade.getCurrentStudent()) );
+        //update the StudentabsenceProcent for this student
+        // modelfacade.updateStudentabsenceProcent(modelfacade.getCurrentStudent(), modelfacade.getabsenceProcentforstudent(modelfacade.getCurrentStudent()) );
+         //update the MostAbsentDay for this student
+        // modelfacade.updateStudentMostAbsentDay(modelfacade.getCurrentStudent(),modelfacade.getmostabsentdayforstudent(modelfacade.getCurrentStudent()));
         
         }
         catch(AttendanceAutomationDalException ex){

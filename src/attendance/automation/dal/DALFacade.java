@@ -296,6 +296,11 @@ public class DALFacade implements DALFacadeInterface
       return  studentdbdao.updateStudentabsenceProcent(currentStudent, absenceProcentforstudent);
     }
 
+    @Override
+    public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
+       return studentdbdao.updateStudentMostAbsentDay(currentStudent, mostabsentdayforstudent);
+    }
+
     
     
 

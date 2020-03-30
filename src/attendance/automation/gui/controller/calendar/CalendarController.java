@@ -67,7 +67,11 @@ public class CalendarController implements Initializable{
         try
         {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
+             //update the StudentabsenceProcent in the database
             modelfacade.updateStudentabsenceProcent(modelfacade.getCurrentStudent(), modelfacade.getabsenceProcentforstudent(modelfacade.getCurrentStudent()) );
+            //update the MostAbsentDay for this student
+             modelfacade.updateStudentMostAbsentDay(modelfacade.getCurrentStudent(),modelfacade.getmostabsentdayforstudent(modelfacade.getCurrentStudent()));
+            
             maincalendarpane.getChildren().setAll(pane);
         } catch (IOException ex)
         {

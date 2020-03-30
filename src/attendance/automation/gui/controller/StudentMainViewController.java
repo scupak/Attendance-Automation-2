@@ -274,8 +274,10 @@ public class StudentMainViewController implements Initializable
         {
             modelfacade.setDayStatus(0);
         }
-        
+         //update the StudentabsenceProcent for this student
         modelfacade.updateStudentabsenceProcent(modelfacade.getCurrentStudent(), modelfacade.getabsenceProcentforstudent(modelfacade.getCurrentStudent()) );
+        //update the MostAbsentDay for this student
+         modelfacade.updateStudentMostAbsentDay(modelfacade.getCurrentStudent(),modelfacade.getmostabsentdayforstudent(modelfacade.getCurrentStudent()));
         thankYouMessage();
         }
         catch(AttendanceAutomationDalException ex){

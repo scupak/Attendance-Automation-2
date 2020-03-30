@@ -127,5 +127,10 @@ public interface StudentManagerInterface
     
     
     public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException ;
+    
+    public String getmostabsentdayforstudent(Student currentStudent) throws AttendanceAutomationDalException ;
+    
+    
+   public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException ;
      
 }

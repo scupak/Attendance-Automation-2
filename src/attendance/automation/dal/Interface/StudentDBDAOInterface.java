@@ -93,4 +93,6 @@ public interface StudentDBDAOInterface
     
     
     public boolean updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException;
+    
+     public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException;
 }

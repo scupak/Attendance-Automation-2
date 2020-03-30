@@ -364,4 +364,15 @@ public class ModelFacade implements ModelFacadeInterface
         studentmodel.updateStudentabsenceProcent(currentStudent, absenceProcentforstudent);
     }
 
+    @Override
+    public String getmostabsentdayforstudent(Student currentStudent) throws AttendanceAutomationDalException {
+        
+        return studentmodel.getmostabsentdayforstudent(currentStudent);
+    }
+
+    @Override
+    public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
+        return studentmodel.updateStudentMostAbsentDay(currentStudent, mostabsentdayforstudent);
+    }
+
 }

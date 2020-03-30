@@ -534,7 +534,50 @@ public class StudentDBDAO implements StudentDBDAOInterface
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
         }
     }
+
+    @Override
+    public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
+        
+        if(!StudentExist(currentStudent))
+        {
+            
+            return false;
+        }
+        
+        try (Connection con = dbcon.getConnection())
+        {
+            
+
+            String sql = "UPDATE [Student] SET dayMostAbsent = ? WHERE username = ? ";
+
+           
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+           
+            ps.setString(1,  mostabsentdayforstudent);
+            ps.setString(2, currentStudent.getUsername());
+           int updatedRows = ps.executeUpdate();
+
+             return updatedRows > 0;
+            
+            
+            
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Could not update the student's day!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+            throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
+        }
+    }
      
+    public static void main(String[] args) throws IOException, AttendanceAutomationDalException {
+        
+        StudentDBDAO test = new StudentDBDAO();
+          Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);  
+        System.err.println(test.updateStudentMostAbsentDay(se, "monday"));
+        
+        
+    }
   
 }
 

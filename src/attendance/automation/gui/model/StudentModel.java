@@ -156,5 +156,15 @@ public class StudentModel implements StudentModelInterface
     public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
         bllfacade.updateStudentabsenceProcent(currentStudent,absenceProcentforstudent);
     }
+
+    @Override
+    public String getmostabsentdayforstudent(Student currentStudent) throws AttendanceAutomationDalException {
+      return  bllfacade.getmostabsentdayforstudent(currentStudent);
+    }
+
+    @Override
+    public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
+        return bllfacade.updateStudentMostAbsentDay(currentStudent, mostabsentdayforstudent);
+    }
     
 }

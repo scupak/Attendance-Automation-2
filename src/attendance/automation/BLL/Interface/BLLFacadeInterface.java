@@ -18,5 +18,9 @@ import attendance.automation.dal.AttendanceAutomationDalException;
 public interface BLLFacadeInterface extends StudentManagerInterface, TeacherManagerInterface
 {
     public String hashPassword(String password);
+
+  
+
+    
    
 }

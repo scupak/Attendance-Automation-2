@@ -7,13 +7,17 @@ package attendance.automation.BLL;
 import attendance.automation.BLL.Interface.StudentManagerInterface;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
+import attendance.automation.be.WeekDayCounter;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.dal.DALFacade;
 import attendance.automation.dal.Interface.DALFacadeInterface;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import javafx.scene.chart.XYChart;
 
 /**
@@ -122,6 +126,10 @@ public class StudentManager implements StudentManagerInterface
     {
         StudentManager test = new StudentManager(new DALFacade());
         Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);  
+        
+        System.out.println(test.getmostabsentdayforstudent(se));
+        
+        
     }
         
         
@@ -298,6 +306,129 @@ public class StudentManager implements StudentManagerInterface
     public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
         
         dalfacade.updateStudentabsenceProcent( currentStudent, absenceProcentforstudent);
+    }
+
+    @Override
+    public String getmostabsentdayforstudent(Student currentStudent) throws AttendanceAutomationDalException {
+        
+         ArrayList<StudentDay> p = new ArrayList<>();
+         ArrayList<WeekDayCounter> WeekDayCounters = new ArrayList<>();
+        int monday = 0;
+        WeekDayCounter mondayc = new WeekDayCounter("monday", 0);
+        int tuesday = 0;
+         WeekDayCounter tuesdayc = new WeekDayCounter("tuesday", 0);
+        int wednesday = 0;
+        WeekDayCounter wednesdayc = new WeekDayCounter("wednesday", 0);
+        int thursday = 0;
+        WeekDayCounter thursdayc = new WeekDayCounter("thursday", 0);
+        int friday = 0;
+        WeekDayCounter fridayc = new WeekDayCounter("friday", 0);
+        int saturday = 0;
+        int sunday = 0;
+        
+        for (StudentDay studentDay : getAllDaysForAstudent(currentStudent))
+        {
+            if(studentDay.getAttendanceStatus() == StudentDay.notAttendant)
+            {
+                p.add(studentDay);
+            }
+            
+        }
+        
+        if(p.isEmpty()){
+        return "none";
+        
+        }
+        
+        for (StudentDay day : p)
+        {
+            if("monday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                monday++;
+                mondayc.setCounter(mondayc.getCounter() + 1);
+                
+            }
+            else if("tuesday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                tuesday++;
+               tuesdayc.setCounter(tuesdayc.getCounter() + 1);
+            }
+            else if("wednesday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                wednesday++;
+                wednesdayc.setCounter(wednesdayc.getCounter() + 1);
+                
+            }
+            else if("thursday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                thursday++;
+                 thursdayc.setCounter(thursdayc.getCounter() + 1);
+                
+            }
+            else if("friday".equals(day.getDate().getDayOfWeek().toString().toLowerCase()))
+            {
+                friday++;
+                fridayc.setCounter(fridayc.getCounter() + 1);
+                
+            }
+            
+            
+             
+             
+        } 
+        Comparator<WeekDayCounter> bycounter = (WeekDayCounter day1, WeekDayCounter day2) -> day2.getCounter().compareTo(day1.getCounter());
+           
+             WeekDayCounters.add(mondayc);
+             WeekDayCounters.add(tuesdayc);
+             WeekDayCounters.add(wednesdayc);
+             WeekDayCounters.add(thursdayc);
+             WeekDayCounters.add(fridayc);
+            
+            WeekDayCounters.sort(bycounter);
+            
+            for (WeekDayCounter WeekDayCounter1 : WeekDayCounters) {
+                
+                System.out.println(WeekDayCounter1);
+                
+            }
+            
+            WeekDayCounter mostabsentday = WeekDayCounters.get(0);
+            String mostabsentdayname = WeekDayCounters.get(0).getWeekday();
+            WeekDayCounters.remove(0);
+            
+            System.out.println("........................................................");
+            
+         int dayTextCounter = 0;
+            
+            for (WeekDayCounter WeekDayCounter1 : WeekDayCounters) {
+  
+                System.out.println(WeekDayCounter1);
+                
+                if(Objects.equals(mostabsentday.getCounter(), WeekDayCounter1.getCounter()) && dayTextCounter == 0 ) {
+                    
+                    dayTextCounter++;
+                    mostabsentdayname = mostabsentdayname +" "+ WeekDayCounter1.getWeekday();
+                    
+                }
+                else if(Objects.equals(mostabsentday.getCounter(), WeekDayCounter1.getCounter()) && dayTextCounter == 1){
+                
+                     dayTextCounter++;
+                     mostabsentdayname = mostabsentdayname +"...";
+                
+                
+                }
+                
+            }
+           
+       
+    
+        return mostabsentdayname;
+    }
+
+    @Override
+    public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
+        
+      return dalfacade.updateStudentMostAbsentDay( currentStudent, mostabsentdayforstudent);
     }
    
      
