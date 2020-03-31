@@ -170,20 +170,21 @@ public class TeacherClassViewController implements Initializable
     {
         if (event.getClickCount() == 2)
         {
-            modelfacade.setCurrentStudent(classTableView.getSelectionModel().getSelectedItem());
-            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
-            Parent root = loader.load();
-            StudentMainViewController SCVController = loader.getController();
+            if( classTableView.getSelectionModel().getSelectedItem() != null){  
+                modelfacade.setCurrentStudent(classTableView.getSelectionModel().getSelectedItem());
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle(classTableView.getSelectionModel().getSelectedItem().getName());
-            stage.show();
-            
-            Stage oldstage = (Stage) ((Node) classTableView).getScene().getWindow();
-            oldstage.close();
-            
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
+                Parent root = loader.load();
+                StudentMainViewController SCVController = loader.getController();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle(classTableView.getSelectionModel().getSelectedItem().getName());
+                stage.show();
+
+                Stage oldstage = (Stage) ((Node) classTableView).getScene().getWindow();
+                oldstage.close();
+        }
         }
     }
 
