@@ -234,7 +234,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
             java.sql.Date sqlDate = java.sql.Date.valueOf(sd.getDate());
 
             String sql = "SELECT id FROM [Day] WHERE date = ?";
-            String sql2 = "UPDATE [Student_day] SET status = ? WHERE studentUsername = ? AND dayId = ?";
+            String sql2 = "UPDATE [Student_day] SET status = ?, last_changed = GETDATE()  WHERE studentUsername = ? AND dayId = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
             PreparedStatement ps2 = con.prepareStatement(sql2);
@@ -279,7 +279,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
             String sql = "SELECT id FROM [Day] WHERE date = ?";
-            String sql2 = "UPDATE [Student_day] SET status = ? WHERE studentUsername = ? AND dayId = ?";
+            String sql2 = "UPDATE [Student_day] SET status = ?, last_changed = GETDATE() WHERE studentUsername = ? AND dayId = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
             PreparedStatement ps2 = con.prepareStatement(sql2);
