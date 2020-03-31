@@ -24,7 +24,7 @@ public interface TeacherModelInterface
     
     public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException;
 
-    public ObservableList<Class> classList(String username);
+    public ObservableList<Class> classList(String username) throws AttendanceAutomationDalException;
     
      public ObservableList<Student> teacherStudentList(int classid) throws AttendanceAutomationDalException;
      

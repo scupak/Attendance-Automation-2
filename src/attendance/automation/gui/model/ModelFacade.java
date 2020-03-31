@@ -62,7 +62,7 @@ public class ModelFacade implements ModelFacadeInterface
      * @return the list of teachers
      */
     @Override
-    public ObservableList<Class> classList(String username) {
+    public ObservableList<Class> classList(String username) throws AttendanceAutomationDalException {
         return teachermodel.classList(username);
     }
 

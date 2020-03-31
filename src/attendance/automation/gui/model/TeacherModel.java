@@ -51,7 +51,7 @@ public class TeacherModel implements TeacherModelInterface
     }
             
     @Override
-    public ObservableList<Class> classList(String username)
+    public ObservableList<Class> classList(String username) throws AttendanceAutomationDalException
     {
         return bllfacade.getTeacherClasses(username);
     }

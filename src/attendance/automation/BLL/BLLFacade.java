@@ -246,7 +246,7 @@ public class BLLFacade implements BLLFacadeInterface
     }
     
     @Override
-    public ObservableList<Class> getTeacherClasses(String username)
+    public ObservableList<Class> getTeacherClasses(String username) throws AttendanceAutomationDalException
     {
         return teachermanager.getTeacherClasses(username);
     }

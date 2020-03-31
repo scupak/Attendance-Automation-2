@@ -27,6 +27,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import attendance.automation.be.Class;
+import attendance.automation.dal.AttendanceAutomationDalException;
 
 /**
  * FXML Controller class
@@ -71,7 +72,11 @@ public class TeacherMainViewController implements Initializable
         //A check to see if were woriking with the same instance of appmodel.
         System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
         
-        populateList(modelfacade.getCurrentTeacher().getUsername());
+        try {
+            populateList(modelfacade.getCurrentTeacher().getUsername());
+        } catch (AttendanceAutomationDalException ex) {
+            Logger.getLogger(TeacherMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         welcomeMessage.setText("Welcome " + modelfacade.getCurrentTeacher().getName() + "!");
         welcomeMessage.setAlignment(Pos.CENTER);
     }
@@ -121,7 +126,7 @@ public class TeacherMainViewController implements Initializable
      * Populates the ListView
      * @param username
      */
-    public void populateList(String username)
+    public void populateList(String username) throws AttendanceAutomationDalException
     {
         classListView.setItems(modelfacade.classList(username));
     }

@@ -36,11 +36,11 @@ public class StudentDBDAO implements StudentDBDAOInterface
     final static int DAY_OFF = 2;
    
 
-    private final DatabaseConnector dbcon;
+    private final ConnectionPool conPool;  
 
-    public StudentDBDAO() throws IOException
+    public StudentDBDAO() throws IOException, Exception
     {
-        dbcon = new DatabaseConnector();
+        this.conPool = ConnectionPool.getInstance();
        
     }
 
@@ -49,12 +49,15 @@ public class StudentDBDAO implements StudentDBDAOInterface
      * @return students list
      * @throws AttendanceAutomationDalException 
      */
+    @Override
     public List<Student> getAllStudents() throws AttendanceAutomationDalException
     {
         ArrayList<Student> students = new ArrayList<>();
+        Connection con = conPool.checkOut();
 
-        try (Connection con = dbcon.getConnection())
+        try 
         {
+            
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Student");
             ResultSet rs = ps.executeQuery();
 
@@ -77,6 +80,11 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
+        
     }
 
     /**
@@ -87,13 +95,14 @@ public class StudentDBDAO implements StudentDBDAOInterface
      */
     public Student getStudent(Student s) throws AttendanceAutomationDalException
     {
+        Connection con = conPool.checkOut();
         if (!StudentExist(s))
         {
             return null;
         }
 
         Student returnstudent;
-        try (Connection con = dbcon.getConnection())
+        try
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Student Where username = ?");
 
@@ -124,6 +133,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not find the student in the dataabase", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
 
     /**
@@ -134,7 +147,8 @@ public class StudentDBDAO implements StudentDBDAOInterface
      */
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException
     {
-        try (Connection con = dbcon.getConnection())
+        Connection con = conPool.checkOut();
+        try 
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Student WHERE username = ? ");
             ps.setString(1, s.getUsername());
@@ -154,6 +168,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not find the student in the dataabase", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
 
     
@@ -166,7 +184,8 @@ public class StudentDBDAO implements StudentDBDAOInterface
     @Override
     public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
-        try (Connection con = dbcon.getConnection())
+         Connection con = conPool.checkOut();
+        try
         {
             Date date = new Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -210,6 +229,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
         return DAY_OFF;
     }
 
@@ -222,13 +245,14 @@ public class StudentDBDAO implements StudentDBDAOInterface
     @Override
     public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException
     {
+        Connection con = conPool.checkOut();
         if(!doesStudentDayExist(sd.getStudent().getUsername(), sd.getDate()))
         {
             
             return false;
         }
         
-        try (Connection con = dbcon.getConnection())
+        try
         {
             
             java.sql.Date sqlDate = java.sql.Date.valueOf(sd.getDate());
@@ -263,6 +287,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
     
     /**
@@ -271,9 +299,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
      * @param username 
      */
     @Override
-    public void setDayStatus(int status, String username)
+    public void setDayStatus(int status, String username) throws AttendanceAutomationDalException
     {
-        try (Connection con = dbcon.getConnection())
+        Connection con = conPool.checkOut();
+        try
         {
             Date date = new Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -304,6 +333,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             System.out.println("SQL Error: setDayStatus  " + ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
 
     }
 
@@ -316,8 +349,8 @@ public class StudentDBDAO implements StudentDBDAOInterface
     @Override
     public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException {
         ArrayList<StudentDay> studentdays = new ArrayList<>();
-        
-        try ( Connection con = dbcon.getConnection()) {
+        Connection con = conPool.checkOut();
+        try  {
             PreparedStatement ps = con.prepareStatement("SELECT "
                     + "Student.username, Student.name, Student.password,Student.absenceProcent,Student.dayMostAbsent,Student.dayMostAbsent,Student.classID, Student_day.dayId,Student_day.status,Day.weekDay, Day.date  "
                     + "FROM Student "
@@ -358,6 +391,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
         }
+         finally
+        {
+            conPool.checkIn(con);
+        }
     }
 
     /**
@@ -370,7 +407,8 @@ public class StudentDBDAO implements StudentDBDAOInterface
     @Override
     public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException
     {
-        try (Connection con = dbcon.getConnection())
+        Connection con = conPool.checkOut();
+        try 
         {
             java.sql.Date sqlDate = java.sql.Date.valueOf(date);
 
@@ -401,6 +439,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("Could not find day in database", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
       
        
     }
@@ -415,6 +457,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
     @Override
     public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException
     {
+        Connection con = conPool.checkOut();
         if(!doesStudentDayExist(s.getUsername(), date))
         {
             return null;
@@ -422,7 +465,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         StudentDay returnStudentDay;
           
         
-         try (Connection con = dbcon.getConnection())
+         try
         {
             java.sql.Date sqlDate = java.sql.Date.valueOf(date);
 
@@ -459,6 +502,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("Could not find day in database", ex);
         }
+         finally
+        {
+            conPool.checkIn(con);
+        }
     }
 
        
@@ -468,14 +515,14 @@ public class StudentDBDAO implements StudentDBDAOInterface
     public boolean updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
         
         System.err.println("updateStudentabsenceProcent");
-        
+        Connection con = conPool.checkOut();
         if(!StudentExist(currentStudent))
         {
             
             return false;
         }
         
-        try (Connection con = dbcon.getConnection())
+        try 
         {
             
 
@@ -498,19 +545,23 @@ public class StudentDBDAO implements StudentDBDAOInterface
             JOptionPane.showMessageDialog(null, "Could not update the student's day!", "Error", JOptionPane.ERROR_MESSAGE);
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
     
      protected boolean updateStudentpassword(Student currentStudent) throws AttendanceAutomationDalException {
         
         System.err.println("updateStudentabsenceProcent");
-        
+          Connection con = conPool.checkOut();
         if(!StudentExist(currentStudent))
         {
             
             return false;
         }
         
-        try (Connection con = dbcon.getConnection())
+        try 
         {
             
 
@@ -533,18 +584,22 @@ public class StudentDBDAO implements StudentDBDAOInterface
             JOptionPane.showMessageDialog(null, "Could not update the student's day!", "Error", JOptionPane.ERROR_MESSAGE);
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
 
     @Override
     public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
-        
+         Connection con = conPool.checkOut();
         if(!StudentExist(currentStudent))
         {
             
             return false;
         }
         
-        try (Connection con = dbcon.getConnection())
+        try
         {
             
 
@@ -568,9 +623,13 @@ public class StudentDBDAO implements StudentDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
      
-    public static void main(String[] args) throws IOException, AttendanceAutomationDalException {
+    public static void main(String[] args) throws IOException, AttendanceAutomationDalException, Exception {
         
         StudentDBDAO test = new StudentDBDAO();
           Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);  
