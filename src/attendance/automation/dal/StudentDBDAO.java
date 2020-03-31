@@ -17,8 +17,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -574,7 +577,9 @@ public class StudentDBDAO implements StudentDBDAOInterface
         
         StudentDBDAO test = new StudentDBDAO();
           Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);  
-        System.err.println(test.updateStudentMostAbsentDay(se, "monday"));
+        //System.err.println(test.updateStudentMostAbsentDay(se, "monday"));
+        
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss", Locale.ENGLISH)));
         
         
     }
