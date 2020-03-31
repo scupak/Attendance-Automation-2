@@ -185,6 +185,7 @@ public class FullCalendarView {
      * @param yearMonth year and month of month to render
      */
     public void populateCalendar(YearMonth yearMonth) throws AttendanceAutomationDalException {
+        
         modelfacade.setThreadcounter(0);
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
@@ -229,6 +230,9 @@ public class FullCalendarView {
             Logger.getLogger(FullCalendarView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        System.out.println(".............................................");
+        System.out.println(allCalendarDays.get(0).getDate());
+        System.out.println(allCalendarDays.get(allCalendarDays.size() -1).getDate());
         
         // Change the title of the calendar
         calendarTitle.setText(yearMonth.getMonth().toString() + " " + String.valueOf(yearMonth.getYear()));

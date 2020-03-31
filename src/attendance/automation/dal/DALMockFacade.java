@@ -21,6 +21,10 @@ import javafx.collections.ObservableList;
  * @author anton
  */
 public class DALMockFacade implements DALFacadeInterface{
+
+    public DALMockFacade() {
+    }
+    
     
     /*lav en liste af students/dage som du kan give til  */
 
@@ -113,9 +117,9 @@ public class DALMockFacade implements DALFacadeInterface{
     @Override
     public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException {
         ObservableList<StudentDay> studentdayList = FXCollections.observableArrayList(
-               new StudentDay(LocalDate.of(2020, Month.MARCH, 21), student, 0),
-                new StudentDay(LocalDate.of(2020, Month.MARCH, 22), student, 0),
-                new StudentDay(LocalDate.of(2020, Month.MARCH, 23), student, 0)
+               new StudentDay(LocalDate.of(2020, Month.MARCH, 20), student, 1),
+                new StudentDay(LocalDate.of(2020, Month.MARCH, 23), student, 0),
+                new StudentDay(LocalDate.of(2020, Month.MARCH, 24), student, 0)
                
            
         );

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 import javafx.collections.ObservableList;
 import attendance.automation.be.Class;
+import attendance.automation.dal.DALFacadeFactory;
 /**
  *
  * @author SKRUMM

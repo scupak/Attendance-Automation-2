@@ -10,6 +10,7 @@ import attendance.automation.be.StudentDay;
 import attendance.automation.dal.DALFacadeFactory;
 import attendance.automation.dal.DALMockFacade;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import javafx.scene.chart.XYChart;
 import org.junit.After;
@@ -106,13 +107,16 @@ public class StudentManagerTest {
 //     */
     @Test
     public void testCheckCredStudent() throws Exception {
+        //Arrange
         System.out.println("checkCredStudent");
         Student s = new Student("djkghsl", "mads69", "password", 0, "monday", 0);
         StudentManager instance = new StudentManager(DALFacadeFactory.CreateDALFacade(DALFacadeFactory.DALFacadeTypes.MOCK));
         boolean expResult = true;
+        //Act
         boolean result = instance.checkCredStudent(s);
+        //Assert
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
+        
         
     }
 //
@@ -218,38 +222,78 @@ public class StudentManagerTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-//
-//    /**
-//     * Test of pieChartData method, of class StudentManager.
-//     */
-//    @Test
-//    public void testPieChartData() throws Exception {
-//        System.out.println("pieChartData");
-//        Student s = null;
-//        int attendanceStatusCheck = 0;
-//        StudentManager instance = null;
-//        double expResult = 0.0;
-//        double result = instance.pieChartData(s, attendanceStatusCheck);
-//        assertEquals(expResult, result, 0.0);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setPresence method, of class StudentManager.
-//     */
-//    @Test
-//    public void testSetPresence() throws Exception {
-//        System.out.println("setPresence");
-//        Student s = null;
-//        int attendanceStatusCheck = 0;
-//        String columName = "";
-//        StudentManager instance = null;
-//        XYChart.Series expResult = null;
-//        XYChart.Series result = instance.setPresence(s, attendanceStatusCheck, columName);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//    
+
+    /**
+     * Test of pieChartData method, of class StudentManager.
+     */
+    @Test
+    public void testPieChartData() throws Exception {
+        //Arrange
+        System.out.println("pieChartData");
+        Student s  = new Student("djkghsl", "mads69", "password", 0, "monday", 0);
+        int attendanceStatusCheck = 0;
+        StudentManager instance = new StudentManager(DALFacadeFactory.CreateDALFacade(DALFacadeFactory.DALFacadeTypes.MOCK));
+        double expResult = 66.6;
+        //Act
+        double result = instance.pieChartData(s, attendanceStatusCheck);
+        //Assert
+        assertEquals(expResult, result,  1E-1);
+        // TODO review the generated test code and remove the default call to fail.
+       
+    }
+
+    /**
+     * Test of setPresence method, of class StudentManager.
+     */
+    @Test
+    public void testSetPresence() throws Exception {
+        
+        //Arrange
+        System.out.println("setPresence");
+        Student s = new Student("djkghsl", "mads69", "password", 0, "monday", 0);
+        int attendanceStatusCheck = 0;
+        String columName = "";
+        StudentManager instance = new StudentManager(DALFacadeFactory.CreateDALFacade(DALFacadeFactory.DALFacadeTypes.MOCK));
+        
+        XYChart.Series expResult = new XYChart.Series<>();
+        
+        
+        expResult.setName(columName);
+        expResult.getData().add(new XYChart.Data("Monday", 1));
+        expResult.getData().add(new XYChart.Data("Tuesday", 1));
+        expResult.getData().add(new XYChart.Data("Wednesday", 0));
+        expResult.getData().add(new XYChart.Data("Thursday",0));
+        expResult.getData().add(new XYChart.Data("Friday", 0));
+        
+        
+        
+        //Act
+        XYChart.Series result = instance.setPresence(s, attendanceStatusCheck, columName);
+     
+        //Assert
+        System.out.println(Arrays.toString(expResult.getData().toArray()));
+        System.out.println(Arrays.toString(result.getData().toArray()));
+        
+        
+        assertEquals(Arrays.toString(expResult.getData().toArray()), Arrays.toString(result.getData().toArray()));
+       
+    }
+    
+    
+     @Test
+    public void getmostabsentdayforstudent() throws Exception{
+        
+    //Arrange    
+    System.out.println("getmostabsentdayforstudent");
+    Student s = new Student("djkghsl", "mads69", "password", 0, "monday", 0);
+    StudentManager instance = new StudentManager(DALFacadeFactory.CreateDALFacade(DALFacadeFactory.DALFacadeTypes.MOCK));
+    String expResult = "monday tuesday";
+    //Act 
+    String result = instance.getmostabsentdayforstudent(s);
+    //Assert
+         assertEquals(expResult, result);
+    
+    }
+    
+    
 }
