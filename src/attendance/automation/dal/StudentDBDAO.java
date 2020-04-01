@@ -405,8 +405,8 @@ public class StudentDBDAO implements StudentDBDAOInterface
     @Override
     public List<StudentDay> getAllDaysForStudent(Student currentStudent, LocalDate startdate, LocalDate enddate) throws AttendanceAutomationDalException {
          ArrayList<StudentDay> studentdays = new ArrayList<>();
-        
-        try ( Connection con = dbcon.getConnection()) {
+        Connection con = conPool.checkOut();
+        try  {
             
             
              java.sql.Date sqlstartDate = java.sql.Date.valueOf(startdate);
@@ -455,6 +455,10 @@ public class StudentDBDAO implements StudentDBDAOInterface
             JOptionPane.showMessageDialog(null, "Could not get all students the database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
+        }
+         finally
+        {
+            conPool.checkIn(con);
         }
     }
 
