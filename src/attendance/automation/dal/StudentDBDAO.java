@@ -690,7 +690,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
         }
     }
      
-    public static void main(String[] args) throws IOException, AttendanceAutomationDalException {
+    public static void main(String[] args) throws IOException, AttendanceAutomationDalException, Exception {
         ArrayList<StudentDay> studentdays = new ArrayList<>();
         StudentDBDAO test = new StudentDBDAO();
           Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);  
