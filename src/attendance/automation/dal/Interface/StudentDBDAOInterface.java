@@ -73,6 +73,8 @@ public interface StudentDBDAOInterface
      */
     public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException;
     
+    public List<StudentDay> getAllDaysForStudent(Student currentStudent, LocalDate date, LocalDate date0) throws AttendanceAutomationDalException;
+    
     /**
      * Checks if the students day exists
      * @param username

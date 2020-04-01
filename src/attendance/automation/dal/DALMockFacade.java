@@ -173,6 +173,11 @@ public class DALMockFacade implements DALFacadeInterface{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<StudentDay> getAllDaysForStudent(Student currentStudent, LocalDate date, LocalDate date0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
     
 }

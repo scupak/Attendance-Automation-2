@@ -167,6 +167,10 @@ public class StudentManager implements StudentManagerInterface
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
         return dalfacade.getAllDaysForStudent(student);
     }
+    @Override
+    public List<StudentDay> getAllDaysForAstudent(Student currentStudent, LocalDate date, LocalDate date0) throws AttendanceAutomationDalException {
+       return dalfacade.getAllDaysForStudent(currentStudent,date,date0);
+    }
 
     /**
      * Checks wether or not the given student exists in the DB
@@ -430,6 +434,8 @@ public class StudentManager implements StudentManagerInterface
         
       return dalfacade.updateStudentMostAbsentDay( currentStudent, mostabsentdayforstudent);
     }
+
+    
    
      
 }

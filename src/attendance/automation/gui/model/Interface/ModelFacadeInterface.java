@@ -6,6 +6,7 @@
 package attendance.automation.gui.model.Interface;
 
 import attendance.automation.be.Student;
+import java.time.LocalDate;
 
 /**
  *
@@ -13,6 +14,8 @@ import attendance.automation.be.Student;
  */
 public interface ModelFacadeInterface extends BaseModelInterface, MockModelInterface, StudentModelInterface, TeacherModelInterface
 {
+
+  
 
    
 

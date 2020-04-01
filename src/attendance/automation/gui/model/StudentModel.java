@@ -140,6 +140,12 @@ public class StudentModel implements StudentModelInterface
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
         return bllfacade.getAllDaysForAstudent(student);
     }
+    
+    @Override
+    public List<StudentDay> getAllDaysForAstudent(Student currentStudent, LocalDate date, LocalDate date0) throws AttendanceAutomationDalException {
+       return bllfacade.getAllDaysForAstudent(currentStudent,date,date0);
+    }
+    
 
     @Override
     public List<Student> getallStudents() throws AttendanceAutomationDalException {
@@ -166,5 +172,7 @@ public class StudentModel implements StudentModelInterface
     public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
         return bllfacade.updateStudentMostAbsentDay(currentStudent, mostabsentdayforstudent);
     }
+
+    
     
 }

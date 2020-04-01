@@ -6,6 +6,9 @@
 package attendance.automation.dal.Interface;
 
 import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
+import java.time.LocalDate;
+import java.util.List;
 
 
 
@@ -15,6 +18,8 @@ import attendance.automation.be.Student;
  */
 public interface DALFacadeInterface extends MockDataInterface, StudentDBDAOInterface, TeacherDBDAOInterface
 {
+
+  
 
    
 

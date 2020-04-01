@@ -1,5 +1,7 @@
 package attendance.automation.gui.controller.calendar;
 
+import attendance.automation.be.Student;
+import attendance.automation.be.StudentDay;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import javafx.scene.layout.AnchorPane;
@@ -9,6 +11,10 @@ import javafx.scene.text.Text;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -194,7 +200,7 @@ public class FullCalendarView {
             calendarDate = calendarDate.minusDays(1);
         }
         // Populate the calendar with day numbers
-        ExecutorService executor = Executors.newCachedThreadPool();
+//        ExecutorService executor = Executors.newCachedThreadPool();
         for (AnchorPaneNode ap : allCalendarDays) {
             if (ap.getChildren().size() != 0) {
                 ap.getChildren().remove(0);
@@ -210,29 +216,51 @@ public class FullCalendarView {
             
             
             ap.setDate(calendarDate);
-            executor.execute(new GetStudentDayTask(ap, calendarDate, modelfacade));
+//            executor.execute(new GetStudentDayTask(ap, calendarDate, modelfacade));
             ap.updateAnchorPaneNodeStudentDay();
             ap.setTopAnchor(txt, 16.0);
             ap.setLeftAnchor(txt, 16.0);
             ap.getChildren().add(txt);
             calendarDate = calendarDate.plusDays(1);
         }
-        executor.shutdown();
-        try {
-            if(executor.awaitTermination(20, TimeUnit.SECONDS)){
-                for (AnchorPaneNode ap : allCalendarDays) {
-                    ap.updateAnchorPaneNodeStudentDay();
-                }
-            }
-        } catch (InterruptedException ex) {
-            System.out.println("the treads were interrupted");
-            ex.printStackTrace();
-            Logger.getLogger(FullCalendarView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        executor.shutdown();
+//        try {
+//            if(executor.awaitTermination(20, TimeUnit.SECONDS)){
+//                for (AnchorPaneNode ap : allCalendarDays) {
+//                    ap.updateAnchorPaneNodeStudentDay();
+//                }
+//            }
+//        } catch (InterruptedException ex) {
+//            System.out.println("the treads were interrupted");
+//            ex.printStackTrace();
+//            Logger.getLogger(FullCalendarView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
         System.out.println(".............................................");
         System.out.println(allCalendarDays.get(0).getDate());
         System.out.println(allCalendarDays.get(allCalendarDays.size() -1).getDate());
+        
+        ArrayList<StudentDay> studentdays = new ArrayList<>();
+        
+      studentdays.addAll( modelfacade.getAllDaysForAstudent(modelfacade.getCurrentStudent(),allCalendarDays.get(0).getDate(),allCalendarDays.get(allCalendarDays.size() -1).getDate()));
+        System.out.println(studentdays.size());
+       Map<LocalDate,StudentDay> studentdaymap = new HashMap();
+       
+        for (StudentDay next : studentdays) {
+            
+            studentdaymap.put(next.getDate(), next);
+            
+            
+        }
+        for (AnchorPaneNode ap : allCalendarDays) {
+            
+            System.out.println(studentdaymap.get(ap.getDate()));
+            ap.setStudentday(studentdaymap.get(ap.getDate()));
+            ap.updateAnchorPaneNodeStudentDay();
+         }
+        
+        
+        
         
         // Change the title of the calendar
         calendarTitle.setText(yearMonth.getMonth().toString() + " " + String.valueOf(yearMonth.getYear()));

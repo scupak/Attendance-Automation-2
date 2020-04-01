@@ -21,9 +21,11 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.util.converter.LocalDateTimeStringConverter;
 import javax.swing.JOptionPane;
 
 
@@ -321,6 +323,8 @@ public class StudentDBDAO implements StudentDBDAOInterface
         ArrayList<StudentDay> studentdays = new ArrayList<>();
         
         try ( Connection con = dbcon.getConnection()) {
+            
+            
             PreparedStatement ps = con.prepareStatement("SELECT "
                     + "Student.username, Student.name, Student.password,Student.absenceProcent,Student.dayMostAbsent,Student.dayMostAbsent,Student.classID, Student_day.dayId,Student_day.status,Day.weekDay, Day.date  "
                     + "FROM Student "
@@ -330,6 +334,62 @@ public class StudentDBDAO implements StudentDBDAOInterface
                     + "ORDER BY  Day.date ASC");
             
             ps.setString(1, student.getUsername());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String username = rs.getString("username");
+                String name = rs.getString("name");
+                String password = rs.getString("password");
+                int absence = rs.getInt("absenceProcent");
+                String dayMostAbsent = rs.getString("dayMostAbsent");
+                int classID = rs.getInt("classID");
+               Student returnstudent = new Student(name, username, password, absence, dayMostAbsent, classID);
+               
+               LocalDate date = rs.getDate("date").toLocalDate();
+               
+               int absenstatus = rs.getInt("status");
+               
+               studentdays.add(new StudentDay(date, returnstudent, absenstatus));
+               
+            
+               
+            }
+            return studentdays;
+
+        } catch (SQLServerException ex) {
+            JOptionPane.showMessageDialog(null, "Could not get all students the database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+            throw new AttendanceAutomationDalException("could not get all students from database", ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Could not get all students the database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+            throw new AttendanceAutomationDalException("could not get all students from database", ex);
+        }
+    }
+    
+    @Override
+    public List<StudentDay> getAllDaysForStudent(Student currentStudent, LocalDate startdate, LocalDate enddate) throws AttendanceAutomationDalException {
+         ArrayList<StudentDay> studentdays = new ArrayList<>();
+        
+        try ( Connection con = dbcon.getConnection()) {
+            
+            
+             java.sql.Date sqlstartDate = java.sql.Date.valueOf(startdate);
+             java.sql.Date sqlendDate = java.sql.Date.valueOf(enddate);
+             
+            PreparedStatement ps = con.prepareStatement("SELECT "
+                    + "Student.username, Student.name, Student.password,Student.absenceProcent,Student.dayMostAbsent,Student.dayMostAbsent,Student.classID, Student_day.dayId,Student_day.status,Day.weekDay, Day.date  "
+                    + "FROM Student "
+                    + "INNER JOIN Student_day ON Student.username = Student_day.studentUsername "
+                    + "inner JOIN Day ON Student_day.dayId = Day.id "
+                    + "WHERE Student.username = ? AND Day.date > ? AND Day.date < ? "
+                    + "ORDER BY  Day.date ASC");
+            
+            ps.setString(1, currentStudent.getUsername());
+            ps.setDate(2, sqlstartDate);
+            ps.setDate(3, sqlendDate);
+            
+            
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -574,15 +634,34 @@ public class StudentDBDAO implements StudentDBDAOInterface
     }
      
     public static void main(String[] args) throws IOException, AttendanceAutomationDalException {
-        
+        ArrayList<StudentDay> studentdays = new ArrayList<>();
         StudentDBDAO test = new StudentDBDAO();
           Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);  
         //System.err.println(test.updateStudentMostAbsentDay(se, "monday"));
         
-        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss", Locale.ENGLISH)));
+       // System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss", Locale.ENGLISH)));
+       
+        LocalDate startdate = LocalDate.of(2020, Month.MARCH, 19);
+        LocalDate enddate = LocalDate.of(2020, Month.MARCH, 25);
+        
+        studentdays.addAll(test.getAllDaysForStudent(se, startdate, enddate));
+        
+        
+        for (Iterator<StudentDay> iterator = studentdays.iterator(); iterator.hasNext();) {
+            StudentDay next = iterator.next();
+            
+            System.out.println(next.toString());
+            
+        }
+        
+        
+       
+       
         
         
     }
+
+    
   
 }
 
