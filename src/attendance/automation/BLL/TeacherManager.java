@@ -23,7 +23,7 @@ public class TeacherManager implements TeacherManagerInterface
     
     private final DALFacade dalfacade;
     
-    public TeacherManager() throws IOException
+    public TeacherManager() throws IOException, Exception
     {
         dalfacade = new DALFacade();
     }
@@ -124,7 +124,7 @@ public class TeacherManager implements TeacherManagerInterface
     }
     
     @Override
-    public ObservableList<Class> getTeacherClasses(String username)
+    public ObservableList<Class> getTeacherClasses(String username) throws AttendanceAutomationDalException 
     {
         return dalfacade.getTeacherClasses(username);
     }

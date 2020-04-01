@@ -44,7 +44,7 @@ public interface TeacherManagerInterface
     
     public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException;
     
-    public ObservableList<Class> getTeacherClasses(String username);
+    public ObservableList<Class> getTeacherClasses(String username)throws AttendanceAutomationDalException;
     
     public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException;
            

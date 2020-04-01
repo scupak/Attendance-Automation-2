@@ -29,11 +29,11 @@ import javax.swing.JOptionPane;
 public class TeacherDBDAO implements TeacherDBDAOInterface
 {
     
-    private final DatabaseConnector dbCon;
+    private final ConnectionPool conPool;
     
-    public TeacherDBDAO() throws IOException
+    public TeacherDBDAO() throws IOException, Exception
     {
-        dbCon = new DatabaseConnector();
+        this.conPool = ConnectionPool.getInstance();
     }
     
     /**
@@ -44,8 +44,9 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
      public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException
     {
         ArrayList<Teacher> students = new ArrayList<>();
+        Connection con = conPool.checkOut();
 
-        try (Connection con = dbCon.getConnection())
+        try 
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Teacher");
             ResultSet rs = ps.executeQuery();
@@ -66,6 +67,10 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
      /**
       * get a specific teacher based on username
@@ -75,13 +80,14 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
       */
      public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException
     {
+        Connection con = conPool.checkOut();
         if (!TeacherExist(t))
         {
             return null;
         }
 
         Teacher returnTeacher;
-        try (Connection con = dbCon.getConnection())
+        try 
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Teacher Where username = ?");
 
@@ -109,6 +115,10 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
             JOptionPane.showMessageDialog(null, "Could not find the student in the dataabase!", "Error", JOptionPane.ERROR_MESSAGE);
             throw new AttendanceAutomationDalException("could not find the student in the dataabase", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
 
     /**
@@ -119,7 +129,8 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
      */
     public boolean TeacherExist(Teacher t) throws AttendanceAutomationDalException
     {
-        try (Connection con = dbCon.getConnection())
+         Connection con = conPool.checkOut();
+        try 
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Teacher WHERE username = ? ");
             ps.setString(1, t.getUsername());
@@ -139,14 +150,19 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
             JOptionPane.showMessageDialog(null, "Could not find the teacher in the dataabase!", "Error", JOptionPane.ERROR_MESSAGE);
             throw new AttendanceAutomationDalException("could not find the Teacher in the dataabase", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
     
     @Override
-    public ObservableList<Class> getTeacherClasses(String username)
+    public ObservableList<Class> getTeacherClasses(String username) throws AttendanceAutomationDalException 
     {
+        Connection con = conPool.checkOut();
         ObservableList<Class> classes = FXCollections.observableArrayList();
         
-        try (Connection con = dbCon.getConnection())
+        try
         {
             String sql = "SELECT Class.className, Class.classID "
                         + "FROM [Class] "
@@ -176,6 +192,10 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
         {
                     
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
         
         return classes;
     }
@@ -183,8 +203,9 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
      public List<Student>  teacherStudentList(int classIdInClass) throws AttendanceAutomationDalException
     {
          ObservableList<Student> students = FXCollections.observableArrayList();
+          Connection con = conPool.checkOut();
 
-        try (Connection con = dbCon.getConnection())
+        try 
         {
             PreparedStatement ps = con.prepareStatement("SELECT Class.className, Class.classID ,Student.username,Student.name,Student.password,Student.absenceProcent,Student.dayMostAbsent "
                                                       + "FROM [Class] "
@@ -214,9 +235,13 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
         }
+        finally
+        {
+            conPool.checkIn(con);
+        }
     }
     
-    public static void main(String[] args) throws IOException, AttendanceAutomationDalException {
+    public static void main(String[] args) throws IOException, AttendanceAutomationDalException, Exception {
         TeacherDBDAO tb = new TeacherDBDAO();
         
         for (Teacher allTeacher : tb.getAllTeachers()) {

@@ -31,7 +31,7 @@ public class DALFacade implements DALFacadeInterface
     MockDataInterface mockdata;
     TeacherDBDAOInterface teacherdbdao;
     
-    public DALFacade() throws IOException
+    public DALFacade() throws IOException, Exception
     {
         studentdbdao = new StudentDBDAO();
         mockdata = new MockData();
@@ -281,7 +281,7 @@ public class DALFacade implements DALFacadeInterface
         return teacherdbdao.TeacherExist(t);
     }
     
-    public ObservableList<Class> getTeacherClasses(String username)
+    public ObservableList<Class> getTeacherClasses(String username) throws AttendanceAutomationDalException
     {
         return teacherdbdao.getTeacherClasses(username);
     }
