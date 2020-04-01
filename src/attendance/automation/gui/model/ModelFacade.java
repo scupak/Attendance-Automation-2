@@ -11,7 +11,6 @@ import attendance.automation.be.Teacher;
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.enums.UserMode;
 import attendance.automation.gui.model.Interface.BaseModelInterface;
-import attendance.automation.gui.model.Interface.MockModelInterface;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.Interface.StudentModelInterface;
 import attendance.automation.gui.model.Interface.TeacherModelInterface;
@@ -30,14 +29,12 @@ import attendance.automation.be.Class;
 public class ModelFacade implements ModelFacadeInterface
 {
     private static ModelFacade modelfacade = null;
-    private MockModelInterface mockmodel;
     private StudentModelInterface studentmodel;
     private TeacherModelInterface teachermodel;
     private BaseModelInterface basemodel;
     
     private ModelFacade() throws IOException, Exception
     {
-       mockmodel = new MockModel();
        studentmodel = new StudentModel();
        teachermodel = new TeacherModel();
        basemodel = new BaseModel();
@@ -74,54 +71,6 @@ public class ModelFacade implements ModelFacadeInterface
     @Override
     public ObservableList<Student>  teacherStudentList(int classid) throws AttendanceAutomationDalException {
         return teachermodel.teacherStudentList(classid);
-    }
-
-    /**
-     * updates existing Data-Object if name matches
-     */
-    @Override
-    public void addData() {
-        mockmodel.addData();
-    }
-
-    /**
-     * Gets teacher username
-     *
-     * @return the teachers username
-     */
-    @Override
-    public String getTeahcerUsername() {
-       return mockmodel.getTeahcerUsername();
-    }
-
-     /**
-     * Gets teacher password
-     *
-     * @return the teachers password
-     */
-    @Override
-    public String getTeacherPassword() {
-        return mockmodel.getTeacherPassword();
-    }
-
-    /**
-     * Gets student username
-     *
-     * @return the students user name
-     */
-    @Override
-    public String getStudentUsername() {
-        return mockmodel.getStudentUsername();
-    }
-
-    /**
-     * Gets student password
-     *
-     * @return the students password
-     */
-    @Override
-    public String getStudentPassword() {
-        return mockmodel.getStudentPassword();
     }
 
      /**

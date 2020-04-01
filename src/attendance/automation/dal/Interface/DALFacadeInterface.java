@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author SKRUMM
  */
-public interface DALFacadeInterface extends MockDataInterface, StudentDBDAOInterface, TeacherDBDAOInterface
+public interface DALFacadeInterface extends StudentDBDAOInterface, TeacherDBDAOInterface
 {
 
   

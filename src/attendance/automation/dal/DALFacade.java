@@ -9,7 +9,6 @@ import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
 import attendance.automation.be.Teacher;
 import attendance.automation.dal.Interface.DALFacadeInterface;
-import attendance.automation.dal.Interface.MockDataInterface;
 import attendance.automation.dal.Interface.StudentDBDAOInterface;
 import attendance.automation.dal.Interface.TeacherDBDAOInterface;
 import java.io.IOException;
@@ -28,13 +27,11 @@ public class DALFacade implements DALFacadeInterface
     
     
     StudentDBDAOInterface studentdbdao;
-    MockDataInterface mockdata;
     TeacherDBDAOInterface teacherdbdao;
     
     public DALFacade() throws IOException, Exception
     {
         studentdbdao = new StudentDBDAO();
-        mockdata = new MockData();
         teacherdbdao = new TeacherDBDAO();
     }
     
@@ -71,113 +68,6 @@ public class DALFacade implements DALFacadeInterface
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException 
     {
         return studentdbdao.StudentExist(s);
-    }
-
-    /**
-     * Get student username
-     *
-     * @return usernameStudent
-     */
-    @Override
-    public String getUsernameStudent() 
-    {
-       return mockdata.getUsernameStudent();
-    }
-
-    /**
-     * Set student username
-     *
-     * @param usernameStudent
-     */
-    @Override
-    public void setUsernameStudent(String usernameStudent) 
-    {
-         mockdata.setUsernameStudent(usernameStudent);
-    }
-
-    /**
-     * Get student password
-     *
-     * @return the password
-     */
-    @Override
-    public String getPasswordStudent() 
-    {
-        return mockdata.getPasswordStudent();
-    }
-
-    /**
-     * Set student password
-     *
-     * @param passwordStudent
-     */
-    @Override
-    public void setPasswordStudent(String passwordStudent) 
-    {
-        mockdata.setPasswordStudent(passwordStudent);
-    }
-
-    /**
-     * Get teacher username
-     *
-     * @return usernameTeacher
-     */
-    @Override
-    public String getUsernameTeacher() 
-    {
-        return mockdata.getUsernameTeacher();
-    }
-
-    /**
-     * Set teacher username
-     *
-     * @param usernameTeacher
-     */
-    @Override
-    public void setUsernameTeacher(String usernameTeacher) 
-    {
-        mockdata.setUsernameTeacher(usernameTeacher);
-    }
-
-    /**
-     * Get teacher password
-     *
-     * @return passwordTeacher
-     */
-    @Override
-    public String getPasswordTeacher() 
-    {
-        return mockdata.getPasswordTeacher();
-    }
-
-    /**
-     * Sets teacher password
-     *
-     * @param passwordTeacher
-     */
-    @Override
-    public void setPasswordTeacher(String passwordTeacher) 
-    {
-       mockdata.setPasswordTeacher(passwordTeacher);
-    }
-
-    /**
-     * Create and add students to an ObservableLIst
-     *
-     * @param classid
-     * @return TeacherStudentList
-     */
-    
-
-    /**
-     * Create and add classes to an ObservableList
-     *
-     * @return teacherClassList
-     */
-    @Override
-    public ObservableList teacherClassList() 
-    {
-        return mockdata.teacherClassList();
     }
 
     /**

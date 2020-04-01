@@ -50,26 +50,6 @@ public class BLLFacade implements BLLFacadeInterface
         securityManager = new SecurityManager();
         
     }
-    
-    /**
-     * Gets the username of the selectted student
-     * @return the students username
-     */
-    @Override
-    public String getUsernameStudent() 
-    {
-        return studentmanager.getUsernameStudent();
-    }
-
-    /**
-     * Gets the password of the student
-     * @return the students password
-     */
-    @Override
-    public String getPasswordStudent() 
-    {
-       return studentmanager.getPasswordStudent();
-    }
 
     /**
      * Gets a list of the teachers students
@@ -79,26 +59,6 @@ public class BLLFacade implements BLLFacadeInterface
     public List<Student> getTeacherStudentList(int classid) throws AttendanceAutomationDalException 
     {
         return teachermanager.getTeacherStudentList(classid);
-    }
-    
-    /**
-     * Gets the username of the selected teacher
-     * @return the username of the teacher
-     */
-    @Override
-    public String getUsernameTeacher() 
-    {
-        return teachermanager.getUsernameTeacher();
-    }
-
-    /**
-     * Gets the selected teachers password
-     * @return the password of the teacher
-     */
-    @Override
-    public String getPasswordTeacher() 
-    {
-       return teachermanager.getPasswordTeacher();
     }
 
     

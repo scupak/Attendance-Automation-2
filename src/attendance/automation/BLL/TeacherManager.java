@@ -31,8 +31,11 @@ public class TeacherManager implements TeacherManagerInterface
      /**
      * Gets the ObservableList of students
      *
+     * @param classid
      * @return teacherStudentList
+     * @throws attendance.automation.dal.AttendanceAutomationDalException
      */
+    @Override
     public List<Student> getTeacherStudentList(int classid) throws AttendanceAutomationDalException
     {
         return dalfacade.teacherStudentList(classid);
@@ -47,36 +50,6 @@ public class TeacherManager implements TeacherManagerInterface
     public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException
     {
         return dalfacade.getAllTeachers();
-    }
-
-    /**
-     * get the ObservableList of classes
-     *
-     * @return teacherClassList
-     */
-    public ObservableList getTeacherClassList()
-    {
-        return dalfacade.teacherClassList();
-    }
-    
-    /**
-     * Get teacher username
-     *
-     * @return getUsernameTeacher
-     */
-    public String getUsernameTeacher()
-    {
-        return dalfacade.getUsernameTeacher();
-    }
-
-    /**
-     * Get teacher password
-     *
-     * @return getPasswordTeacher
-     */
-    public String getPasswordTeacher()
-    {
-        return dalfacade.getPasswordTeacher();
     }
     
     /**
@@ -128,4 +101,6 @@ public class TeacherManager implements TeacherManagerInterface
     {
         return dalfacade.getTeacherClasses(username);
     }
+
+   
 }

@@ -19,26 +19,6 @@ import javafx.scene.chart.XYChart;
 public interface StudentManagerInterface 
 {
     
-    /**
-     * Get student username
-     *
-     * @return getUsernameStudent
-     */
-    public String getUsernameStudent();
-    
-    /**
-     * Get student password
-     *
-     * @return getPasswordStudent
-     */
-    public String getPasswordStudent();
-
-    /**
-     * Checks the vurrent day for the student.
-     * @param username
-     * @return the current day
-     * @throws AttendanceAutomationDalException 
-     */
     public int checkCurrentDay(String username) throws AttendanceAutomationDalException;
     
     /**

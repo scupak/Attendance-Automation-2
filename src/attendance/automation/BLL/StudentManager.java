@@ -33,28 +33,6 @@ public class StudentManager implements StudentManagerInterface
     {
         this.dalfacade = dalfacade; 
     }
-     
-     /**
-     * Get student username
-     *
-     * @return getUsernameStudent
-     */
-    @Override
-    public String getUsernameStudent()
-    {
-        return dalfacade.getUsernameStudent();
-    }
-
-    /**
-     * Get student password
-     *
-     * @return getPasswordStudent
-     */
-    @Override
-    public String getPasswordStudent()
-    {
-        return dalfacade.getPasswordStudent();
-    }
 
     /**
      * Checks the current day according to the given username
@@ -434,6 +412,8 @@ public class StudentManager implements StudentManagerInterface
         
       return dalfacade.updateStudentMostAbsentDay( currentStudent, mostabsentdayforstudent);
     }
+
+    
 
     
    

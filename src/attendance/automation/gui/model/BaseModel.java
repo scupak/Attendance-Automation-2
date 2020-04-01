@@ -151,6 +151,7 @@ public class BaseModel implements BaseModelInterface
         return usermode;
     }
     
+    @Override
     public String hashPassword(String password)
     {
         return bllfacade.hashPassword(password);

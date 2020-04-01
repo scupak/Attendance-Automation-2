@@ -26,19 +26,6 @@ public interface TeacherManagerInterface
      */
     public List<Student> getTeacherStudentList(int classid) throws AttendanceAutomationDalException;
     
-    /**
-     * Get teacher username
-     *
-     * @return getUsernameTeacher
-     */
-    public String getUsernameTeacher();
-    
-    /**
-     * Get teacher password
-     *
-     * @return getPasswordTeacher
-     */
-    public String getPasswordTeacher();
     
     public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException;
     

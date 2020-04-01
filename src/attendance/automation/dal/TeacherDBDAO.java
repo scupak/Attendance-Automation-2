@@ -41,6 +41,7 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
      * @return
      * @throws AttendanceAutomationDalException 
      */
+    @Override
      public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException
     {
         ArrayList<Teacher> students = new ArrayList<>();
@@ -78,6 +79,7 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
       * @return
       * @throws AttendanceAutomationDalException 
       */
+    @Override
      public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException
     {
         Connection con = conPool.checkOut();
@@ -127,6 +129,7 @@ public class TeacherDBDAO implements TeacherDBDAOInterface
      * @return boolean
      * @throws AttendanceAutomationDalException 
      */
+    @Override
     public boolean TeacherExist(Teacher t) throws AttendanceAutomationDalException
     {
          Connection con = conPool.checkOut();

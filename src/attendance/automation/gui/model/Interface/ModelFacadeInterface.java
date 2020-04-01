@@ -12,7 +12,7 @@ import java.time.LocalDate;
  *
  * @author kacpe
  */
-public interface ModelFacadeInterface extends BaseModelInterface, MockModelInterface, StudentModelInterface, TeacherModelInterface
+public interface ModelFacadeInterface extends BaseModelInterface, StudentModelInterface, TeacherModelInterface
 {
 
   
