@@ -375,4 +375,9 @@ public class ModelFacade implements ModelFacadeInterface
         return studentmodel.updateStudentMostAbsentDay(currentStudent, mostabsentdayforstudent);
     }
 
+    @Override
+    public List<StudentDay> getAllDaysForAstudent(Student currentStudent, LocalDate date, LocalDate date0) throws AttendanceAutomationDalException {
+       return  studentmodel.getAllDaysForAstudent(currentStudent, date, date0);
+    }
+
 }

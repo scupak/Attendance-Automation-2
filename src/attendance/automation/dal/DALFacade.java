@@ -224,6 +224,11 @@ public class DALFacade implements DALFacadeInterface
     public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException {
       return studentdbdao.getAllDaysForStudent(student);
     }
+    
+    @Override
+    public List<StudentDay> getAllDaysForStudent(Student currentStudent, LocalDate date, LocalDate date0) throws AttendanceAutomationDalException {
+        return studentdbdao.getAllDaysForStudent(currentStudent, date, date0);
+    }
 
     /**
      * Checks if the student day exists
@@ -300,6 +305,8 @@ public class DALFacade implements DALFacadeInterface
     public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
        return studentdbdao.updateStudentMostAbsentDay(currentStudent, mostabsentdayforstudent);
     }
+
+    
 
     
     

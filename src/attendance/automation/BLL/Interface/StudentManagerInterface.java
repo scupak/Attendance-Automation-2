@@ -81,6 +81,8 @@ public interface StudentManagerInterface
      */
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException;
     
+
+    public List<StudentDay> getAllDaysForAstudent(Student currentStudent, LocalDate date, LocalDate date0) throws AttendanceAutomationDalException;
     /**
      * Gets all students as a list
      * @return all students as a list

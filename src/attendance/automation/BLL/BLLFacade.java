@@ -171,6 +171,10 @@ public class BLLFacade implements BLLFacadeInterface
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException {
        return studentmanager.getAllDaysForAstudent(student);
     }
+    @Override
+    public List<StudentDay> getAllDaysForAstudent(Student currentStudent, LocalDate date, LocalDate date0)  throws AttendanceAutomationDalException {
+       return studentmanager.getAllDaysForAstudent(currentStudent, date, date0);
+    }
 
     /**
      * Gets all students as alist
@@ -279,6 +283,8 @@ public class BLLFacade implements BLLFacadeInterface
     public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
        return studentmanager.updateStudentMostAbsentDay(currentStudent, mostabsentdayforstudent);
     }
+
+    
 
    
 }

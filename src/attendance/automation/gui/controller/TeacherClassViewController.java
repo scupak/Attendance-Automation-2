@@ -172,6 +172,8 @@ public class TeacherClassViewController implements Initializable
         {
             modelfacade.setCurrentStudent(classTableView.getSelectionModel().getSelectedItem());
             
+            System.out.println(classTableView.getSelectionModel().getSelectedItem());
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
             Parent root = loader.load();
             StudentMainViewController SCVController = loader.getController();
