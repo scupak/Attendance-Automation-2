@@ -14,6 +14,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import attendance.automation.be.Class;
 import attendance.automation.dal.DALFacadeFactory;
+import attendance.automation.dal.Interface.DALFacadeInterface;
 /**
  *
  * @author SKRUMM
@@ -21,11 +22,11 @@ import attendance.automation.dal.DALFacadeFactory;
 public class TeacherManager implements TeacherManagerInterface
 {
     
-    private final DALFacade dalfacade;
+    private final DALFacadeInterface dalfacade;
     
     public TeacherManager() throws IOException, Exception
     {
-        dalfacade = new DALFacade();
+        dalfacade = DALFacadeFactory.CreateDALFacade(DALFacadeFactory.DALFacadeTypes.PRODUCTION);
     }
     
      /**

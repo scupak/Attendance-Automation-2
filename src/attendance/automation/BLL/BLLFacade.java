@@ -8,6 +8,7 @@ package attendance.automation.BLL;
 import attendance.automation.BLL.Interface.TeacherManagerInterface;
 import attendance.automation.BLL.Interface.StudentManagerInterface;
 import attendance.automation.BLL.Interface.BLLFacadeInterface;
+import attendance.automation.BLL.Interface.SecurityManagerInterface;
 import attendance.automation.BLL.Security.SecurityManager;
 import attendance.automation.be.Student;
 import attendance.automation.be.StudentDay;
@@ -34,7 +35,7 @@ public class BLLFacade implements BLLFacadeInterface
     
     StudentManagerInterface studentmanager;
     TeacherManagerInterface teachermanager;
-    SecurityManager securityManager;
+    SecurityManagerInterface securityManager;
    
     private DALFacadeInterface dalfacade;
     

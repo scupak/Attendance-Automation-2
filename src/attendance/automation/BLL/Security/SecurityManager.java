@@ -5,6 +5,7 @@
  */
 package attendance.automation.BLL.Security;
 
+import attendance.automation.BLL.Interface.SecurityManagerInterface;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,10 +14,11 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author lumby
  */
-public class SecurityManager
+public class SecurityManager implements SecurityManagerInterface
 {
 
   
+    @Override
     public String hashPassword(String password) throws SecurityException
     {
         try
