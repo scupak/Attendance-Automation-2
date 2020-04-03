@@ -2,7 +2,6 @@ package attendance.automation.gui.controller.calendar;
 
 import attendance.automation.dal.AttendanceAutomationDalException;
 import attendance.automation.enums.UserMode;
-import attendance.automation.gui.controller.StudentCalenderViewController;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
@@ -45,7 +44,7 @@ public class CalendarController implements Initializable{
                userModeLabel.setText(modelfacade.getCurrentTeacher().getName() + " is currently in " +"Admin Mode " + "Accesing " + modelfacade.getCurrentStudent().getName() + "s profile");
             }
         } catch (IOException ex) {
-            Logger.getLogger(StudentCalenderViewController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalendarController.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Student calendar view error!", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
