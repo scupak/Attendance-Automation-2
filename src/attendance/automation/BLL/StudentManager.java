@@ -77,13 +77,10 @@ public class StudentManager implements StudentManagerInterface
             if(rs.getPassword().equals(s.getPassword()))
             {
                 System.out.println("true");
-                System.out.println(rs.getUsername());
-                System.out.println(rs.getPassword());
                 return true;
             }
         }
-        System.out.println(rs.getPassword());
-        System.out.println(rs.getUsername());
+        
         System.out.println("false");
         return false;
     }
