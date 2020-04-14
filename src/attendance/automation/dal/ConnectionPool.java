@@ -9,8 +9,6 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,19 +16,22 @@ import java.util.logging.Logger;
  */
 public class ConnectionPool extends ObjectPool<Connection>
 {
+
     private static ConnectionPool connectionpool = null;
     private DatabaseConnector dbconnector;
-    
-   private ConnectionPool() throws AttendanceAutomationDalException, IOException
+
+    private ConnectionPool() throws AttendanceAutomationDalException, IOException
     {
         super();
-        try {
-             dbconnector = new DatabaseConnector();
-        } catch (IOException ex) {
+        try
+        {
+            dbconnector = new DatabaseConnector();
+        } catch (IOException ex)
+        {
             throw new AttendanceAutomationDalException("could not get connection credentials", ex);
         }
     }
-    
+
     public static synchronized ConnectionPool getInstance() throws IOException, Exception
     {
         if (connectionpool == null)
@@ -41,17 +42,21 @@ public class ConnectionPool extends ObjectPool<Connection>
     }
 
     @Override
-    protected Connection create() throws AttendanceAutomationDalException {
-         try {
-             return dbconnector.getConnection();
-         } catch (SQLServerException ex) {
-             throw new AttendanceAutomationDalException("Could not etablish connection", ex);
-         }
+    protected Connection create() throws AttendanceAutomationDalException
+    {
+        try
+        {
+            return dbconnector.getConnection();
+        } catch (SQLServerException ex)
+        {
+            throw new AttendanceAutomationDalException("Could not etablish connection", ex);
+        }
     }
 
     @Override
-    public boolean validate(Connection o) throws AttendanceAutomationDalException {
-       try
+    public boolean validate(Connection o) throws AttendanceAutomationDalException
+    {
+        try
         {
             return !o.isClosed();
         } catch (SQLException ex)
@@ -62,7 +67,8 @@ public class ConnectionPool extends ObjectPool<Connection>
     }
 
     @Override
-    public void expire(Connection o) throws AttendanceAutomationDalException {
+    public void expire(Connection o) throws AttendanceAutomationDalException
+    {
         try
         {
             o.close();
@@ -72,5 +78,4 @@ public class ConnectionPool extends ObjectPool<Connection>
         }
     }
 
-   
 }

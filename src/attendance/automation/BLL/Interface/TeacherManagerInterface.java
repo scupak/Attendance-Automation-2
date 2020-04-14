@@ -16,23 +16,51 @@ import attendance.automation.be.Class;
  *
  * @author SKRUMM
  */
-public interface TeacherManagerInterface 
+public interface TeacherManagerInterface
 {
-    
+
     /**
      * Gets the ObservableList of students
      *
+     * @param classid
      * @return teacherStudentList
+     * @throws attendance.automation.dal.AttendanceAutomationDalException
      */
     public List<Student> getTeacherStudentList(int classid) throws AttendanceAutomationDalException;
-    
-    
+
+    /**
+     * checks the username and password for a teacher
+     *
+     * @param t
+     * @return boolean
+     * @throws AttendanceAutomationDalException
+     */
     public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException;
-    
+
+    /**
+     * gets a teacher
+     *
+     * @param t
+     * @return Teacher
+     * @throws AttendanceAutomationDalException
+     */
     public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException;
-    
-    public ObservableList<Class> getTeacherClasses(String username)throws AttendanceAutomationDalException;
-    
+
+    /**
+     * gets list of class for a teacher
+     *
+     * @param username
+     * @return list of classes
+     * @throws AttendanceAutomationDalException
+     */
+    public ObservableList<Class> getTeacherClasses(String username) throws AttendanceAutomationDalException;
+
+    /**
+     * gets all teahcers in database
+     *
+     * @return Teachers
+     * @throws AttendanceAutomationDalException
+     */
     public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException;
-           
+
 }

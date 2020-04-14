@@ -62,6 +62,9 @@ public class TeacherClassViewController implements Initializable
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -73,16 +76,17 @@ public class TeacherClassViewController implements Initializable
              * appmodel in all classes.
              */
             modelfacade = ModelFacade.getInstance();
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             JOptionPane.showMessageDialog(null, "Teacher class view error!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //A check to see if were woriking with the same instance of appmodel.
-        System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
+
         try
         {
             populateList();
@@ -93,7 +97,6 @@ public class TeacherClassViewController implements Initializable
             ex.printStackTrace();
             Logger.getLogger(TeacherClassViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
         classNameLabel.setText(modelfacade.getCurrentClass().getClassName());
         classNameLabel.setAlignment(Pos.CENTER);
@@ -170,7 +173,8 @@ public class TeacherClassViewController implements Initializable
     {
         if (event.getClickCount() == 2)
         {
-            if( classTableView.getSelectionModel().getSelectedItem() != null){  
+            if (classTableView.getSelectionModel().getSelectedItem() != null)
+            {
                 modelfacade.setCurrentStudent(classTableView.getSelectionModel().getSelectedItem());
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
@@ -184,7 +188,7 @@ public class TeacherClassViewController implements Initializable
 
                 Stage oldstage = (Stage) ((Node) classTableView).getScene().getWindow();
                 oldstage.close();
-        }
+            }
         }
     }
 

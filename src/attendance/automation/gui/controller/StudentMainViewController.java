@@ -71,59 +71,63 @@ public class StudentMainViewController implements Initializable
     private HBox hBox;
     @FXML
     private Label userModeLabel;
-    
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) 
+    public void initialize(URL url, ResourceBundle rb)
     {
 
-        try {
-            //Student mads = new Student("Mads Jensen", 5, "mads", "jensen");
-            //setName(mads);
-            
+        try
+        {
+
             /**
-             *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+             * We use get instance instead of new to make sure we use the same
+             * appmodel in all classes.
              */
             modelfacade = ModelFacade.getInstance();
-            System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
+            System.out.println("Current user mode is" + "  " + modelfacade.getCurrentUserMode());
             if (modelfacade.getCurrentUserMode() == UserMode.TEACHER)
             {
-                userModeLabel.setText(modelfacade.getCurrentTeacher().getName() + " is currently in " +"Admin Mode " + "Accesing " + modelfacade.getCurrentStudent().getName() + "s profile");
+                userModeLabel.setText(modelfacade.getCurrentTeacher().getName() + " is currently in " + "Admin Mode " + "Accesing " + modelfacade.getCurrentStudent().getName() + "s profile");
             }
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             JOptionPane.showMessageDialog(null, "Student main view error!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //A check to see if were woriking with the same instance of appmodel.
-        System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
-        
+
         checkDay();
-        /*TODO needs to be changed so that both a teachers  or a students name can be displayed*/
+
         setName(modelfacade.getCurrentStudent());
-        
+
         System.out.println(modelfacade.getCurrentStudent());
     }
 
+    /**
+     * checks a day
+     */
     public void checkDay()
     {
-         
+
         try
         {
             String username = modelfacade.getCurrentStudent().getUsername();
             int status = modelfacade.checkCurrentDay(username);
-        
+
             if (status == 0 || status == 1)
             {
                 thankYouMessage();
-            }
-            else if(status == 2)
+            } else if (status == 2)
             {
                 failMessage();
             }
@@ -133,12 +137,9 @@ public class StudentMainViewController implements Initializable
             ex.printStackTrace();
             Logger.getLogger(StudentMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    
-    
-    
+
     /**
      * Sets the lbWelcome text to the logged in student
      *
@@ -164,30 +165,28 @@ public class StudentMainViewController implements Initializable
         try
         {
             Window window = studentRootPane.getScene().getWindow();
-            
+
             if (modelfacade.getCurrentUserMode() == UserMode.STUDENT)
             {
                 modelfacade.handelLogout();
-            }
-            else if (modelfacade.getCurrentUserMode() == UserMode.TEACHER)
-                {
-                      FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClassView.fxml"));
-                    Parent root = loader.load();
-                    TeacherClassViewController TCVController = loader.getController();
+            } else if (modelfacade.getCurrentUserMode() == UserMode.TEACHER)
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClassView.fxml"));
+                Parent root = loader.load();
+                TeacherClassViewController TCVController = loader.getController();
 
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Attendance - Teacher");
-                    stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
-                    stage.show();  
-                }
-                        
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Attendance - Teacher");
+                stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
+                stage.show();
+            }
+
             if (window instanceof Stage)
             {
                 ((Stage) window).close();
             }
 
-           
         } catch (IOException ex)
         {
             JOptionPane.showMessageDialog(null, "Cannot handle logout!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -208,27 +207,24 @@ public class StudentMainViewController implements Initializable
         try
         {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/FullCalendar.fxml"));
-            
-            
+
             Pane pane = loader.load();
-            
+
             pane.getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
-            
 
             studentRootPane.getChildren().setAll(pane);
-            
-            
+
             CalendarController controller = loader.getController();
-            
-            controller.calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(),modelfacade).getView());
+
+            controller.calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), modelfacade).getView());
 
         } catch (IOException ex)
         {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Cannot read FXML file(s)!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
-        }
-        catch(AttendanceAutomationDalException ex){
+        } catch (AttendanceAutomationDalException ex)
+        {
             JOptionPane.showMessageDialog(null, "Cannot access calendar from DB", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
@@ -259,33 +255,34 @@ public class StudentMainViewController implements Initializable
 
     /**
      * Handles submit
+     *
      * @param event
      */
     @FXML
     private void handelSubmit(ActionEvent event)
     {
-        try{
-        //sm.addData();
-        if (rbHeretoday.isSelected())
+        try
         {
-            modelfacade.setDayStatus(1);
-        }
-        else if(rbNotHeretoday.isSelected())
+
+            if (rbHeretoday.isSelected())
+            {
+                modelfacade.setDayStatus(1);
+            } else if (rbNotHeretoday.isSelected())
+            {
+                modelfacade.setDayStatus(0);
+            }
+            //update the StudentabsenceProcent for this student
+            modelfacade.updateStudentabsenceProcent(modelfacade.getCurrentStudent(), modelfacade.getabsenceProcentforstudent(modelfacade.getCurrentStudent()));
+            //update the MostAbsentDay for this student
+            modelfacade.updateStudentMostAbsentDay(modelfacade.getCurrentStudent(), modelfacade.getmostabsentdayforstudent(modelfacade.getCurrentStudent()));
+            thankYouMessage();
+        } catch (AttendanceAutomationDalException ex)
         {
-            modelfacade.setDayStatus(0);
-        }
-         //update the StudentabsenceProcent for this student
-        modelfacade.updateStudentabsenceProcent(modelfacade.getCurrentStudent(), modelfacade.getabsenceProcentforstudent(modelfacade.getCurrentStudent()) );
-        //update the MostAbsentDay for this student
-         modelfacade.updateStudentMostAbsentDay(modelfacade.getCurrentStudent(),modelfacade.getmostabsentdayforstudent(modelfacade.getCurrentStudent()));
-        thankYouMessage();
-        }
-        catch(AttendanceAutomationDalException ex){
             JOptionPane.showMessageDialog(null, "Unable to update status for student in DB!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
-    
+
     /**
      * Creates a thank you message for the user
      */
@@ -294,7 +291,7 @@ public class StudentMainViewController implements Initializable
         studentRootPane.getChildren().remove(hBox);
         currentClassText.setText("Thank you!");
     }
-    
+
     /**
      * Creates a day off message for the user
      */
@@ -303,5 +300,5 @@ public class StudentMainViewController implements Initializable
         studentRootPane.getChildren().remove(hBox);
         currentClassText.setText("You have the day off!");
     }
-    
+
 }

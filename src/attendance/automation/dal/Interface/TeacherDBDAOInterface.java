@@ -17,15 +17,15 @@ import javafx.collections.ObservableList;
  */
 public interface TeacherDBDAOInterface
 {
-    
+
     public List<Teacher> getAllTeachers() throws AttendanceAutomationDalException;
-    
+
     public Teacher getTeacher(Teacher t) throws AttendanceAutomationDalException;
-     
+
     public boolean TeacherExist(Teacher t) throws AttendanceAutomationDalException;
-    
-    public ObservableList<attendance.automation.be.Class> getTeacherClasses(String username)throws AttendanceAutomationDalException;
-    
-     public List<Student> teacherStudentList(int classid) throws AttendanceAutomationDalException;
-    
+
+    public ObservableList<attendance.automation.be.Class> getTeacherClasses(String username) throws AttendanceAutomationDalException;
+
+    public List<Student> teacherStudentList(int classid) throws AttendanceAutomationDalException;
+
 }

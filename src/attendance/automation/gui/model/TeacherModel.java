@@ -22,15 +22,17 @@ import javafx.collections.FXCollections;
  */
 public class TeacherModel implements TeacherModelInterface
 {
+
     private BLLFacadeInterface bllfacade;
     private Teacher currentTeacher;
     private Class currentClass;
-    private  ObservableList<Student> Students;
+    private ObservableList<Student> Students;
+
     public TeacherModel() throws IOException, Exception
     {
         bllfacade = new BLLFacade();
         Students = FXCollections.observableArrayList();
-        
+
     }
 
     @Override
@@ -39,44 +41,81 @@ public class TeacherModel implements TeacherModelInterface
         return currentTeacher;
     }
 
+    /**
+     * sets the current teacher
+     *
+     * @param currentTeacher
+     * @throws AttendanceAutomationDalException
+     */
     @Override
     public void setCurrentTeacher(Teacher currentTeacher) throws AttendanceAutomationDalException
     {
         this.currentTeacher = bllfacade.getTeacher(currentTeacher);
     }
-    
+
+    /**
+     * checks the teachers username and password
+     *
+     * @param t
+     * @return boolean
+     * @throws AttendanceAutomationDalException
+     */
     @Override
-    public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException{
+    public boolean checkCredTeacher(Teacher t) throws AttendanceAutomationDalException
+    {
         return bllfacade.checkCredTeacher(t);
     }
-            
+
+    /**
+     * gets a list of classes for a teacher
+     *
+     * @param username
+     * @return classList
+     * @throws AttendanceAutomationDalException
+     */
     @Override
     public ObservableList<Class> classList(String username) throws AttendanceAutomationDalException
     {
         return bllfacade.getTeacherClasses(username);
     }
 
+    /**
+     * gets list of students to a teacher
+     *
+     * @param classid
+     * @return Students
+     * @throws AttendanceAutomationDalException
+     */
     @Override
-    public ObservableList<Student> teacherStudentList(int classid) throws AttendanceAutomationDalException {
-        
-        
+    public ObservableList<Student> teacherStudentList(int classid) throws AttendanceAutomationDalException
+    {
+
         Students.clear();
-        Students.addAll( bllfacade.getTeacherStudentList(classid));
-         
+        Students.addAll(bllfacade.getTeacherStudentList(classid));
+
         return Students;
     }
 
+    /**
+     * gets the current class
+     *
+     * @return currentClass
+     */
     @Override
-    public Class getCurrentClass() {
+    public Class getCurrentClass()
+    {
         return currentClass;
     }
 
+    /**
+     * sets the current class
+     *
+     * @param currentClass
+     */
     @Override
-    public void setCurrentClass(Class currentClass) {
+    public void setCurrentClass(Class currentClass)
+    {
         this.currentClass = currentClass;
     }
-    
-    
-    
-            
+
 }

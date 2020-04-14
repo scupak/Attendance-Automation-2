@@ -45,32 +45,38 @@ public class StudentChartViewController implements Initializable
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
 
-        try {
+        try
+        {
             /**
-             *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+             * We use get instance instead of new to make sure we use the same
+             * appmodel in all classes.
              */
             modelfacade = ModelFacade.getInstance();
-            System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
+
             if (modelfacade.getCurrentUserMode() == UserMode.TEACHER)
             {
-                userModeLabel.setText(modelfacade.getCurrentTeacher().getName() + " is currently in " +"Admin Mode " + "Accesing " + modelfacade.getCurrentStudent().getName() + "s profile");
+                userModeLabel.setText(modelfacade.getCurrentTeacher().getName() + " is currently in " + "Admin Mode " + "Accesing " + modelfacade.getCurrentStudent().getName() + "s profile");
             }
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Chart view error!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
-        //A check to see if were woriking with the same instance of appmodel.
-        System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
+
         try
         {
             setPieChartData();
@@ -81,11 +87,8 @@ public class StudentChartViewController implements Initializable
             ex.printStackTrace();
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
 
     }
-
-    
 
     /**
      * opens the studentMainView
@@ -94,14 +97,16 @@ public class StudentChartViewController implements Initializable
      * @throws IOException
      */
     @FXML
-    private void handelBackToMainView(ActionEvent event) 
+    private void handelBackToMainView(ActionEvent event)
     {
 
-        try {
+        try
+        {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/attendance/automation/gui/view/StudentMainView.fxml"));
-            
+
             studentChartRootpane.getChildren().setAll(pane);
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             JOptionPane.showMessageDialog(null, "Cannot handle back to main view!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(StudentChartViewController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -5,7 +5,6 @@
  */
 package attendance.automation.gui.controller;
 
-import attendance.automation.gui.controller.TeacherClassViewController;
 import attendance.automation.gui.model.Interface.ModelFacadeInterface;
 import attendance.automation.gui.model.ModelFacade;
 import java.io.IOException;
@@ -51,30 +50,37 @@ public class TeacherMainViewController implements Initializable
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        try {
+        try
+        {
             /**
-             *  We use get instance instead of new to make sure we use the same appmodel in all classes.
+             * We use get instance instead of new to make sure we use the same
+             * appmodel in all classes.
              */
             modelfacade = ModelFacade.getInstance();
-            System.out.println("Current user mode is" + "  " +modelfacade.getCurrentUserMode());
-        } catch (IOException ex) {
+            System.out.println("Current user mode is" + "  " + modelfacade.getCurrentUserMode());
+        } catch (IOException ex)
+        {
             JOptionPane.showMessageDialog(null, "Teacher main view error!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             Logger.getLogger(TeacherMainViewController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             JOptionPane.showMessageDialog(null, "Given wrong type!", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(TeacherMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //A check to see if were woriking with the same instance of appmodel.
-        System.out.println("Instance ID: " + System.identityHashCode(modelfacade));
-        
-        try {
+
+        try
+        {
             populateList(modelfacade.getCurrentTeacher().getUsername());
-        } catch (AttendanceAutomationDalException ex) {
+        } catch (AttendanceAutomationDalException ex)
+        {
             Logger.getLogger(TeacherMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         welcomeMessage.setText("Welcome " + modelfacade.getCurrentTeacher().getName() + "!");
@@ -91,32 +97,33 @@ public class TeacherMainViewController implements Initializable
     @FXML
     private void handleNext(ActionEvent event)
     {
-        try{
-        if (classListView.getSelectionModel().getSelectedItem() != null)
+        try
         {
-            modelfacade.setCurrentClass(classListView.getSelectionModel().getSelectedItem());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClassView.fxml"));
-            Parent root = loader.load();
-            TeacherClassViewController TCVController = loader.getController();
+            if (classListView.getSelectionModel().getSelectedItem() != null)
+            {
+                modelfacade.setCurrentClass(classListView.getSelectionModel().getSelectedItem());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClassView.fxml"));
+                Parent root = loader.load();
+                TeacherClassViewController TCVController = loader.getController();
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Attendance - Teacher");
-            stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
-            stage.show();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Attendance - Teacher");
+                stage.getScene().getStylesheets().add(getClass().getResource("/attendance/automation/gui/css/Graphics.css").toExternalForm());
+                stage.show();
 
-            Stage oldStage = (Stage) nextButton.getScene().getWindow();
-            oldStage.close();
-        } else
+                Stage oldStage = (Stage) nextButton.getScene().getWindow();
+                oldStage.close();
+            } else
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Oops");
+                alert.setHeaderText("Oops, something went wrong");
+                alert.setContentText("Please select a class to continue");
+                alert.showAndWait();
+            }
+        } catch (IOException ex)
         {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Oops");
-            alert.setHeaderText("Oops, something went wrong");
-            alert.setContentText("Please select a class to continue");
-            alert.showAndWait();
-        }
-        }
-        catch(IOException ex){
             JOptionPane.showMessageDialog(null, "Cannot read FXML file(s)!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
@@ -124,7 +131,9 @@ public class TeacherMainViewController implements Initializable
 
     /**
      * Populates the ListView
+     *
      * @param username
+     * @throws attendance.automation.dal.AttendanceAutomationDalException
      */
     public void populateList(String username) throws AttendanceAutomationDalException
     {

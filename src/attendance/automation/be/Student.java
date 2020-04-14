@@ -132,9 +132,6 @@ public class Student extends Person
         this.password.set(password);
     }
 
-    
-    
-
     /**
      * Prints all the cariables of the student
      * @return all the relevant info for the student

@@ -19,19 +19,22 @@ import java.util.Properties;
  */
 public class DatabaseConnector
 {
+
     private SQLServerDataSource dataSource;
 
     /**
-     * DatabaseConnector constructor
-     * the class takes the info from the DBSettings.txt file and establishes a connection to the database. 
+     * DatabaseConnector constructor the class takes the info from the
+     * DBSettings.txt file and establishes a connection to the database.
+     *
      * @throws java.io.FileNotFoundException
      * @throws IOException
      */
-    public DatabaseConnector() throws FileNotFoundException, IOException{
+    public DatabaseConnector() throws FileNotFoundException, IOException
+    {
         Properties props = new Properties();
-       
+
         props.load(new FileReader("DBSettings.txt"));
-        
+
         dataSource = new SQLServerDataSource();
         dataSource.setDatabaseName(props.getProperty("database"));
         dataSource.setUser(props.getProperty("user"));
@@ -45,7 +48,8 @@ public class DatabaseConnector
      * @return Database connection
      * @throws com.microsoft.sqlserver.jdbc.SQLServerException
      */
-    public Connection getConnection() throws SQLServerException {
+    public Connection getConnection() throws SQLServerException
+    {
         return dataSource.getConnection();
     }
 }

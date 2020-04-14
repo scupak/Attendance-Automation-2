@@ -16,103 +16,134 @@ import javafx.scene.chart.XYChart;
  *
  * @author SKRUMM
  */
-public interface StudentManagerInterface 
+public interface StudentManagerInterface
 {
-    
+
     public int checkCurrentDay(String username) throws AttendanceAutomationDalException;
-    
+
     /**
      * Sends an update, to update DayStudent
+     *
      * @param sd
      * @return StudentDay
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException;
-    
+
     /**
-     * Checks the students credentials, if they match with the assigned credentials in the DB.
+     * Checks the students credentials, if they match with the assigned
+     * credentials in the DB.
+     *
      * @param s
      * @return credentials
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException;
-    
+
     /**
      * Gets student info
+     *
      * @param s
      * @return stident info
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     public Student getStudent(Student s) throws AttendanceAutomationDalException;
 
     /**
      * Sets the status of the day
+     *
      * @param status
      * @param username
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
-    public void setDayStatus(int status, String username) throws AttendanceAutomationDalException; 
-    
+    public void setDayStatus(int status, String username) throws AttendanceAutomationDalException;
+
     /**
      * Gets all days for specific student as a list
+     *
      * @param student
      * @return all the days for the specific student as a list
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     public List<StudentDay> getAllDaysForAstudent(Student student) throws AttendanceAutomationDalException;
-    
 
     public List<StudentDay> getAllDaysForAstudent(Student currentStudent, LocalDate date, LocalDate date0) throws AttendanceAutomationDalException;
+
     /**
      * Gets all students as a list
+     *
      * @return all students as a list
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     public List<Student> getallStudents() throws AttendanceAutomationDalException;
-     
+
     /**
      * Checks if the current student exists in the DB
+     *
      * @param username
      * @param date
      * @return if the student exists based on the given info
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
-    public boolean doesStudentDayExist(String username, LocalDate date)throws AttendanceAutomationDalException;
-    
+    public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException;
+
     /**
      * Gets studentDay
+     *
      * @param s
      * @param date
      * @return the studentDay
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
-    public StudentDay getStudentDay(Student s, LocalDate date)throws AttendanceAutomationDalException;
-    
+    public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException;
+
     /**
      * sets the pie chart
+     *
      * @param s
      * @param attendanceStatusCheck
      * @return
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     public double pieChartData(Student s, int attendanceStatusCheck) throws AttendanceAutomationDalException;
-    
+
     /**
      * sets a bar chart
+     *
      * @param s
      * @param attendanceStatusCheck
      * @param columName
      * @return
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
-    public XYChart.Series setPresence(Student s , int attendanceStatusCheck, String columName) throws AttendanceAutomationDalException;
-    
-    
-    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException ;
-    
-    public String getmostabsentdayforstudent(Student currentStudent) throws AttendanceAutomationDalException ;
-    
-    
-   public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException ;
-     
+    public XYChart.Series setPresence(Student s, int attendanceStatusCheck, String columName) throws AttendanceAutomationDalException;
+
+    /**
+     * updates absent procent for a students
+     *
+     * @param currentStudent
+     * @param absenceProcentforstudent
+     * @throws AttendanceAutomationDalException
+     */
+    public void updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException;
+
+    /**
+     * gets the most absent day for a student
+     *
+     * @param currentStudent
+     * @return mostabsentdayforstudent
+     * @throws AttendanceAutomationDalException
+     */
+    public String getmostabsentdayforstudent(Student currentStudent) throws AttendanceAutomationDalException;
+
+    /**
+     * updates the most absent day for a student
+     *
+     * @param currentStudent
+     * @param mostabsentdayforstudent
+     * @return mostabsentdayforstudent
+     * @throws AttendanceAutomationDalException
+     */
+    public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException;
+
 }

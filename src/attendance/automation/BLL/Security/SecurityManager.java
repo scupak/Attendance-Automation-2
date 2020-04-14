@@ -17,7 +17,13 @@ import java.security.NoSuchAlgorithmException;
 public class SecurityManager implements SecurityManagerInterface
 {
 
-  
+    /**
+     * encrypts a string using hashing
+     *
+     * @param password
+     * @return hexString
+     * @throws SecurityException
+     */
     @Override
     public String hashPassword(String password) throws SecurityException
     {
@@ -43,7 +49,5 @@ public class SecurityManager implements SecurityManagerInterface
             throw new SecurityException(e.getMessage());
         }
     }
-  
+
 }
-
-

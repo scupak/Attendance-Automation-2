@@ -31,7 +31,7 @@ and open the template in the editor.
 .button
 {
     -fx-text-fill: black;
-   -fx-background-color: #FBBB2C;
+    -fx-background-color: #FBBB2C;
 }
 
 .backButton
@@ -185,7 +185,7 @@ and open the template in the editor.
     -fx-background-color: #FBBB2C;
     -fx-border-color:  #FBBB2C;
     -fx-border-radius:  10px;
-    
+
 }
 
 #boxGreen

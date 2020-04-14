@@ -11,7 +11,9 @@ package attendance.automation.BLL.Security;
  */
 public class SecurityException extends RuntimeException
 {
-    public SecurityException(String message) {
+
+    public SecurityException(String message)
+    {
         super(message);
     }
 }

@@ -9,8 +9,9 @@ package attendance.automation.enums;
  *
  * @author kacpe
  */
-public enum UserMode {
+public enum UserMode
+{
 
-        TEACHER, STUDENT
-    
+    TEACHER, STUDENT
+
 }

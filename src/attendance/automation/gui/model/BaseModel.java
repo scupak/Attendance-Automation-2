@@ -25,25 +25,26 @@ import javafx.stage.Stage;
  */
 public class BaseModel implements BaseModelInterface
 {
+
     private final BLLFacadeInterface bllfacade;
     Calendar calendar = Calendar.getInstance();
     private boolean isStatusSelectOpen = false;
     private int threadcounter = 0;
     private UserMode usermode;
 
-    
     public BaseModel() throws IOException, Exception
     {
         bllfacade = new BLLFacade();
     }
-    
+
     /**
      * opens a new window
      *
      * @throws IOException
      */
     @Override
-    public void handelLogout() throws IOException {
+    public void handelLogout() throws IOException
+    {
         FXMLLoader fxmlLoader = new FXMLLoader();
 
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("/attendance/automation/gui/view/SignInView.fxml").openStream());
@@ -55,106 +56,142 @@ public class BaseModel implements BaseModelInterface
         stage.show();
     }
 
-    
-    
-     /**
+    /**
      * Get the year
      *
      * @return year as an int
      */
     @Override
-    public int getYear() {
+    public int getYear()
+    {
         return calendar.get(Calendar.YEAR);
     }
-    
-     /**
+
+    /**
      * Get the current month
      *
      * @return Month as an int
      */
     @Override
-    public int getCurrentMonth() {
-       return calendar.get(Calendar.MONTH);
+    public int getCurrentMonth()
+    {
+        return calendar.get(Calendar.MONTH);
     }
-    
-    
+
     /**
      * Get the current Week
      *
      * @return Week as an int
      */
     @Override
-    public int getCurrentWeek() {
-         return calendar.get(Calendar.WEEK_OF_YEAR);
+    public int getCurrentWeek()
+    {
+        return calendar.get(Calendar.WEEK_OF_YEAR);
     }
-    
-    
+
     /**
      * Checks the current day
+     *
      * @param username
      * @return the current day
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     @Override
-    public int checkCurrentDay(String username) throws AttendanceAutomationDalException {
-       return bllfacade.checkCurrentDay(username);
+    public int checkCurrentDay(String username) throws AttendanceAutomationDalException
+    {
+        return bllfacade.checkCurrentDay(username);
     }
-    
-    
+
     /**
      * Checks the students credentials, and if they match
+     *
      * @param s
      * @return wether or not the credentials match
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     @Override
-    public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException {
+    public boolean checkCredStudent(Student s) throws AttendanceAutomationDalException
+    {
         return bllfacade.checkCredStudent(s);
     }
 
+    /**
+     * gets the status selecet
+     *
+     * @return status select
+     */
     @Override
-    public boolean getIsStatusSelectOpen() {
+    public boolean getIsStatusSelectOpen()
+    {
         return isStatusSelectOpen;
     }
 
+    /**
+     * sets the status select
+     *
+     * @param isStatusSelectOpen
+     */
     @Override
-    public void setIsStatusSelectOpen(boolean isStatusSelectOpen) {
+    public void setIsStatusSelectOpen(boolean isStatusSelectOpen)
+    {
         this.isStatusSelectOpen = isStatusSelectOpen;
     }
 
+    /**
+     * gets the threadcounter
+     *
+     * @return threadcounter
+     */
     @Override
-    public int getThreadcounter() {
+    public int getThreadcounter()
+    {
         return threadcounter;
     }
 
+    /**
+     * sets the threadcounter
+     *
+     * @param threadcounter
+     */
     @Override
-    public void setThreadcounter(int threadcounter) {
+    public void setThreadcounter(int threadcounter)
+    {
         this.threadcounter = threadcounter;
     }
 
     /**
-     * Sets the parameter that tells the program if its a teacher or student using the program. 
-     * @param usermode 
+     * Sets the parameter that tells the program if its a teacher or student
+     * using the program.
+     *
+     * @param usermode
      */
     @Override
-    public void setCurrentUserMode(UserMode usermode) {
+    public void setCurrentUserMode(UserMode usermode)
+    {
         this.usermode = usermode;
     }
 
-    
     /**
      * Get the currentuserMode
-     * @return 
+     *
+     * @return
      */
     @Override
-    public UserMode getCurrentUserMode() {
+    public UserMode getCurrentUserMode()
+    {
         return usermode;
     }
-    
+
+    /**
+     * encrypt password using hashing
+     *
+     * @param password
+     * @return password
+     */
     @Override
     public String hashPassword(String password)
     {
         return bllfacade.hashPassword(password);
     }
-    
+
 }

@@ -12,26 +12,28 @@ import java.io.IOException;
  *
  * @author kacpe
  */
-public class DALFacadeFactory 
+public class DALFacadeFactory
 {
+
     /**
      * Enum representing the two types of dalfacade the factory can make.
      */
     public enum DALFacadeTypes
     {
-    PRODUCTION, MOCK
+        PRODUCTION, MOCK
     }
-    
+
     /**
      * Creates DALFacades based on given type.
+     *
      * @param type
      * @return
      * @throws IOException
-     * @throws Exception 
+     * @throws Exception
      */
     public static DALFacadeInterface CreateDALFacade(DALFacadeTypes type) throws IOException, Exception
     {
-        switch(type)
+        switch (type)
         {
             case PRODUCTION:
                 return new DALFacade();
@@ -43,5 +45,3 @@ public class DALFacadeFactory
 
     }
 }
-
-

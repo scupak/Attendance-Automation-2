@@ -17,13 +17,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -31,24 +28,25 @@ import javax.swing.JOptionPane;
  */
 public class StudentDBDAO implements StudentDBDAOInterface
 {
+
     final static int ABSENT = 0;
     final static int PRESENT = 1;
     final static int UNKNOWN = -1;
     final static int DAY_OFF = 2;
-   
 
-    private final ConnectionPool conPool;  
+    private final ConnectionPool conPool;
 
     public StudentDBDAO() throws IOException, Exception
     {
         this.conPool = ConnectionPool.getInstance();
-       
+
     }
 
     /**
      * gets a list of all students in database
+     *
      * @return students list
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     @Override
     public List<Student> getAllStudents() throws AttendanceAutomationDalException
@@ -56,9 +54,9 @@ public class StudentDBDAO implements StudentDBDAOInterface
         ArrayList<Student> students = new ArrayList<>();
         Connection con = conPool.checkOut();
 
-        try 
+        try
         {
-            
+
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Student");
             ResultSet rs = ps.executeQuery();
 
@@ -80,20 +78,21 @@ public class StudentDBDAO implements StudentDBDAOInterface
             JOptionPane.showMessageDialog(null, "Could not get all students from database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
-        
+
     }
 
     /**
      * get a specific student based on username
+     *
      * @param s
      * @return returnStudent
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
+    @Override
     public Student getStudent(Student s) throws AttendanceAutomationDalException
     {
         Connection con = conPool.checkOut();
@@ -133,8 +132,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
             JOptionPane.showMessageDialog(null, "Could not find the student in the database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not find the student in the dataabase", ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
@@ -142,14 +140,16 @@ public class StudentDBDAO implements StudentDBDAOInterface
 
     /**
      * checks if a student exist in the databases
+     *
      * @param s
      * @return boolean
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
+    @Override
     public boolean StudentExist(Student s) throws AttendanceAutomationDalException
     {
         Connection con = conPool.checkOut();
-        try 
+        try
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Student WHERE username = ? ");
             ps.setString(1, s.getUsername());
@@ -168,24 +168,23 @@ public class StudentDBDAO implements StudentDBDAOInterface
             JOptionPane.showMessageDialog(null, "Could not find the student in the database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not find the student in the dataabase", ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
     }
 
-    
     /**
      * TODO make a method that chekcs if the studentDay exists
+     *
      * @param username
      * @return the current day
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     @Override
     public int checkCurrentDay(String username) throws AttendanceAutomationDalException
     {
-         Connection con = conPool.checkOut();
+        Connection con = conPool.checkOut();
         try
         {
             Date date = new Date();
@@ -212,25 +211,22 @@ public class StudentDBDAO implements StudentDBDAOInterface
                     if (status == 0)
                     {
                         return ABSENT;
-                    } 
-                    else if(status == 1)
+                    } else if (status == 1)
                     {
                         return PRESENT;
-                    }
-                    else if (status == -1)
+                    } else if (status == -1)
                     {
                         return UNKNOWN;
                     }
                 }
             }
-            
+
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Could not access day, or it is a day off!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
@@ -239,6 +235,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
 
     /**
      * Sends an update to DayStudent between layers
+     *
      * @param sd
      * @return boolean
      * @throws attendance.automation.dal.AttendanceAutomationDalException
@@ -247,15 +244,15 @@ public class StudentDBDAO implements StudentDBDAOInterface
     public boolean sendUpdateDayStudent(StudentDay sd) throws AttendanceAutomationDalException
     {
         Connection con = conPool.checkOut();
-        if(!doesStudentDayExist(sd.getStudent().getUsername(), sd.getDate()))
+        if (!doesStudentDayExist(sd.getStudent().getUsername(), sd.getDate()))
         {
-            
+
             return false;
         }
-        
+
         try
         {
-            
+
             java.sql.Date sqlDate = java.sql.Date.valueOf(sd.getDate());
 
             String sql = "SELECT id FROM [Day] WHERE date = ?";
@@ -277,27 +274,27 @@ public class StudentDBDAO implements StudentDBDAOInterface
                 ps2.setInt(3, dayId);
 
                 ps2.executeUpdate();
-               return true;
+                return true;
             }
-            
+
             return false;
-            
+
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Could not update the student's day!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
     }
-    
+
     /**
      * make it so this method only updates the day and does not make a new day
+     *
      * @param status
-     * @param username 
+     * @param username
      */
     @Override
     public void setDayStatus(int status, String username) throws AttendanceAutomationDalException
@@ -333,8 +330,7 @@ public class StudentDBDAO implements StudentDBDAOInterface
             JOptionPane.showMessageDialog(null, "Could not set status of the day!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             System.out.println("SQL Error: setDayStatus  " + ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
@@ -343,15 +339,18 @@ public class StudentDBDAO implements StudentDBDAOInterface
 
     /**
      * get a list of days for a student
+     *
      * @param student
      * @return studentDays
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     @Override
-    public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException {
+    public List<StudentDay> getAllDaysForStudent(Student student) throws AttendanceAutomationDalException
+    {
         ArrayList<StudentDay> studentdays = new ArrayList<>();
         Connection con = conPool.checkOut();
-        try  {
+        try
+        {
             PreparedStatement ps = con.prepareStatement("SELECT "
                     + "Student.username, Student.name, Student.password,Student.absenceProcent,Student.dayMostAbsent,Student.dayMostAbsent,Student.classID, Student_day.dayId,Student_day.status,Day.weekDay, Day.date  "
                     + "FROM Student "
@@ -359,55 +358,65 @@ public class StudentDBDAO implements StudentDBDAOInterface
                     + "inner JOIN Day ON Student_day.dayId = Day.id "
                     + "WHERE Student.username = ? "
                     + "ORDER BY  Day.date ASC");
-            
+
             ps.setString(1, student.getUsername());
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next())
+            {
                 String username = rs.getString("username");
                 String name = rs.getString("name");
                 String password = rs.getString("password");
                 int absence = rs.getInt("absenceProcent");
                 String dayMostAbsent = rs.getString("dayMostAbsent");
                 int classID = rs.getInt("classID");
-               Student returnstudent = new Student(name, username, password, absence, dayMostAbsent, classID);
-               
-               LocalDate date = rs.getDate("date").toLocalDate();
-               
-               int absenstatus = rs.getInt("status");
-               
-               studentdays.add(new StudentDay(date, returnstudent, absenstatus));
-               
-            
-               
+                Student returnstudent = new Student(name, username, password, absence, dayMostAbsent, classID);
+
+                LocalDate date = rs.getDate("date").toLocalDate();
+
+                int absenstatus = rs.getInt("status");
+
+                studentdays.add(new StudentDay(date, returnstudent, absenstatus));
+
             }
             return studentdays;
 
-        } catch (SQLServerException ex) {
+        } catch (SQLServerException ex)
+        {
             JOptionPane.showMessageDialog(null, "Could not get all students the database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             JOptionPane.showMessageDialog(null, "Could not get all students the database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
-        }
-         finally
+        } finally
         {
             conPool.checkIn(con);
         }
     }
-    
+
+    /**
+     * gets a list of days between to dates
+     *
+     * @param currentStudent
+     * @param startdate
+     * @param enddate
+     * @return studentDays
+     * @throws AttendanceAutomationDalException
+     */
     @Override
-    public List<StudentDay> getAllDaysForStudent(Student currentStudent, LocalDate startdate, LocalDate enddate) throws AttendanceAutomationDalException {
-         ArrayList<StudentDay> studentdays = new ArrayList<>();
+    public List<StudentDay> getAllDaysForStudent(Student currentStudent, LocalDate startdate, LocalDate enddate) throws AttendanceAutomationDalException
+    {
+        ArrayList<StudentDay> studentdays = new ArrayList<>();
         Connection con = conPool.checkOut();
-        try  {
-            
-            
-             java.sql.Date sqlstartDate = java.sql.Date.valueOf(startdate);
-             java.sql.Date sqlendDate = java.sql.Date.valueOf(enddate);
-             
+        try
+        {
+
+            java.sql.Date sqlstartDate = java.sql.Date.valueOf(startdate);
+            java.sql.Date sqlendDate = java.sql.Date.valueOf(enddate);
+
             PreparedStatement ps = con.prepareStatement("SELECT "
                     + "Student.username, Student.name, Student.password,Student.absenceProcent,Student.dayMostAbsent,Student.dayMostAbsent,Student.classID, Student_day.dayId,Student_day.status,Day.weekDay, Day.date  "
                     + "FROM Student "
@@ -415,44 +424,43 @@ public class StudentDBDAO implements StudentDBDAOInterface
                     + "inner JOIN Day ON Student_day.dayId = Day.id "
                     + "WHERE Student.username = ? AND Day.date > ? AND Day.date < ? "
                     + "ORDER BY  Day.date ASC");
-            
+
             ps.setString(1, currentStudent.getUsername());
             ps.setDate(2, sqlstartDate);
             ps.setDate(3, sqlendDate);
-            
-            
+
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next())
+            {
                 String username = rs.getString("username");
                 String name = rs.getString("name");
                 String password = rs.getString("password");
                 int absence = rs.getInt("absenceProcent");
                 String dayMostAbsent = rs.getString("dayMostAbsent");
                 int classID = rs.getInt("classID");
-               Student returnstudent = new Student(name, username, password, absence, dayMostAbsent, classID);
-               
-               LocalDate date = rs.getDate("date").toLocalDate();
-               
-               int absenstatus = rs.getInt("status");
-               
-               studentdays.add(new StudentDay(date, returnstudent, absenstatus));
-               
-            
-               
+                Student returnstudent = new Student(name, username, password, absence, dayMostAbsent, classID);
+
+                LocalDate date = rs.getDate("date").toLocalDate();
+
+                int absenstatus = rs.getInt("status");
+
+                studentdays.add(new StudentDay(date, returnstudent, absenstatus));
+
             }
             return studentdays;
 
-        } catch (SQLServerException ex) {
+        } catch (SQLServerException ex)
+        {
             JOptionPane.showMessageDialog(null, "Could not get all students the database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             JOptionPane.showMessageDialog(null, "Could not get all students the database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("could not get all students from database", ex);
-        }
-         finally
+        } finally
         {
             conPool.checkIn(con);
         }
@@ -460,16 +468,17 @@ public class StudentDBDAO implements StudentDBDAOInterface
 
     /**
      * Checks if the students day exists
+     *
      * @param username
      * @param date
      * @return if the day exists
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     @Override
     public boolean doesStudentDayExist(String username, LocalDate date) throws AttendanceAutomationDalException
     {
         Connection con = conPool.checkOut();
-        try 
+        try
         {
             java.sql.Date sqlDate = java.sql.Date.valueOf(date);
 
@@ -491,42 +500,39 @@ public class StudentDBDAO implements StudentDBDAOInterface
             }
             System.out.println("doesStudentDayExist = false");
             return false;
-            
-            
+
         } catch (SQLException ex)
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Could not find day in database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("Could not find day in database", ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
-      
-       
+
     }
 
     /**
      * Gets the student day
+     *
      * @param s
      * @param date
      * @return the student day
-     * @throws AttendanceAutomationDalException 
+     * @throws AttendanceAutomationDalException
      */
     @Override
     public StudentDay getStudentDay(Student s, LocalDate date) throws AttendanceAutomationDalException
     {
         Connection con = conPool.checkOut();
-        if(!doesStudentDayExist(s.getUsername(), date))
+        if (!doesStudentDayExist(s.getUsername(), date))
         {
             return null;
         }
         StudentDay returnStudentDay;
-          
-        
-         try
+
+        try
         {
             java.sql.Date sqlDate = java.sql.Date.valueOf(date);
 
@@ -547,178 +553,146 @@ public class StudentDBDAO implements StudentDBDAOInterface
                 LocalDate daydate = rs.getDate("date").toLocalDate();
                 int status = rs.getInt("status");
                 returnStudentDay = new StudentDay(daydate, s, status);
-            }
-            else
+            } else
             {
-                return null;  
+                return null;
             }
             return returnStudentDay;
 
-           
-            
         } catch (SQLException ex)
         {
             Logger.getLogger(StudentDBDAO.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Could not find day in database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("Could not find day in database", ex);
-        }
-         finally
+        } finally
         {
             conPool.checkIn(con);
         }
     }
 
-       
-       /*implement the method*/
-
+    /**
+     * updates the students absence in the database
+     *
+     * @param currentStudent
+     * @param absenceProcentforstudent
+     * @return boolean
+     * @throws AttendanceAutomationDalException
+     */
     @Override
-    public boolean updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException {
-        
+    public boolean updateStudentabsenceProcent(Student currentStudent, double absenceProcentforstudent) throws AttendanceAutomationDalException
+    {
+
         System.err.println("updateStudentabsenceProcent");
         Connection con = conPool.checkOut();
-        if(!StudentExist(currentStudent))
+        if (!StudentExist(currentStudent))
         {
-            
+
             return false;
         }
-        
-        try 
+
+        try
         {
-            
 
             String sql = "UPDATE [Student] SET absenceProcent = ? WHERE username = ? ";
 
-           
             PreparedStatement ps = con.prepareStatement(sql);
-            
-           
+
             ps.setInt(1, (int) Math.round(absenceProcentforstudent));
             ps.setString(2, currentStudent.getUsername());
-           int updatedRows = ps.executeUpdate();
+            int updatedRows = ps.executeUpdate();
 
-             return updatedRows > 0;
-            
-            
-            
+            return updatedRows > 0;
+
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Could not update the student's day!", "Error", JOptionPane.ERROR_MESSAGE);
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
     }
-    
-     protected boolean updateStudentpassword(Student currentStudent) throws AttendanceAutomationDalException {
-        
+
+    /**
+     * updates a students password
+     * @param currentStudent
+     * @return boolean
+     * @throws AttendanceAutomationDalException 
+     */
+    protected boolean updateStudentpassword(Student currentStudent) throws AttendanceAutomationDalException
+    {
+
         System.err.println("updateStudentabsenceProcent");
-          Connection con = conPool.checkOut();
-        if(!StudentExist(currentStudent))
+        Connection con = conPool.checkOut();
+        if (!StudentExist(currentStudent))
         {
-            
+
             return false;
         }
-        
-        try 
+
+        try
         {
-            
 
             String sql = "UPDATE [Student] SET password = ? WHERE username = ? ";
 
-           
             PreparedStatement ps = con.prepareStatement(sql);
-            
-           
+
             ps.setString(1, currentStudent.getPassword());
             ps.setString(2, currentStudent.getUsername());
-           int updatedRows = ps.executeUpdate();
+            int updatedRows = ps.executeUpdate();
 
-             return updatedRows > 0;
-            
-            
-            
+            return updatedRows > 0;
+
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Could not update the student's day!", "Error", JOptionPane.ERROR_MESSAGE);
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
     }
 
+    /**
+     * update the most absent day for a student
+     * @param currentStudent
+     * @param mostabsentdayforstudent
+     * @return boolean
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
-    public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException {
-         Connection con = conPool.checkOut();
-        if(!StudentExist(currentStudent))
+    public boolean updateStudentMostAbsentDay(Student currentStudent, String mostabsentdayforstudent) throws AttendanceAutomationDalException
+    {
+        Connection con = conPool.checkOut();
+        if (!StudentExist(currentStudent))
         {
-            
+
             return false;
         }
-        
+
         try
         {
-            
 
             String sql = "UPDATE [Student] SET dayMostAbsent = ? WHERE username = ? ";
 
-           
             PreparedStatement ps = con.prepareStatement(sql);
-            
-           
-            ps.setString(1,  mostabsentdayforstudent);
-            ps.setString(2, currentStudent.getUsername());
-           int updatedRows = ps.executeUpdate();
 
-             return updatedRows > 0;
-            
-            
-            
+            ps.setString(1, mostabsentdayforstudent);
+            ps.setString(2, currentStudent.getUsername());
+            int updatedRows = ps.executeUpdate();
+
+            return updatedRows > 0;
+
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Could not update the student's day!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
             throw new AttendanceAutomationDalException("sendUpdateDayStudent error", ex);
-        }
-        finally
+        } finally
         {
             conPool.checkIn(con);
         }
     }
-     
-    public static void main(String[] args) throws IOException, AttendanceAutomationDalException, Exception {
-        ArrayList<StudentDay> studentdays = new ArrayList<>();
-        StudentDBDAO test = new StudentDBDAO();
-          Student se = new Student("djkghsl", "mads69", "password", 0, "monday", 0);  
-        //System.err.println(test.updateStudentMostAbsentDay(se, "monday"));
-        
-       // System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss", Locale.ENGLISH)));
-       
-        LocalDate startdate = LocalDate.of(2020, Month.MARCH, 19);
-        LocalDate enddate = LocalDate.of(2020, Month.MARCH, 25);
-        
-        studentdays.addAll(test.getAllDaysForStudent(se, startdate, enddate));
-        
-        
-        for (Iterator<StudentDay> iterator = studentdays.iterator(); iterator.hasNext();) {
-            StudentDay next = iterator.next();
-            
-            System.out.println(next.toString());
-            
-        }
-        
-        
-       
-       
-        
-        
-    }
 
-    
-  
 }
-
