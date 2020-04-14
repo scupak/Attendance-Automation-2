@@ -14,7 +14,6 @@ import attendance.automation.dal.Interface.DALFacadeInterface;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -51,6 +50,7 @@ public class StudentManager implements StudentManagerInterface
      * @return a list of all students
      * @throws AttendanceAutomationDalException 
      */
+    @Override
     public List<Student> getallStudents() throws AttendanceAutomationDalException
     {
         return dalfacade.getAllStudents();
@@ -233,8 +233,6 @@ public class StudentManager implements StudentManagerInterface
         int wednesdayC = 0;
         int thursdayC = 0;
         int fridayC = 0;
-        int saturdayC = 0;
-        int sundayC = 0;
         
         for (StudentDay studentDay : getAllDaysForAstudent(s))
         {
@@ -269,7 +267,6 @@ public class StudentManager implements StudentManagerInterface
             }
             
         }
-        System.out.println(mondayC + "  " + tuesdayC + "    " + wednesdayC + "  " + thursdayC + "    " + fridayC);
 
         presence.setName(columName);
         presence.getData().add(new XYChart.Data("Monday", mondayC));
