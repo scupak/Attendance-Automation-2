@@ -242,6 +242,7 @@ public class FullCalendarView {
         
         ArrayList<StudentDay> studentdays = new ArrayList<>();
         
+        //get all the studentdays just for this month
       studentdays.addAll( modelfacade.getAllDaysForAstudent(modelfacade.getCurrentStudent(),allCalendarDays.get(0).getDate(),allCalendarDays.get(allCalendarDays.size() -1).getDate()));
         System.out.println(studentdays.size());
        Map<LocalDate,StudentDay> studentdaymap = new HashMap();
