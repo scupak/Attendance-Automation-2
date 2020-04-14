@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package attendance.automation.dal;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
@@ -13,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ *The connectionPool stores instances of connection for later reuse. It also takes care of all the fuctionality needed for this purpose. 
  * @author kacpe
  */
 public class ConnectionPool extends ObjectPool<Connection>
@@ -31,6 +27,12 @@ public class ConnectionPool extends ObjectPool<Connection>
         }
     }
     
+   /**
+    * The connectionPoll is a singleton. 
+    * @return
+    * @throws IOException
+    * @throws Exception 
+    */
     public static synchronized ConnectionPool getInstance() throws IOException, Exception
     {
         if (connectionpool == null)
@@ -40,6 +42,11 @@ public class ConnectionPool extends ObjectPool<Connection>
         return connectionpool;
     }
 
+    /**
+     * This method creates a new instance of connection.
+     * @return
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     protected Connection create() throws AttendanceAutomationDalException {
          try {
@@ -49,6 +56,12 @@ public class ConnectionPool extends ObjectPool<Connection>
          }
     }
 
+    /**
+     * This method checks the validity of an instance. 
+     * @param o
+     * @return
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public boolean validate(Connection o) throws AttendanceAutomationDalException {
        try
@@ -61,6 +74,11 @@ public class ConnectionPool extends ObjectPool<Connection>
         }
     }
 
+    /**
+     * This method checks if the instance in question has expired. 
+     * @param o
+     * @throws AttendanceAutomationDalException 
+     */
     @Override
     public void expire(Connection o) throws AttendanceAutomationDalException {
         try
