@@ -6,12 +6,8 @@
 package attendance.automation.BLL;
 
 import attendance.automation.be.Student;
-import attendance.automation.be.StudentDay;
 import attendance.automation.dal.DALFacadeFactory;
-import attendance.automation.dal.DALMockFacade;
-import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.List;
 import javafx.scene.chart.XYChart;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -44,64 +40,6 @@ public class StudentManagerTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of getUsernameStudent method, of class StudentManager.
-     */
-//    @Test
-//    public void testGetUsernameStudent() {
-//        System.out.println("getUsernameStudent");
-//        StudentManager instance = null;
-//        String expResult = "";
-//        String result = instance.getUsernameStudent();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getPasswordStudent method, of class StudentManager.
-//     */
-//    @Test
-//    public void testGetPasswordStudent() {
-//        System.out.println("getPasswordStudent");
-//        StudentManager instance = null;
-//        String expResult = "";
-//        String result = instance.getPasswordStudent();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of checkCurrentDay method, of class StudentManager.
-//     */
-//    @Test
-//    public void testCheckCurrentDay() throws Exception {
-//        System.out.println("checkCurrentDay");
-//        String username = "";
-//        StudentManager instance = null;
-//        int expResult = 0;
-//        int result = instance.checkCurrentDay(username);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getallStudents method, of class StudentManager.
-//     */
-//    @Test
-//    public void testGetallStudents() throws Exception {
-//        System.out.println("getallStudents");
-//        StudentManager instance = null;
-//        List<Student> expResult = null;
-//        List<Student> result = instance.getallStudents();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
 //    /**
 //     * Test of checkCredStudent method, of class StudentManager.
 //     */
@@ -115,113 +53,8 @@ public class StudentManagerTest {
         //Act
         boolean result = instance.checkCredStudent(s);
         //Assert
-        assertEquals(expResult, result);
-        
-        
+        assertEquals(expResult, result);        
     }
-//
-//    /**
-//     * Test of getStudent method, of class StudentManager.
-//     */
-//    @Test
-//    public void testGetStudent() throws Exception {
-//        System.out.println("getStudent");
-//        Student s = null;
-//        StudentManager instance = null;
-//        Student expResult = null;
-//        Student result = instance.getStudent(s);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of main method, of class StudentManager.
-//     */
-//    @Test
-//    public void testMain() throws Exception {
-//        System.out.println("main");
-//        String[] args = null;
-//        StudentManager.main(args);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of sendUpdateDayStudent method, of class StudentManager.
-//     */
-//    @Test
-//    public void testSendUpdateDayStudent() throws Exception {
-//        System.out.println("sendUpdateDayStudent");
-//        StudentDay sd = null;
-//        StudentManager instance = null;
-//        boolean expResult = false;
-//        boolean result = instance.sendUpdateDayStudent(sd);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setDayStatus method, of class StudentManager.
-//     */
-//    @Test
-//    public void testSetDayStatus() throws Exception {
-//        System.out.println("setDayStatus");
-//        int status = 0;
-//        String username = "";
-//        StudentManager instance = null;
-//        instance.setDayStatus(status, username);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getAllDaysForAstudent method, of class StudentManager.
-//     */
-//    @Test
-//    public void testGetAllDaysForAstudent() throws Exception {
-//        System.out.println("getAllDaysForAstudent");
-//        Student student = null;
-//        StudentManager instance = null;
-//        List<StudentDay> expResult = null;
-//        List<StudentDay> result = instance.getAllDaysForAstudent(student);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of doesStudentDayExist method, of class StudentManager.
-//     */
-//    @Test
-//    public void testDoesStudentDayExist() throws Exception {
-//        System.out.println("doesStudentDayExist");
-//        String username = "";
-//        LocalDate date = null;
-//        StudentManager instance = null;
-//        boolean expResult = false;
-//        boolean result = instance.doesStudentDayExist(username, date);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getStudentDay method, of class StudentManager.
-//     */
-//    @Test
-//    public void testGetStudentDay() throws Exception {
-//        System.out.println("getStudentDay");
-//        Student s = null;
-//        LocalDate date = null;
-//        StudentManager instance = null;
-//        StudentDay expResult = null;
-//        StudentDay result = instance.getStudentDay(s, date);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
 
     /**
      * Test of pieChartData method, of class StudentManager.
